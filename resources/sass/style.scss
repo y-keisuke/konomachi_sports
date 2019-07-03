@@ -1,7 +1,10 @@
-.btn-primary {
+.btn {
     a {
         color: #fff!important;
     }
+}
+nav {
+    max-height: 55px;
 }
 .jumbotron {
     position: relative;
@@ -23,7 +26,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(255,255,255,0.15);
+        background: rgba(255,255,255,0.25);
     }
 }
 .top-box {
@@ -32,9 +35,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+.flex {
+    display: flex;
+}
 
 footer {
     height: 40px;
+    width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;

@@ -1,0 +1,54 @@
+.btn-primary a {
+  color: #fff !important;
+}
+
+.jumbotron {
+  position: relative;
+  background: url("/images/gym.jpg");
+  background-size: cover;
+  border-radius: 0;
+  height: calc(100vh - 95px);
+  margin: 0;
+  border-top: 1px black solid;
+  border-bottom: 1px black solid;
+}
+
+.jumbotron p {
+  font-weight: bold;
+}
+
+.jumbotron:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.top-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+footer {
+  height: 40px;
+  text-align: center;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+footer p {
+  width: 100%;
+  margin: 0;
+}
+

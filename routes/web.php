@@ -16,4 +16,8 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
+//ユーザー(個人)
 Route::resource('users', 'UserController');
+
+//チーム
+Route::resource('teams', 'TeamController');

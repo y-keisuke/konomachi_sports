@@ -21,3 +21,6 @@ Route::resource('users', 'UserController');
 
 //チーム
 Route::resource('teams', 'TeamController');
+
+//活動状況
+Route::resource('posts', 'PostController');

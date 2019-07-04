@@ -48,4 +48,10 @@
 
         <a href="{{ url('teams') }}">> チーム一覧に戻る</a>
 
+        <div class="my-2">
+            <a href="{{ url('posts/create') }}" class="btn btn-primary">活動状況を投稿</a>
+        </div>
+
+    </div><!-- /.container -->
+
 @endsection

@@ -35,12 +35,27 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
+                    <ul class="navbar-nav ml-auto">
+                        {{-- 「記事」と「ユーザ」へのリンク--}}
+                        <li class="nav-item {{ isActiveUrl('users') }}">
+                            <a href="{{ url('users') }}" class="nav-link">
+                                ユーザー
+                            </a>
+                        </li>
+                        <li class="nav-item {{ isActiveUrl('teams') }}">
+                            <a href="{{ url('teams') }}" class="nav-link">
+                                チーム
+                            </a>
+                        </li>
+                        <li class="nav-item {{ isActiveUrl('posts') }}">
+                            <a href="{{ url('posts') }}" class="nav-link">
+                                活動状況
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -58,6 +73,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a href="{{ 'users/' . Auth::id() }}" class="dropdown-item">マイページ</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

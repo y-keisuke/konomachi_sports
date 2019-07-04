@@ -1,51 +1,37 @@
-@php($title = $team->area . 'の'. $team->sports . 'チームのページ')
+@php($title = $post->title)
 
 @extends('layouts.app')
 
-@section('title', $title)
-
 @section('content')
     <div class="container">
-    <h1>{{ $title }}</h1>
-        {{-- ユーザー1件の情報 --}}
-        <div class="team-info-box">
-            <div class="team-info-list row">
-                <p class="col-md-2">活動エリア:</p>
-                <p class="col-md-10">{{ $team->area }}</p>
-            </div>
-            <div class="team-info-list row">
-                <p class="col-md-2">年齢層:</p>
-                <p class="col-md-10">{{ $team->age }}</p>
-            </div>
-            <div class="team-info-list row">
-                <p class="col-md-2">募集レベル:</p>
-                <p class="col-md-10">{{ $team->level }}</p>
-            </div>
-            <div class="team-info-list row">
-                <p class="col-md-2">活動頻度:</p>
-                <p class="col-md-10">{{ $team->frequency }}</p>
-            </div>
-            <div class="team-info-list row">
-                <p class="col-md-2">HP:</p>
-                <p class="col-md-10">{{ $team->hp }}</p>
-            </div>
-        </div>
+    <h1 class="post-title">{{ $title }}</h1>
 
-        {{-- 編集・削除ボタン --}}
-        <div class="flex mb-3">
-            {{--編集--}}
-            <button class="btn btn-primary mr-4">
-                <a href="{{ url('teams/' . $team->id . '/edit') }}">編集</a>
-            </button>
+    {{-- 編集・削除ボタン --}}
+    <div class="edit">
+        <a href="{{ url('posts/' . $post->id . '/edit') }}" class="btn btn-primary">編集</a>
+        @component('components.btn-del')
+            @slot('controller', 'posts')
+            @slot('id', $post->id)
+            @slot('name', $post->title)
+        @endcomponent
+    </div>
 
-            {{--削除--}}
-            @component('components.btn-del')
-                @slot('controller', 'teams')
-                @slot('id', $team->id)
-                @slot('name', $team->area . 'の' . $team->sports . 'チーム')
-            @endcomponent
-        </div>
+    {{-- 記事内容 --}}
+    <dl class="row mt-3">
+        <dt class="col-md-1">投稿日</dt>
+        <dd class="col-md-3">
+            <time itemprop="dateCreated" datetime="{{ $post->created_at }}">{{ $post->created_at }}</time>
+        </dd>
+        <dt class="col-md-1">更新日</dt>
+        <dd class="col-md-3">
+            <time itemprop="dateCreated" datetime="{{ $post->updated_at }}">{{ $post->updated_at }}</time>
+        </dd>
+    </dl>
+    <h2>活動内容</h2>
+    <div class="post-body">
+        {{ $post->body }}
+    </div>
 
-        <a href="{{ url('teams') }}">> チーム一覧に戻る</a>
+    {{-- <a href="{{ url('teams/' . $team->id) }}">> チーム情報に戻る</a> --}}
 
 @endsection

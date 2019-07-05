@@ -1,5 +1,7 @@
 <?php
 
+use Faker\Factory;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -11,13 +13,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::create([
+        User::create([
             'name' => '管理者',
             'email' => 'keisuke.test.yamauchi@gmail.com',
             'password' => bcrypt('12341234'),
         ]);
 
-        $faker = Faker\Factory::create('ja_JP');
+        $faker = Factory::create('ja_JP');
 
         for ($i = 0; $i < 20; $i++)
         {

@@ -3,7 +3,7 @@
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
-class PostsTableSeeder extends Seeder
+class FollowsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,13 +14,11 @@ class PostsTableSeeder extends Seeder
     {
         $faker = Factory::create('ja_JP');
 
-        for ($i = 0; $i < 40; $i++)
+        for ($i = 0; $i < 20; $i++)
         {
-            DB::table('posts')->insert([
-                'user_id' =>$faker->numberBetween(1, 20),
-                'team_id' =>$faker->numberBetween(1, 10),
-                'title' => $faker->sentence(2),
-                'body' => $faker->paragraph(),
+            DB::table('follows')->insert([
+                'follow_user_id' =>$faker->numberBetween(1, 20),
+                'followed_user_id' =>$faker->numberBetween(1, 20),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
             ]);

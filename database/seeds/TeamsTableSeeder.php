@@ -1,5 +1,6 @@
 <?php
 
+use Faker\Factory;
 use Illuminate\Database\Seeder;
 
 class TeamsTableSeeder extends Seeder
@@ -11,7 +12,7 @@ class TeamsTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create('ja_JP');
+        $faker = Factory::create('ja_JP');
 
         for ($i = 0; $i < 10; $i++)
         {

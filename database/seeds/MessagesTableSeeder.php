@@ -17,6 +17,7 @@ class MessagesTableSeeder extends Seeder
         for ($i = 0; $i < 20; $i++)
         {
             DB::table('messages')->insert([
+                'board_id' => $faker->numberBetween(1, 10),
                 'user_id' =>$faker->numberBetween(1, 20),
                 'message' =>$faker->sentence(),
                 'created_at' => $faker->dateTime(),

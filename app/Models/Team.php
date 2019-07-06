@@ -16,4 +16,13 @@ class Team extends Model
         'frequency' => 'required|string',
         'hp' => 'url',
     );
+
+    /**
+     * リレーション（多対多）
+     *
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User');
+    }
 }

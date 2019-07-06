@@ -3,7 +3,7 @@
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
-class TeamMembersTableSeeder extends Seeder
+class TeamUserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +16,7 @@ class TeamMembersTableSeeder extends Seeder
 
         for ($i = 0; $i < 20; $i++)
         {
-            DB::table('team_members')->insert([
+            DB::table('team_user')->insert([
                 'user_id' =>$faker->numberBetween(1, 20),
                 'team_id' =>$faker->numberBetween(1, 10),
                 'admin' =>$faker->boolean(),

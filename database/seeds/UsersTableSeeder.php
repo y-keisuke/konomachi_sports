@@ -18,6 +18,11 @@ class UsersTableSeeder extends Seeder
             'email' => 'keisuke.test.yamauchi@gmail.com',
             'password' => bcrypt('12341234'),
         ]);
+        User::create([
+            'name' => 'テストユーザー',
+            'email' => 'test@example.com',
+            'password' => bcrypt('12345678'),
+        ]);
 
         $faker = Factory::create('ja_JP');
 

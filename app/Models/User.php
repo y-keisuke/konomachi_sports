@@ -36,4 +36,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * リレーション（主、多対多）
+     *
+     */
+    public function teams()
+    {
+        return $this->belongsToMany('App\Models\Team');
+    }
 }

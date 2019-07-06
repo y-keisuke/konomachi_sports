@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
         $this->call(TeamsTableSeeder::class);
         $this->call(PostsTableSeeder::class);
+        $this->call(TeamUserTableSeeder::class);
         $this->call(SexTableSeeder::class);
         $this->call(UserLevelTableSeeder::class);
         $this->call(LikesTableSeeder::class);
         $this->call(FollowsTableSeeder::class);
         $this->call(MessagesTableSeeder::class);
-        $this->call(TeamMembersTableSeeder::class);
         $this->call(BoardsTableSeeder::class);
     }
 }

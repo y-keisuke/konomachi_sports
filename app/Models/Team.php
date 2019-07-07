@@ -33,4 +33,13 @@ class Team extends Model
     {
         return $this->hasMany('App\Models\Post');
     }
+
+    /**
+     * リレーション（多対多）
+     * チームにいいねをしているユーザー情報を取得
+     */
+    public function likes()
+    {
+        return $this->belongsToMany('App\Models\User', 'likes', 'liked_team_id', 'like_user_id');
+    }
 }

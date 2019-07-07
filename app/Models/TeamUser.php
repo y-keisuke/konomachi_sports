@@ -14,23 +14,4 @@ class TeamUser extends Model
         'admin'   => 'required|boolean',
     );
 
-    /**
-     * リレーション（従）
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function team()
-    {
-        return $this->belongsTo('App\Models\Team');
-    }
-
-    /**
-     * リレーション（従）
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
-    }
 }

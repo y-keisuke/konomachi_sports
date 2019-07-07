@@ -57,7 +57,8 @@ class TeamController extends Controller
         $t = Team::find($team->id);
         $users = $t->users;
         $posts = $t->posts;
-        return view('teams.show', ['team' => $team, 'users' => $users, 'posts' => $posts]);
+        $likes = $t->likes;
+        return view('teams.show', ['team' => $team, 'users' => $users, 'posts' => $posts, 'likes' => $likes]);
     }
 
     /**

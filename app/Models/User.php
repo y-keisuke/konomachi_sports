@@ -39,10 +39,37 @@ class User extends Authenticatable
 
     /**
      * リレーション（主、多対多）
-     *
+     * チームに所属するユーザー情報を取得
      */
     public function teams()
     {
         return $this->belongsToMany('App\Models\Team');
+    }
+
+    /**
+     * リレーション（多対多）
+     * いいねをしているチーム情報を取得
+     */
+    public function likes()
+    {
+        return $this->belongsToMany('App\Models\Team', 'likes', 'like_user_id', 'liked_team_id');
+    }
+
+    /**
+     * リレーション（多対多）
+     * 自分がフォローしているユーザー情報を取得
+     */
+    public function follow()
+    {
+        return $this->belongsToMany('App\Models\User', 'follows', 'follow_user_id', 'followed_user_id');
+    }
+
+    /**
+     * リレーション（多対多）
+     * 自分をフォローしているユーザー情報を取得
+     */
+    public function followed()
+    {
+        return $this->belongsToMany('App\Models\User', 'follows', 'followed_user_id', 'follow_user_id');
     }
 }

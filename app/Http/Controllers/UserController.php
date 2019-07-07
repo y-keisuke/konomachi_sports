@@ -50,7 +50,10 @@ class UserController extends Controller
     {
         $u = User::find($user->id);
         $teams = $u->teams;
-        return view('users.show', ['user' => $user, 'teams' => $teams]);
+        $likes = $u->likes;
+        $follow = $u->follow;
+        $followed = $u->followed;
+        return view('users.show', ['user' => $user, 'teams' => $teams, 'likes' => $likes, 'follow' => $follow, 'followed' => $followed]);
     }
 
     /**

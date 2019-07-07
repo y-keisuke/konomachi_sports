@@ -24,3 +24,6 @@ Route::resource('teams', 'TeamController');
 
 //活動状況
 Route::resource('posts', 'PostController');
+
+//お気に入り機能
+Route::post('likes', 'LikeController@store');

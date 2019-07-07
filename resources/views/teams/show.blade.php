@@ -72,8 +72,20 @@
             </table>
         </div>
 
+        {{--チームに所属しているメンバー--}}
         <h2>チームメンバー</h2>
         @foreach($users as $user)
+            <a href="{{ 'users/' . $user->id }}"><p>{{ $user->name }}</p></a>
+        @endforeach
+
+        {{--チームにいいねをしているユーザー--}}
+        <h2>お気に入り登録をしているユーザー</h2>
+        <form action="{{ url('likes') }}" method="post">
+            @csrf
+            <input type="hidden" name="team_id" value="{{ $team->id }}">
+            <input type="submit" class="btn btn-primary" value="お気に入り登録する">
+        </form>
+        @foreach($likes as $user)
             <a href="{{ 'users/' . $user->id }}"><p>{{ $user->name }}</p></a>
         @endforeach
     </div><!-- /.container -->

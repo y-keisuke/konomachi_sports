@@ -74,6 +74,24 @@
             <a href="{{ url('teams/' . $team->id) }}"><p>{{ $team->area . 'の'. $team->sports . 'チーム' }}</p></a>
         @endforeach
 
+        {{--いいねしているチーム--}}
+        <h2>お気に入り登録をしているチーム</h2>
+        @foreach($likes as $team)
+            <a href="{{ url('teams/' . $team->id) }}"><p>{{ $team->area . 'の'. $team->sports . 'チーム' }}</p></a>
+        @endforeach
+
+        {{--フォローユーザー--}}
+        <h2>あなたがフォローしているユーザー</h2>
+        @foreach($follow as $user)
+            <a href="{{ 'users/' . $user->id }}"><p>{{ $user->name }}</p></a>
+        @endforeach
+
+        {{--フォロワーユーザー--}}
+        <h2>あなたをフォローしているユーザー</h2>
+        @foreach($followed as $user)
+            <a href="{{ 'users/' . $user->id }}"><p>{{ $user->name }}</p></a>
+        @endforeach
+
 
     {{-- $user->posts->links() --}}
     </div>

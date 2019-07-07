@@ -52,6 +52,30 @@
             <a href="{{ url('posts/create') }}" class="btn btn-primary">活動状況を投稿</a>
         </div>
 
+        <h2>活動状況</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>タイトル</th>
+                    <th>本文</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($posts as $post)
+                    <tr>
+                        <td><a href="{{ url('posts/' . $post->id) }}">{{ $post->title }}</a></td>
+                        <td>{{ Str::limit($post->body, 100 )}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <h2>チームメンバー</h2>
+        @foreach($users as $user)
+            <a href="{{ 'users/' . $user->id }}"><p>{{ $user->name }}</p></a>
+        @endforeach
     </div><!-- /.container -->
 
 @endsection

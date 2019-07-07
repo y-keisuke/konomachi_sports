@@ -70,7 +70,10 @@
 
         {{--ユーザーの所属するチーム--}}
         <h2>所属チーム</h2>
-        {{ $user->teams }}
+        @foreach($teams as $team)
+            <a href="{{ url('teams/' . $team->id) }}"><p>{{ $team->area . 'の'. $team->sports . 'チーム' }}</p></a>
+        @endforeach
+
 
     {{-- $user->posts->links() --}}
     </div>

@@ -14,4 +14,14 @@ class Post extends Model
         'title' => 'required|string',
         'body' => 'required|string',
     );
+
+    /**
+     * リレーション（多対1）
+     *
+     */
+    public function team()
+    {
+        return $this->belongsTo('App\Models\Team');
+    }
+
 }

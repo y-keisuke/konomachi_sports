@@ -25,4 +25,12 @@ class Team extends Model
     {
         return $this->belongsToMany('App\Models\User');
     }
+    /**
+     * リレーション（1対多）
+     *
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
 }

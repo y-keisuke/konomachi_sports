@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\User;
+use App\Models\Post;
 
 class TeamController extends Controller
 {
@@ -53,7 +54,10 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        return view('teams.show', ['team' => $team]);
+        $t = Team::find($team->id);
+        $users = $t->users;
+        $posts = $t->posts;
+        return view('teams.show', ['team' => $team, 'users' => $users, 'posts' => $posts]);
     }
 
     /**

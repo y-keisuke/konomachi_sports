@@ -79,7 +79,7 @@
         @endforeach
 
         {{--チームにいいねをしているユーザー--}}
-        <h2>お気に入り登録をしているユーザー</h2>
+        <h2 id="like">お気に入り登録をしているユーザー</h2>
         @if($like)
             <form action="{{ url('likes') }}" method="post">
                 @csrf

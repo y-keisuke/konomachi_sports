@@ -70,26 +70,47 @@
 
         {{--ユーザーの所属するチーム--}}
         <h2>所属チーム</h2>
-        @foreach($teams as $team)
-            <a href="{{ url('teams/' . $team->id) }}"><p>{{ $team->area . 'の'. $team->sports . 'チーム' }}</p></a>
-        @endforeach
+        @if($teams)
+            @foreach($teams as $team)
+                <a href="{{ url('teams/' . $team->id) }}"><p>{{ $team->area . 'の'. $team->sports . 'チーム' }}</p></a>
+            @endforeach
+        @else
+            <p>-</p>
+        @endif
 
-        {{--いいねしているチーム--}}
+        {{--お気に入り登録しているチーム--}}
         <h2>お気に入り登録をしているチーム</h2>
         @foreach($likes as $team)
             <a href="{{ url('teams/' . $team->id) }}"><p>{{ $team->area . 'の'. $team->sports . 'チーム' }}</p></a>
         @endforeach
 
         {{--フォローユーザー--}}
-        <h2>あなたがフォローしているユーザー</h2>
-        @foreach($follow as $user)
-            <a href="{{ 'users/' . $user->id }}"><p>{{ $user->name }}</p></a>
+        <h2 id="follow">フォロー</h2>
+        {{$following}}
+        @if($following)
+            <form action="{{ url('follows') }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="submit" class="btn btn-primary" value="フォローを解除する">
+            </form>
+        @else
+            <form action="{{ url('follows') }}" method="post">
+                @csrf
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="submit" class="btn btn-primary" value="フォローする">
+            </form>
+        @endif
+
+        <h3>{{ $user->name }}のフォローユーザー</h3>
+        @foreach($follow as $follow_user)
+            <a href="{{ 'users/' . $follow_user->id }}"><p>{{ $follow_user->name }}</p></a>
         @endforeach
 
         {{--フォロワーユーザー--}}
-        <h2>あなたをフォローしているユーザー</h2>
-        @foreach($followed as $user)
-            <a href="{{ 'users/' . $user->id }}"><p>{{ $user->name }}</p></a>
+        <h3>{{ $user->name }}のフォロワーユーザー</h3>
+        @foreach($followed as $followed_user)
+            <a href="{{ 'users/' . $followed_user->id }}"><p>{{ $followed_user->name }}</p></a>
         @endforeach
 
 

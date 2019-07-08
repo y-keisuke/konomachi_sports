@@ -28,3 +28,7 @@ Route::resource('posts', 'PostController');
 //お気に入り機能
 Route::post('likes', 'LikeController@store');
 Route::delete('likes', 'LikeController@destroy');
+
+//フォロー機能
+Route::post('follows', 'FollowController@store');
+Route::delete('follows', 'FollowController@destory');

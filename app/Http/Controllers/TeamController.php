@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Team;
 use App\Models\User;
 use App\Models\Post;
+use Auth;
 
 class TeamController extends Controller
 {
@@ -54,11 +55,11 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        $t = Team::find($team->id);
-        $users = $t->users;
-        $posts = $t->posts;
-        $likes = $t->likes;
-        return view('teams.show', ['team' => $team, 'users' => $users, 'posts' => $posts, 'likes' => $likes]);
+        $users = $team->users;
+        $posts = $team->posts;
+        $likes = $team->likes; //いいねをしてるすべてのユーザー
+        $like = $team->likes->where('id', Auth::user()->id)->first(); //現在のログインユーザーがいいねをしているかどうか
+        return view('teams.show', ['team' => $team, 'users' => $users, 'posts' => $posts, 'likes' => $likes, 'like' => $like]);
     }
 
     /**

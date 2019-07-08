@@ -80,13 +80,22 @@
 
         {{--チームにいいねをしているユーザー--}}
         <h2>お気に入り登録をしているユーザー</h2>
-        <form action="{{ url('likes') }}" method="post">
-            @csrf
-            <input type="hidden" name="team_id" value="{{ $team->id }}">
-            <input type="submit" class="btn btn-primary" value="お気に入り登録する">
-        </form>
+        @if($like)
+            <form action="{{ url('likes') }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="team_id" value="{{ $team->id }}">
+                <input type="submit" class="btn btn-primary" value="お気に入りを解除する">
+            </form>
+        @else
+            <form action="{{ url('likes') }}" method="post">
+                @csrf
+                <input type="hidden" name="team_id" value="{{ $team->id }}">
+                <input type="submit" class="btn btn-primary" value="お気に入り登録する">
+            </form>
+        @endif
         @foreach($likes as $user)
-            <a href="{{ 'users/' . $user->id }}"><p>{{ $user->name }}</p></a>
+            <a href="{{ url('users/' . $user->id) }}"><p>{{ $user->name }}</p></a>
         @endforeach
     </div><!-- /.container -->
 

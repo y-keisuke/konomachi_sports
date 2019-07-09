@@ -72,4 +72,30 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\User', 'follows', 'followed_user_id', 'follow_user_id');
     }
+
+    /**
+     * 自分から送ったメッセージ部屋の情報
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function from_boards()
+    {
+        return $this->belongsToMany('App\Models\User', 'boards', 'from_user_id', 'to_user_id')->withPivot('id');
+    }
+
+    /**
+     * 相手から受け取ったメッセージ部屋の情報
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function to_boards()
+    {
+        return $this->belongsToMany('App\Models\User', 'boards', 'to_user_id', 'from_user_id')->withPivot('id');
+    }
+
+    /**
+     *
+     */
+    public function messages()
+    {
+        return $this->hasMany('App\Models\Message');
+    }
 }

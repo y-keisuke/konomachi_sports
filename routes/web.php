@@ -32,3 +32,6 @@ Route::delete('likes', 'LikeController@destroy');
 //フォロー機能
 Route::post('follows', 'FollowController@store');
 Route::delete('follows', 'FollowController@destory');
+
+//メッセージ機能
+Route::get('boards', 'BoardController@show');

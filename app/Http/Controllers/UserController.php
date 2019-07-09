@@ -54,7 +54,9 @@ class UserController extends Controller
         $follow = $u->follow; //ユーザーがフォローしているユーザー
         $followed = $u->followed; //ユーザーがフォローされているユーザー
         $following = $followed->where('id', \Auth::user()->id)->first(); //ユーザーがログインユーザーをフォローしているかどうか
-        return view('users.show', ['user' => $user, 'teams' => $teams, 'likes' => $likes, 'follow' => $follow, 'followed' => $followed, 'following' => $following]);
+        $from_boards = $u->from_boards;
+        $to_boards = $u->to_boards;
+        return view('users.show', ['user' => $user, 'teams' => $teams, 'likes' => $likes, 'follow' => $follow, 'followed' => $followed, 'following' => $following, 'from_boards' => $from_boards, 'to_boards' => $to_boards]);
     }
 
     /**

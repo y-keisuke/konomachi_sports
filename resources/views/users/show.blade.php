@@ -86,7 +86,6 @@
 
         {{--フォローユーザー--}}
         <h2 id="follow">フォロー</h2>
-        {{$following}}
         @if($following)
             <form action="{{ url('follows') }}" method="post">
                 @csrf
@@ -111,6 +110,15 @@
         <h3>{{ $user->name }}のフォロワーユーザー</h3>
         @foreach($followed as $followed_user)
             <a href="{{ 'users/' . $followed_user->id }}"><p>{{ $followed_user->name }}</p></a>
+        @endforeach
+
+        {{--メッセージ--}}
+        <h2>メッセージ</h2>
+        @foreach($from_boards as $from_user)
+            <a href="{{ url('boards/' . $from_user->pivot->id) }}"><p>{{ $from_user->name }}さんとのメッセージルーム</p></a>
+        @endforeach
+        @foreach($to_boards as $to_user)
+            <a href="{{ url('boards/' . $to_user->pivot->id) }}"><p>{{ $to_user->name }}さんとのメッセージルーム</p></a>
         @endforeach
 
 

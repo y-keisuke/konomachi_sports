@@ -17,6 +17,7 @@ class CreateBoardsTable extends Migration
             $table->increments('id');
             $table->integer('from_user_id')->unsigned();
             $table->integer('to_user_id')->unsigned();
+            $table->unique(['from_user_id', 'to_user_id']);
             $table->timestamps();
             //外部キー
             $table->foreign('from_user_id')->references('id')->on('users')->onDelete('cascade');

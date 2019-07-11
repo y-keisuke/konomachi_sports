@@ -52,6 +52,11 @@
                                 活動状況
                             </a>
                         </li>
+                        <li class="nav-item {{ isActiveUrl('search') }}">
+                            <a href="{{ url('search') }}" class="nav-link">
+                                チームを探す
+                            </a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

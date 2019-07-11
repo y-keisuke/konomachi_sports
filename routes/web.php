@@ -34,4 +34,10 @@ Route::post('follows', 'FollowController@store');
 Route::delete('follows', 'FollowController@destory');
 
 //メッセージ機能
-Route::get('boards', 'BoardController@show');
+Route::get('boards/{board}', 'BoardController@show');
+Route::post('boards', 'BoardController@store');
+Route::post('messages', 'MessageController@store');
+
+//検索
+Route::get('search', 'SearchController@search');
+Route::get('searched', 'SearchController@index');

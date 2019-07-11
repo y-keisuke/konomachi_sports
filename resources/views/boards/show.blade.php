@@ -1,37 +1,41 @@
-@php($title = $post->title)
+@php($title = $other_user->name . 'さんとのメッセージルーム')
 
 @extends('layouts.app')
 
 @section('content')
     <div class="container">
         <h1 class="post-title">{{ $title }}</h1>
-
-        {{-- 編集・削除ボタン --}}
-        <div class="edit">
-            <a href="{{ url('posts/' . $post->id . '/edit') }}" class="btn btn-primary">編集</a>
-            @component('components.btn-del')
-                @slot('controller', 'posts')
-                @slot('id', $post->id)
-                @slot('name', $post->title)
-            @endcomponent
-        </div>
-
-        {{-- 記事内容 --}}
-        <dl class="row mt-3">
-            <dt class="col-md-1">投稿日</dt>
-            <dd class="col-md-3">
-                <time itemprop="dateCreated" datetime="{{ $post->created_at }}">{{ $post->created_at }}</time>
-            </dd>
-            <dt class="col-md-1">更新日</dt>
-            <dd class="col-md-3">
-                <time itemprop="dateCreated" datetime="{{ $post->updated_at }}">{{ $post->updated_at }}</time>
-            </dd>
-        </dl>
-        <h2>活動内容</h2>
-        <div class="post-body">
-            {{ $post->body }}
-        </div>
-
-    {{-- <a href="{{ url('teams/' . $team->id) }}">> チーム情報に戻る</a> --}}
+        <section class="message-area-wrap">
+            <h1>メッセージエリア</h1>
+            <div class="message-area-box">
+                @foreach($messages as $message)
+                    @if($message->user_id === $user->id)
+                        <div class="message-area user-message-area">
+                            <p class="message">{{ $message->message }}</p>
+                            <p class="name">{{ $user->name }}</p>
+                            <p class="time">{{ $message->created_at }}</p>
+                        </div>
+                    @elseif($message->user_id === $other_user->id)
+                        <div class="message-area other-user-message-area">
+                            <p class="message">{{ $message->message }}</p>
+                            <p class="name">{{ $other_user->name }}</p>
+                            <p class="time">{{ $message->created_at }}</p>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </section>
+        <section class="message-form">
+            <h1>メッセージ送信フォーム</h1>
+            <form action="{{ url('messages') }}" method="post">
+                @csrf
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="hidden" name="board_id" value="{{ $board->id }}">
+                <label for="message">メッセージを入力</label>
+                <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                <input type="submit" value="送信" class="btn btn-primary">
+            </form>
+        </section>
+    </div>
 
 @endsection

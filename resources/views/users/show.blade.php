@@ -7,6 +7,30 @@
 @section('content')
     <div class="container">
         <h1>{{ $title }}</h1>
+        <div class="button-box">
+            {{--フォローボタン--}}
+            @if($following)
+                <form action="{{ url('follows') }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    <input type="submit" class="btn btn-primary" value="フォローを解除する">
+                </form>
+            @else
+                <form action="{{ url('follows') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    <input type="submit" class="btn btn-primary" value="フォローする">
+                </form>
+            @endif
+            {{--メッセージ送信ボタン--}}
+            <form action="{{ url('boards') }}" method="post">
+                @csrf
+                <input type="hidden" name="from_user_id" value="{{ \Auth::user()->id }}">
+                <input type="hidden" name="to_user_id" value="{{ $user->id }}">
+                <input type="submit" value="メッセージを送る" class="btn btn-primary">
+            </form>
+        </div>
         {{-- ユーザー1件の情報 --}}
         <h2>プロフィール</h2>
         <div class="profile-box">
@@ -86,20 +110,7 @@
 
         {{--フォローユーザー--}}
         <h2 id="follow">フォロー</h2>
-        @if($following)
-            <form action="{{ url('follows') }}" method="post">
-                @csrf
-                @method('DELETE')
-                <input type="hidden" name="user_id" value="{{ $user->id }}">
-                <input type="submit" class="btn btn-primary" value="フォローを解除する">
-            </form>
-        @else
-            <form action="{{ url('follows') }}" method="post">
-                @csrf
-                <input type="hidden" name="user_id" value="{{ $user->id }}">
-                <input type="submit" class="btn btn-primary" value="フォローする">
-            </form>
-        @endif
+
 
         <h3>{{ $user->name }}のフォローユーザー</h3>
         @foreach($follow as $follow_user)

@@ -1,4 +1,4 @@
-@php($title = 'チーム登録')
+@php($title = 'チームを探す')
 
 @extends('layouts.app')
 
@@ -8,14 +8,11 @@
         @if(count($errors) > 0)
             <p>入力エラー</p>
         @endif
-        <form action="{{ url('teams') }}" method="POST">
+        <form action="{{ url('searched') }}" method="GET">
             @csrf
-
-            <input type="hidden" value="{{ $user->id }}">
-
             {{-- スポーツ --}}
             <div class="form-group">
-                <label for="sports" class="col-md-4 col-form-label text-md-left">活動しているスポーツ ※必須</label>
+                <label for="sports" class="col-md-4 col-form-label text-md-left">スポーツ</label>
                 <div class="col-md-12">
                     <input id="sports" type="text" class="form-control {{ $errors->has('sports') ? ' is-invalid' : '' }}" name="sports" value="{{ old('sports') }}" autocomplete="sports">
                     @if($errors->has('sports'))
@@ -27,7 +24,7 @@
             </div>
             {{-- 年齢層 --}}
             <div class="form-group">
-                <label for="age" class="col-md-4 col-form-label text-md-left">年齢層 ※必須</label>
+                <label for="age" class="col-md-4 col-form-label text-md-left">年齢層</label>
                 <div class="col-md-12">
                     <input id="age" type="text" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}" name="age" value="{{ old('age') }}" autocomplete="age">
                     @if($errors->has('age'))
@@ -39,7 +36,7 @@
             </div>
             {{-- レベル --}}
             <div class="form-group">
-                <label for="level" class="col-md-4 col-form-label text-md-left">募集対象 ※必須</label>
+                <label for="level" class="col-md-4 col-form-label text-md-left">募集対象</label>
                 <div class="col-md-12">
                     <input id="level" type="text" class="form-control {{ $errors->has('level') ? ' is-invalid' : '' }}" name="level" value="{{ old('level') }}" autocomplete="level">
                     @if($errors->has('level'))
@@ -51,7 +48,7 @@
             </div>
             {{-- エリア --}}
             <div class="form-group">
-                <label for="area" class="col-md-4 col-form-label text-md-left">エリア ※必須</label>
+                <label for="area" class="col-md-4 col-form-label text-md-left">エリア</label>
                 <div class="col-md-12">
                     <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ old('area') }}" autocomplete="area">
                     @if($errors->has('area'))
@@ -63,24 +60,12 @@
             </div>
             {{-- 活動頻度 --}}
             <div class="form-group">
-                <label for="frequency" class="col-md-4 col-form-label text-md-left">活動頻度 ※必須</label>
+                <label for="frequency" class="col-md-4 col-form-label text-md-left">活動頻度</label>
                 <div class="col-md-12">
                     <input id="frequency" type="text" class="form-control {{ $errors->has('frequency') ? ' is-invalid' : '' }}" name="frequency" value="{{ old('frequency') }}" autocomplete="frequency">
                     @if($errors->has('frequency'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('frequency') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-            {{-- ホームページ --}}
-            <div class="form-group">
-                <label for="hp" class="col-md-4 col-form-label text-md-left">ホームページ</label>
-                <div class="col-md-12">
-                    <input id="hp" type="text" class="form-control {{ $errors->has('hp') ? ' is-invalid' : '' }}" name="hp" value="{{ old('hp') }}" autocomplete="hp">
-                    @if($errors->has('hp'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('hp') }}</strong>
                         </span>
                     @endif
                 </div>

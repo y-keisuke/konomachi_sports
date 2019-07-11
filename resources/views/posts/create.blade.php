@@ -8,8 +8,6 @@
         @if(count($errors) > 0)
             <p>入力エラー</p>
         @endif
-        {{ print $user->id }}
-        {{ print $team->id }}
         <form action="{{ url('posts') }}" method="POST">
             @csrf
 

@@ -16,6 +16,8 @@
         @endcomponent
     </div>
 
+        <a href="{{ url('teams/' . $team_id) }}">→チーム情報に戻る</a>
+
     {{-- 記事内容 --}}
     <dl class="row mt-3">
         <dt class="col-md-1">投稿日</dt>
@@ -31,7 +33,5 @@
     <div class="post-body">
         {{ $post->body }}
     </div>
-
-    {{-- <a href="{{ url('teams/' . $team->id) }}">> チーム情報に戻る</a> --}}
 
 @endsection

@@ -27,9 +27,10 @@ class PostController extends Controller
      * @param \App\Models\Team $team
      * @return \Illuminate\Http\Response
      */
-    public function create(User $user, Team $team)
+    public function create(Request $request)
     {
-        return view('posts.create', ['user' => $user, 'team' => $team]);
+        $team_id = $request->team_id;
+        return view('posts.create', ['team_id' => $team_id]);
     }
 
     /**
@@ -40,7 +41,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
+        $form = $request->all();
+        unset($form['_token']);
+        $post = new Post;
+        $post->fill($form)->save();
+        return redirect('posts/' . $post->id);
     }
 
     /**
@@ -51,7 +56,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('posts.show', ['post' => $post]);
+        $p = Post::find($post->id);
+        $team_id = $p->team->id;
+        return view('posts.show', ['post' => $post, 'team_id' => $team_id]);
     }
 
     /**
@@ -88,7 +95,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $p = Post::find($post->id);
+        $team_id = $p->team->id;
         $post->delete();
-        return redirect('posts');
+        return redirect('teams/' . $team_id);
     }
 }

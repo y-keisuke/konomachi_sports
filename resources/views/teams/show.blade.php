@@ -48,9 +48,10 @@
 
         <a href="{{ url('teams') }}">> チーム一覧に戻る</a>
 
-        <div class="my-2">
-            <a href="{{ url('posts/create') }}" class="btn btn-primary">活動状況を投稿</a>
-        </div>
+        <form action="{{ url('posts/create') }}" class="my-2">
+            <input type="hidden" name="team_id" value="{{ $team->id }}">
+            <input type="submit" class="btn btn-primary" value="活動状況を投稿">
+        </form>
 
         <h2>活動状況</h2>
         <div class="table-responsive">

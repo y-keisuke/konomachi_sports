@@ -23,6 +23,7 @@
                 <form action="{{ url($controller . '/' . $id) }}" method="post">
                     @csrf
                     @method('DELETE')
+{{--                    <input type="hidden" name="{{ substr($controller, 0, -1) . '_id' }}" value="{{ $id }}">--}}
                     <button type="submit" class="btn btn-danger">削除</button>
                 </form>
             </div><!-- /.modal-footer -->

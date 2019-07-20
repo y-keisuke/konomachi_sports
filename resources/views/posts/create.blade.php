@@ -11,8 +11,8 @@
         <form action="{{ url('posts') }}" method="POST">
             @csrf
 
-            <input type="hidden" value="{{ $user->id }}">
-            <input type="hidden" value="{{ $team->id }}">
+            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+            <input type="hidden" name="team_id" value="{{ session('team_id') }}">
 
             {{-- タイトル --}}
             <div class="form-group">
@@ -39,7 +39,7 @@
                 </div>
             </div>
 
-            {{-- 登録ボタン --}}
+            {{-- 投稿ボタン --}}
             <div class="form-group row mb-0 pl-3">
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-primary">

@@ -11,7 +11,7 @@
         <form action="{{ url('teams') }}" method="POST">
             @csrf
 
-            <input type="hidden" value="{{ $user->id }}">
+            <input type="hidden" value="{{ Auth::id() }}">
 
             {{-- スポーツ --}}
             <div class="form-group">

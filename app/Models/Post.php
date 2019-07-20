@@ -9,11 +9,13 @@ class Post extends Model
     protected $guarded = array('id');
 
     public static $rules = array (
-        'user_id' => 'required|integer',
-        'team_id' => 'required|integer',
+        'user_id' => 'required',
+        'team_id' => 'required',
         'title' => 'required|string',
         'body' => 'required|string',
     );
+
+
 
     /**
      * リレーション（多対1）

@@ -21,6 +21,18 @@
                     @endif
                 </div>
             </div>
+            {{-- エリア --}}
+            <div class="form-group">
+                <label for="area" class="col-md-4 col-form-label text-md-left">地域</label>
+                <div class="col-md-12">
+                    <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ $area }}" autocomplete="area">
+                    @if($errors->has('area'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('area') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
             {{-- 年齢層 --}}
             <div class="form-group">
                 <label for="age" class="col-md-4 col-form-label text-md-left">年齢層</label>
@@ -41,18 +53,6 @@
                     @if($errors->has('level'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('level') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
-            {{-- エリア --}}
-            <div class="form-group">
-                <label for="area" class="col-md-4 col-form-label text-md-left">エリア</label>
-                <div class="col-md-12">
-                    <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ $area }}" autocomplete="area">
-                    @if($errors->has('area'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('area') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -80,32 +80,27 @@
             </div>
         </form>
 
-        @if(!empty($teams)){{'-'}}
+        @if(!empty($teams))
             <div class="table-responsive">
                 <h2>検索結果</h2>
                 <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>スポーツ</th>
+                        <th>地域</th>
                         <th>年齢層</th>
                         <th>募集対象</th>
-                        <th>地域</th>
                         <th>活動頻度</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($teams as $team)
                         <tr>
-{{--                            <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->sports }}</a></td>--}}
-{{--                            <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->age }}</a></td>--}}
-{{--                            <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->level }}</a></td>--}}
-{{--                            <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->area }}</a></td>--}}
-{{--                            <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->frequency }}</a></td>--}}
-                            <td>{{ $team->sports }}</td>
-                            <td>{{ $team->age }}</td>
-                            <td>{{ $team->level }}</td>
-                            <td>{{ $team->area }}</td>
-                            <td>{{ $team->frequency }}</td>
+                            <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->sports }}</a></td>
+                            <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->area }}</a></td>
+                            <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->age }}</a></td>
+                            <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->level }}</a></td>
+                            <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->frequency }}</a></td>
                         </tr>
                     @endforeach
                     </tbody>

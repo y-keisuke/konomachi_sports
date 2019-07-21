@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sex;
+use App\Models\Sport;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -26,7 +29,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        //registerにて実施
+        $sex = Sex::select('sex')->get();
+        $sports = Sport::select('sport')->get();
+        $age_list = config('age');
+        return view('users.create', ['sex' => $sex, 'sports' => $sports, 'age_list' => $age_list]);
     }
 
     /**
@@ -37,7 +43,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //registerにて実施
+        $form = $request->all();
+        unset($form['_token']);
+        $user = new User;
+        $user->fill($form)->save();
+        return redirect('users/' . $user->id);
     }
 
     /**

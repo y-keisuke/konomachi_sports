@@ -24,7 +24,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="bg-light navbar navbar-expand-md navbar-light shadow-sm">
+        <nav class="bg-success navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -100,7 +100,7 @@
             @yield('content')
         </main>
     </div>
-    <footer id="footer" class="bg-light flex-column justify-content-center">
+    <footer id="footer" class="bg-success flex-column justify-content-center">
         <p>© 2019 この町スポーツ All Rights Reserved.</p>
     </footer>
     <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>

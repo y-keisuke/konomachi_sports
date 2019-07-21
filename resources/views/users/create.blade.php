@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container user-create">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">ユーザー登録</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ url('register') }}">
                         @csrf
 
                         {{-- 名前--}}
@@ -58,7 +58,12 @@
                         <div class="form-group row">
                             <label for="sports1" class="col-md-4 col-form-label text-md-left">探したいスポーツ①</label>
                             <div class="col-md-6">
-                                <input id="sports1" type="text" class="form-control {{ $errors->has('sports1') ? ' is-invalid' : '' }}" name="sports1" value="{{ old('sports1') }}" autocomplete="sports">
+                                <select name="sports1" id="sports1" class="form-control">
+                                    <option value="">選択してください</option>
+                                    @foreach($sports as $sport)
+                                        <option value="{{ $sport->sport }}">{{ $sport->sport }}</option>
+                                    @endforeach
+                                </select>
                                 @if($errors->has('sports1'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('sports1') }}</strong>
@@ -82,7 +87,12 @@
                         <div class="form-group row">
                             <label for="sports2" class="col-md-4 col-form-label text-md-left">探したいスポーツ②</label>
                             <div class="col-md-6">
-                                <input id="sports2" type="text" class="form-control {{ $errors->has('sports2') ? ' is-invalid' : '' }}" name="sports2" value="{{ old('sports2') }}" autocomplete="sports2">
+                                <select name="sports2" id="sports2" class="form-control">
+                                    <option value="">選択してください</option>
+                                    @foreach($sports as $sport)
+                                        <option value="{{ $sport->sport }}">{{ $sport->sport }}</option>
+                                    @endforeach
+                                </select>
                                 @if($errors->has('sports2'))
                                     <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('sports2') }}</strong>
@@ -106,7 +116,12 @@
                         <div class="form-group row">
                             <label for="sports3" class="col-md-4 col-form-label text-md-left">探したいスポーツ③</label>
                             <div class="col-md-6">
-                                <input id="sports3" type="text" class="form-control {{ $errors->has('sports3') ? ' is-invalid' : '' }}" name="sports3" value="{{ old('sports3') }}" autocomplete="sports3">
+                                <select name="sports3" id="sports3" class="form-control">
+                                    <option value="">選択してください</option>
+                                    @foreach($sports as $sport)
+                                        <option value="{{ $sport->sport }}">{{ $sport->sport }}</option>
+                                    @endforeach
+                                </select>
                                 @if($errors->has('sports3'))
                                     <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('sports3') }}</strong>
@@ -131,7 +146,12 @@
                         <div class="form-group row">
                             <label for="age" class="col-md-4 col-form-label text-md-left">年齢</label>
                             <div class="col-md-6">
-                                <input id="age" type="number" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}" name="age" value="{{ old('age') }}" autocomplete="age">
+                                <select name="age" id="age" class="form-control">
+                                    <option value="">選択してください</option>
+                                    @foreach($age_list as $a)
+                                        <option value="{{ $a }}">{{ $a }}</option>
+                                    @endforeach
+                                </select>
                                 @if($errors->has('age'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('age') }}</strong>
@@ -144,23 +164,10 @@
                         <div class="form-group row">
                             <label for="sex" class="col-md-4 col-form-label text-md-left">性別</label>
                             <div class="col-md-6">
-                                <input id="sex" type="text" class="form-control {{ $errors->has('sex') ? ' is-invalid' : '' }}" name="sex" value="{{ old('sex') }}" autocomplete="sex">
-                                @if($errors->has('sex'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('sex') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        {{-- 性別 --}}
-                        <div class="form-group row">
-                            <label for="sex" class="col-md-4 col-form-label text-md-left">性別</label>
-                            <div class="col-md-6">
-                                <select name="sex" id="sex">
-                                    @foreach(count(sex()) > 0)
-                                    <option value="{{ sex()->id }}">{{ sex()->sex }}</option>
-                                    <option value="1">onna</option>
+                                <select name="sex" id="sex" class="form-control">
+                                    <option value="">選択してください</option>
+                                    @foreach($sex as $s)
+                                        <option value="{{ $s->sex }}">{{ $s->sex }}</option>
                                     @endforeach
                                 </select>
                                 @if($errors->has('sex'))

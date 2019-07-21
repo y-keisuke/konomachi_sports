@@ -41,3 +41,7 @@ Route::post('messages', 'MessageController@store');
 //検索
 Route::get('search', 'SearchController@search');
 Route::get('searched', 'SearchController@index');
+
+//管理者用
+//スポーツ
+Route::resource('sports', 'SportController');

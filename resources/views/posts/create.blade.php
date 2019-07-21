@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container post-create">
         <h1>{{ $title }}</h1>
         @if(count($errors) > 0)
             <p>入力エラー</p>
@@ -30,7 +30,7 @@
             <div class="form-group">
                 <label for="body" class="col-md-4 col-form-label text-md-left">本文</label>
                 <div class="col-md-12">
-                    <textarea type="text" id="body" name="body" class="form-control @if($errors->has('body')) is-invalid @endif">{{ old('body') }}</textarea>
+                    <textarea type="text" id="body" name="body" class="form-control @if($errors->has('body')) is-invalid @endif" rows="20">{{ old('body') }}</textarea>
                     @if($errors->has('body'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('body') }}</strong>

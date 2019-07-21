@@ -5,9 +5,6 @@
 @section('content')
     <div class="container" id="user-register">
         <h1>{{ $title }}</h1>
-        @if(count($errors) > 0)
-            <p>入力エラー</p>
-        @endif
         <form action="{{ url('teams') }}" method="POST">
             @csrf
 

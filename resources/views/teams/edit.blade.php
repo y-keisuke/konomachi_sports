@@ -46,7 +46,8 @@
                 @endif
             </div>
 
-            <button type="submit" class="btn btn-primary">送信</button>
+            <button type="submit" class="btn btn-primary mb-2">送信</button>
         </form>
+        <a href="{{ url('teams/' . $team->id) }}">→チームページに戻る</a>
     </div>
 @endsection

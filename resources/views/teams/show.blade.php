@@ -53,7 +53,7 @@
             <input type="submit" class="btn btn-primary" value="活動状況を投稿">
         </form>
 
-        <h2>活動状況</h2>
+        <h2 class="mt-4">活動状況</h2>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
@@ -74,30 +74,38 @@
         </div>
 
         {{--チームに所属しているメンバー--}}
-        <h2>チームメンバー</h2>
-        @foreach($users as $user)
-            <a href="{{ 'users/' . $user->id }}"><p>{{ $user->name }}</p></a>
-        @endforeach
+        <h2 class="mt-4">チームメンバー</h2>
+        @if(count($users) > 0)
+            <ul>
+                @foreach($users as $user)
+                    <li><a href="{{ 'users/' . $user->id }}"><p>{{ $user->name }}</p></a></li>
+                @endforeach
+            </ul>
+        @else
+            <p class="ml-2">チームーメンバーはいません</p>
+        @endif
 
         {{--チームにいいねをしているユーザー--}}
-        <h2 id="like">お気に入り登録をしているユーザー</h2>
-        @if($like)
-            <form action="{{ url('likes') }}" method="post">
-                @csrf
+        <h2 id="like" class="mt-4">お気に入り登録をしているユーザー</h2>
+        <form action="{{ url('likes') }}" method="post" class="mb-2">
+            @csrf
+            <input type="hidden" name="team_id" value="{{ $team->id }}">
+            @if($like)
                 @method('DELETE')
-                <input type="hidden" name="team_id" value="{{ $team->id }}">
                 <input type="submit" class="btn btn-primary" value="お気に入りを解除する">
-            </form>
-        @else
-            <form action="{{ url('likes') }}" method="post">
-                @csrf
-                <input type="hidden" name="team_id" value="{{ $team->id }}">
+            @else
                 <input type="submit" class="btn btn-primary" value="お気に入り登録する">
-            </form>
+            @endif
+        </form>
+        @if(count($likes) > 0)
+            <ul>
+                @foreach($likes as $user)
+                    <li><a href="{{ url('users/' . $user->id) }}"><p>{{ $user->name }}</p></a></li>
+                @endforeach
+            </ul>
+        @else
+            <p class="ml-2">お気に入り登録をしているユーザーはいません</p>
         @endif
-        @foreach($likes as $user)
-            <a href="{{ url('users/' . $user->id) }}"><p>{{ $user->name }}</p></a>
-        @endforeach
     </div><!-- /.container -->
 
 @endsection

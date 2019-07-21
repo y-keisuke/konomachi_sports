@@ -4,6 +4,7 @@
 
 @section('content')
     <div class="container">
+    <a href="{{ url('teams/' . $team_id) }}">→チーム情報に戻る</a>
     <h1 class="post-title">{{ $title }}</h1>
 
     {{-- 編集・削除ボタン --}}
@@ -15,8 +16,6 @@
             @slot('name', $post->title)
         @endcomponent
     </div>
-
-        <a href="{{ url('teams/' . $team_id) }}">→チーム情報に戻る</a>
 
     {{-- 記事内容 --}}
     <dl class="row mt-3">

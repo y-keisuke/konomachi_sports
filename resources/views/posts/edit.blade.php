@@ -19,14 +19,15 @@
             </div>
             <div class="form-group">
                 <label for="body">本文</label>
-                <textarea name="body" id="body" rows="10" class="form-control @if($errors->has('body')) is-invalid @endif">{{ old('body', $post->body) }}</textarea>
+                <textarea name="body" id="body" rows="20" class="form-control @if($errors->has('body')) is-invalid @endif">{{ old('body', $post->body) }}</textarea>
                 @if($errors->has('body'))
                     <span class="invalid-feedback" role="alert">
                         {{ $errors->first('body') }}
                     </span>
                 @endif
             </div>
-            <button class="btn btn-primary" type="submit">活動内容を更新</button>
+            <button class="btn btn-primary mb-2" type="submit">活動内容を更新</button>
         </form>
+        <a href="{{ url('posts/' . $post->id) }}">→記事ページに戻る</a>
     </div>
 @endsection

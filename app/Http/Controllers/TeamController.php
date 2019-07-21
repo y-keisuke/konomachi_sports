@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TeamUser;
 use Illuminate\Http\Request;
+use App\Http\Requests\TeamRequest;
 use App\Models\Team;
 use App\Models\User;
 use App\Models\Post;
@@ -35,10 +37,10 @@ class TeamController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\TeamRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TeamRequest $request)
     {
         $form = $request->all();
         unset($form['_token']);
@@ -76,11 +78,11 @@ class TeamController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\TeamRequest  $request
      * @param  \App\Models\Team $team
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(TeamRequest $request, Team $team)
     {
         $form = $request->all();
         unset($form['_token']);
@@ -91,8 +93,9 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Team $team
+     * @param \App\Models\Team $team
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Team $team)
     {

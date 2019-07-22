@@ -1,22 +1,22 @@
-@php($title = 'チーム登録')
+@php($title = '募集対象登録')
 
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" id="sports-create">
+    <div class="container" id="ages-create">
         <h1>{{ $title }}</h1>
         <a href="{{ url('admin') }}" class="mt-2 mb-2">→管理者ページへ戻る</a>
-        <form action="{{ url('sports') }}" method="POST">
+        <form action="{{ url('levels') }}" method="POST">
             @csrf
 
             {{-- スポーツ --}}
             <div class="form-group">
-                <label for="sport" class="col-md-4 col-form-label text-md-left">追加するスポーツ</label>
+                <label for="level" class="col-md-4 col-form-label text-md-left">追加する募集対象</label>
                 <div class="col-md-12">
-                    <input id="sport" type="text" class="form-control {{ $errors->has('sport') ? ' is-invalid' : '' }}" name="sport" value="{{ old('sport') }}" autocomplete="sports">
-                    @if($errors->has('sport'))
+                    <input id="level" type="text" class="form-control {{ $errors->has('level') ? ' is-invalid' : '' }}" name="level" value="{{ old('level') }}">
+                    @if($errors->has('level'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('sport') }}</strong>
+                            <strong>{{ $errors->first('level') }}</strong>
                         </span>
                     @endif
                 </div>

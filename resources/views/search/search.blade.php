@@ -38,7 +38,7 @@
                 <label for="age" class="col-md-4 col-form-label text-md-left">年齢層</label>
                 <div class="col-md-12">
                     <input id="age" type="text" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}" name="age" value="{{ $age }}" autocomplete="age">
-                    @if($errors->has('age'))
+                    @if($errors->has('ages'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('age') }}</strong>
                         </span>

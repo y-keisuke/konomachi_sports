@@ -8,6 +8,10 @@ nav {
   max-height: 55px;
 }
 
+option {
+  background: #ecfbe4;
+}
+
 .jumbotron {
   position: relative;
   background: url("/images/gym.jpg");

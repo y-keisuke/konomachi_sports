@@ -26,7 +26,12 @@
             </div>
             <div class="form-group">
                 <label for="sports1">スポーツ①</label>
-                <input id="sports1" type="text" class="form-control" name="sports1" value="{{ $user->sports1 }}">
+                <select name="sports1" id="sports1" class="form-control">
+                    <option value="">選択してください</option>
+                    @foreach($sports as $sport)
+                        <option value="{{ $sport->sport }}">{{ $sport->sport }}</option>
+                    @endforeach
+                </select>
                 @if($errors->has('sports1'))
                     <p class="text-danger">{{ $errors->first('sports1') }}</p>
                 @endif
@@ -40,7 +45,12 @@
             </div>
             <div class="form-group">
                 <label for="sports2">スポーツ②</label>
-                <input id="sports2" type="text" class="form-control" name="sports2" value="{{ $user->sports2 }}">
+                <select name="sports2" id="sports2" class="form-control">
+                    <option value="">選択してください</option>
+                    @foreach($sports as $sport)
+                        <option value="{{ $sport->sport }}">{{ $sport->sport }}</option>
+                    @endforeach
+                </select>
                 @if($errors->has('sports2'))
                     <p class="text-danger">{{ $errors->first('sports2') }}</p>
                 @endif
@@ -54,7 +64,12 @@
             </div>
             <div class="form-group">
                 <label for="sports3">スポーツ③</label>
-                <input id="sports3" type="text" class="form-control" name="sports3" value="{{ $user->sports3 }}">
+                <select name="sports3" id="sports3" class="form-control">
+                    <option value="">選択してください</option>
+                    @foreach($sports as $sport)
+                        <option value="{{ $sport->sport }}">{{ $sport->sport }}</option>
+                    @endforeach
+                </select>
                 @if($errors->has('sports3'))
                     <p class="text-danger">{{ $errors->first('sports3') }}</p>
                 @endif
@@ -68,14 +83,24 @@
             </div>
             <div class="form-group">
                 <label for="age">年齢</label>
-                <input id="age" type="text" class="form-control" name="age" value="{{ $user->age }}">
+                <select name="age" id="age" class="form-control">
+                    <option value="">選択してください</option>
+                    @foreach($age_list as $a)
+                        <option value="{{ $a }}">{{ $a }}</option>
+                    @endforeach
+                </select>
                 @if($errors->has('age'))
                     <p class="text-danger">{{ $errors->first('age') }}</p>
                 @endif
             </div>
             <div class="form-group">
                 <label for="sex">性別</label>
-                <input id="sex" type="text" class="form-control" name="sex" value="{{ $user->sex }}">
+                <select name="sex" id="sex" class="form-control">
+                    <option value="">選択してください</option>
+                    @foreach($sex as $s)
+                        <option value="{{ $s->sex }}">{{ $s->sex }}</option>
+                    @endforeach
+                </select>
                 @if($errors->has('sex'))
                     <p class="text-danger">{{ $errors->first('sex') }}</p>
                 @endif

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sport;
+use App\Models\Age;
+use App\Models\Frequency;
 use Illuminate\Http\Request;
 
-class SportController extends Controller
+class FrequencyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +25,7 @@ class SportController extends Controller
      */
     public function create()
     {
-        return view('admin.sports.create');
+        return view('admin.frequencies.create');
     }
 
     /**
@@ -37,8 +38,8 @@ class SportController extends Controller
     {
         $form = $request->all();
         unset($form['_token']);
-        $sport = new Sport;
-        $sport->fill($form)->save();
+        $frequency = new Frequency;
+        $frequency->fill($form)->save();
         return redirect('admin');
     }
 
@@ -50,7 +51,7 @@ class SportController extends Controller
      */
     public function show($id)
     {
-        //なし
+        //
     }
 
     /**
@@ -67,27 +68,27 @@ class SportController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param Frequency $frequency
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sport $sport)
+    public function update(Request $request, Frequency $frequency)
     {
         $form = $request->all();
         unset($form['_token']);
-        $sport->fill($form)->save();
+        $frequency->fill($form)->save();
         return redirect('admin');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Frequency $frequency
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sport $sport)
+    public function destroy(Frequency $frequency)
     {
-        $sport->delete();
+        $frequency->delete();
         return redirect('admin');
     }
 }

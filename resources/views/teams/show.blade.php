@@ -10,24 +10,28 @@
         {{-- ユーザー1件の情報 --}}
         <div class="team-info-box">
             <div class="team-info-list row">
-                <p class="col-md-2">活動エリア:</p>
-                <p class="col-md-10">{{ $team->area }}</p>
+                <p class="col-md-2">活動エリア：</p>
+                <p class="col-md-10">{{ emptyJudge($team->area, '-') }}</p>
             </div>
             <div class="team-info-list row">
-                <p class="col-md-2">年齢層:</p>
-                <p class="col-md-10">{{ $team->age }}</p>
+                <p class="col-md-2">年齢層：</p>
+                <p class="col-md-10">{{ emptyJudge($team->age, '-') }}</p>
             </div>
             <div class="team-info-list row">
-                <p class="col-md-2">募集レベル:</p>
-                <p class="col-md-10">{{ $team->level }}</p>
+                <p class="col-md-2">募集レベル：</p>
+                <p class="col-md-10">{{ emptyJudge($team->level, '-') }}</p>
             </div>
             <div class="team-info-list row">
-                <p class="col-md-2">活動頻度:</p>
-                <p class="col-md-10">{{ $team->frequency }}</p>
+                <p class="col-md-2">活動頻度：</p>
+                <p class="col-md-10">{{ emptyJudge($team->frequency, '-') }}</p>
             </div>
             <div class="team-info-list row">
-                <p class="col-md-2">HP:</p>
-                <p class="col-md-10">{{ $team->hp }}</p>
+                <p class="col-md-2">活動曜日：</p>
+                <p class="col-md-10">{{ emptyJudge($team->weekday, '-') }}</p>
+            </div>
+            <div class="team-info-list row">
+                <p class="col-md-2">HP：</p>
+                <p class="col-md-10">{{ emptyJudge($team->hp, '-') }}</p>
             </div>
         </div>
 

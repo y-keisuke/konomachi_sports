@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sport;
+use App\Models\Frequency;
+use App\Models\Weekday;
 use Illuminate\Http\Request;
 
-class SportController extends Controller
+class WeekdayController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +25,7 @@ class SportController extends Controller
      */
     public function create()
     {
-        return view('admin.sports.create');
+        return view('admin.weekdays.create');
     }
 
     /**
@@ -37,8 +38,8 @@ class SportController extends Controller
     {
         $form = $request->all();
         unset($form['_token']);
-        $sport = new Sport;
-        $sport->fill($form)->save();
+        $weekday = new Weekday;
+        $weekday->fill($form)->save();
         return redirect('admin');
     }
 
@@ -50,7 +51,7 @@ class SportController extends Controller
      */
     public function show($id)
     {
-        //なし
+        //
     }
 
     /**
@@ -71,23 +72,24 @@ class SportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sport $sport)
+    public function update(Request $request, Weekday $weekday)
     {
         $form = $request->all();
         unset($form['_token']);
-        $sport->fill($form)->save();
+        $weekday->fill($form)->save();
         return redirect('admin');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Weekday $weekday
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy(Sport $sport)
+    public function destroy(Weekday $weekday)
     {
-        $sport->delete();
+        $weekday->delete();
         return redirect('admin');
     }
 }

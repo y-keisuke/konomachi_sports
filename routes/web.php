@@ -43,5 +43,14 @@ Route::get('search', 'SearchController@search');
 Route::get('searched', 'SearchController@index');
 
 //管理者用
+Route::get('admin', 'AdminController@index');
 //スポーツ
 Route::resource('sports', 'SportController');
+//年齢層
+Route::resource('ages', 'AgeController');
+//募集対象
+Route::resource('levels', 'LevelController');
+//活動頻度
+Route::resource('frequencies', 'FrequencyController');
+//活動曜日
+Route::resource('weekdays', 'WeekdayController');

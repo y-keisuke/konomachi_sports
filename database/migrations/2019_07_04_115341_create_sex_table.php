@@ -15,7 +15,7 @@ class CreateSexTable extends Migration
     {
         Schema::create('sex', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sex');
+            $table->string('sex')->unique();
             $table->timestamps();
         });
     }

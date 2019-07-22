@@ -15,7 +15,7 @@
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-left">名前 ※必須 </label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}">
                                 @if($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -27,7 +27,7 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-left">メールアドレス ※必須 </label>
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="text" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
                                 @if($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -39,7 +39,7 @@
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-left">パスワード ※必須 </label>
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required autocomplete="new-password">
+                                <input id="password" type="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
                                 @if($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -51,7 +51,7 @@
                         <div class="form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-left">パスワード（確認） ※必須 </label>
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
                             </div>
                         </div>
                         {{-- スポーツ1 --}}
@@ -60,8 +60,8 @@
                             <div class="col-md-6">
                                 <select name="sports1" id="sports1" class="form-control">
                                     <option value="">選択してください</option>
-                                    @foreach($sports as $sport)
-                                        <option value="{{ $sport->sport }}">{{ $sport->sport }}</option>
+                                    @foreach($sports_list as $sport)
+                                        <option value="{{ $sport->sport }}" @if(old('sports1') === $sport->sport) selected @endif>{{ $sport->sport }}</option>
                                     @endforeach
                                 </select>
                                 @if($errors->has('sports1'))
@@ -75,7 +75,7 @@
                         <div class="form-group row">
                             <label for="sports-years1" class="col-md-4 col-form-label text-md-left">経験年数①</label>
                             <div class="col-md-6">
-                                <input id="sports-years1" type="number" class="form-control {{ $errors->has('sports-years1') ? ' is-invalid' : '' }}" name="sports-years1" value="{{ old('sports-years1') }}" autocomplete="sports-years1">
+                                <input id="sports-years1" type="number" class="form-control {{ $errors->has('sports-years1') ? ' is-invalid' : '' }}" name="sports-years1" value="{{ old('sports-years1') }}" placeholder="（例）3">
                                 @if($errors->has('sports-years1'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('sports-years1') }}</strong>
@@ -89,14 +89,14 @@
                             <div class="col-md-6">
                                 <select name="sports2" id="sports2" class="form-control">
                                     <option value="">選択してください</option>
-                                    @foreach($sports as $sport)
-                                        <option value="{{ $sport->sport }}">{{ $sport->sport }}</option>
+                                    @foreach($sports_list as $sport)
+                                        <option value="{{ $sport->sport }}" @if(old('sports2') === $sport->sport) selected @endif>{{ $sport->sport }}</option>
                                     @endforeach
                                 </select>
                                 @if($errors->has('sports2'))
                                     <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('sports2') }}</strong>
-                        </span>
+                                        <strong>{{ $errors->first('sports2') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -104,11 +104,11 @@
                         <div class="form-group row">
                             <label for="sports-years2" class="col-md-4 col-form-label text-md-left">経験年数②</label>
                             <div class="col-md-6">
-                                <input id="sports-years2" type="number" class="form-control {{ $errors->has('sports-years2') ? ' is-invalid' : '' }}" name="sports-years2" value="{{ old('sports-years2') }}" autocomplete="sports-years2">
+                                <input id="sports-years2" type="number" class="form-control {{ $errors->has('sports-years2') ? ' is-invalid' : '' }}" name="sports-years2" value="{{ old('sports-years2') }}" placeholder="（例）0">
                                 @if($errors->has('sports-years2'))
                                     <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('sports-years2') }}</strong>
-                        </span>
+                                        <strong>{{ $errors->first('sports-years2') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -118,14 +118,14 @@
                             <div class="col-md-6">
                                 <select name="sports3" id="sports3" class="form-control">
                                     <option value="">選択してください</option>
-                                    @foreach($sports as $sport)
-                                        <option value="{{ $sport->sport }}">{{ $sport->sport }}</option>
+                                    @foreach($sports_list as $sport)
+                                        <option value="{{ $sport->sport }}" @if(old('sports3') === $sport->sport) selected @endif>{{ $sport->sport }}</option>
                                     @endforeach
                                 </select>
                                 @if($errors->has('sports3'))
                                     <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('sports3') }}</strong>
-                        </span>
+                                        <strong>{{ $errors->first('sports3') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -133,11 +133,11 @@
                         <div class="form-group row">
                             <label for="sports-years3" class="col-md-4 col-form-label text-md-left">経験年数③</label>
                             <div class="col-md-6">
-                                <input id="sports-years3" type="number" class="form-control {{ $errors->has('sports-years3') ? ' is-invalid' : '' }}" name="sports-years3" value="{{ old('sports-years3') }}" autocomplete="sports-years3">
+                                <input id="sports-years3" type="number" class="form-control {{ $errors->has('sports-years3') ? ' is-invalid' : '' }}" name="sports-years3" value="{{ old('sports-years3') }}" placeholder="（例）10">
                                 @if($errors->has('sports-years3'))
                                     <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('sports-years3') }}</strong>
-                        </span>
+                                        <strong>{{ $errors->first('sports-years3') }}</strong>
+                                    </span>
                                 @endif
                             </div>
                         </div>
@@ -148,8 +148,8 @@
                             <div class="col-md-6">
                                 <select name="age" id="age" class="form-control">
                                     <option value="">選択してください</option>
-                                    @foreach($age_list as $a)
-                                        <option value="{{ $a }}">{{ $a }}</option>
+                                    @foreach($ages_list as $age)
+                                        <option value="{{ $age }}" @if(old('age') === $age) selected @endif>{{ $age }}</option>
                                     @endforeach
                                 </select>
                                 @if($errors->has('age'))
@@ -166,8 +166,8 @@
                             <div class="col-md-6">
                                 <select name="sex" id="sex" class="form-control">
                                     <option value="">選択してください</option>
-                                    @foreach($sex as $s)
-                                        <option value="{{ $s->sex }}">{{ $s->sex }}</option>
+                                    @foreach($sex_list as $s)
+                                        <option value="{{ $s->sex }}" @if(old('sex') === $s->sex) selected @endif>{{ $s->sex }}</option>
                                     @endforeach
                                 </select>
                                 @if($errors->has('sex'))
@@ -180,9 +180,9 @@
 
                         {{-- エリア --}}
                         <div class="form-group row">
-                            <label for="area" class="col-md-4 col-form-label text-md-left">エリア</label>
+                            <label for="area" class="col-md-4 col-form-label text-md-left">地域（市町村まで）</label>
                             <div class="col-md-6">
-                                <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ old('area') }}" autocomplete="area">
+                                <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ old('area') }}" autocomplete="area" placeholder="（例）北海道札幌市">
                                 @if($errors->has('area'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('area') }}</strong>

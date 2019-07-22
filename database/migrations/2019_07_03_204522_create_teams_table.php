@@ -20,6 +20,7 @@ class CreateTeamsTable extends Migration
             $table->string('level');
             $table->string('area');
             $table->string('frequency');
+            $table->string('weekday');
             $table->string('hp')->nullable();
             $table->timestamps();
         });

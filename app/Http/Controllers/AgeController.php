@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Age;
 use App\Models\Sport;
 use Illuminate\Http\Request;
 
-class SportController extends Controller
+class AgeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +25,7 @@ class SportController extends Controller
      */
     public function create()
     {
-        return view('admin.sports.create');
+        return view('admin.ages.create');
     }
 
     /**
@@ -37,8 +38,8 @@ class SportController extends Controller
     {
         $form = $request->all();
         unset($form['_token']);
-        $sport = new Sport;
-        $sport->fill($form)->save();
+        $age = new Age;
+        $age->fill($form)->save();
         return redirect('admin');
     }
 
@@ -50,7 +51,7 @@ class SportController extends Controller
      */
     public function show($id)
     {
-        //なし
+        //
     }
 
     /**
@@ -67,27 +68,28 @@ class SportController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param Age $age
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Sport $sport)
+    public function update(Request $request, Age $age)
     {
         $form = $request->all();
         unset($form['_token']);
-        $sport->fill($form)->save();
+        $age->fill($form)->save();
         return redirect('admin');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Age $age
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy(Sport $sport)
+    public function destroy(Age $age)
     {
-        $sport->delete();
+        $age->delete();
         return redirect('admin');
     }
 }

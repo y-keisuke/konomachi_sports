@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sport;
 use Illuminate\Http\Request;
 use App\Models\Team;
 
@@ -9,6 +10,7 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
+        $sports_list = Sport::orderBy('sport', 'asc')->get();
         $teams = Team::all();
         $sports = '';
         $age = '';
@@ -32,7 +34,7 @@ class SearchController extends Controller
             }
         }
 
-        return view('search.search', ['teams' => $teams, 'sports' => $data['sports'], 'age' => $data['age'], 'level' => $data['level'], 'area' => $data['area'], 'frequency' => $data['frequency']]);
+        return view('search.search', ['teams' => $teams, 'sports_list' => $sports_list, 'sports' => $data['sports'], 'age' => $data['age'], 'level' => $data['level'], 'area' => $data['area'], 'frequency' => $data['frequency']]);
     }
 
 }

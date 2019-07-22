@@ -29,10 +29,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        $sex = Sex::select('sex')->get();
-        $sports = Sport::select('sport')->get();
-        $age_list = config('age');
-        return view('users.create', ['sex' => $sex, 'sports' => $sports, 'age_list' => $age_list]);
+        $sex_list = Sex::select('sex')->get();
+        $sports_list = Sport::select('sport')->get();
+        $ages_list = config('age');
+        return view('users.create', ['sex_list' => $sex_list, 'sports_list' => $sports_list, 'ages_list' => $ages_list]);
     }
 
     /**
@@ -77,7 +77,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', ['user' => $user]);
+        $sex = Sex::select('sex')->get();
+        $sports = Sport::select('sport')->get();
+        $age_list = config('age');
+        return view('users.edit', ['user' => $user, 'sex' => $sex, 'sports' => $sports, 'age_list' => $age_list]);
     }
 
     /**

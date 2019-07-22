@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSportsTable extends Migration
+class CreateFrequenciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateSportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sports', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('sport')->unique();
+        Schema::create('frequencies', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('frequency')->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateSportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sports');
+        Schema::dropIfExists('frequencies');
     }
 }

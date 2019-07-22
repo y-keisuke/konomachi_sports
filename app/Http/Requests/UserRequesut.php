@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TeamRequest extends FormRequest
+class UserRequesut extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,18 @@ class TeamRequest extends FormRequest
     public function rules()
     {
         return [
-            'sports'    => 'required|string',
-            'age'       => 'required|integer',
-            'level'     => 'required|string',
-            'area'      => 'required|string',
-            'frequency' => 'required|string',
-            'weekday'   => 'required|string',
-            'hp'        => 'nullable|url',
+            'name'          => 'required|string',
+            'email'         => 'required|integer',
+            'password'      => 'required|string|confirmed',
+            'sports1'       => 'nullable|string',
+            'sports_years1' => 'nullable|integer',
+            'sports2'       => 'nullable|string',
+            'sports_years2' => 'nullable|integer',
+            'sports3'       => 'nullable|string',
+            'sports_years3' => 'nullable|integer',
+            'age'           => 'nullable|string',
+            'sex'           => 'nullable|string',
+            'area'          => 'nullable|url',
         ];
     }
 

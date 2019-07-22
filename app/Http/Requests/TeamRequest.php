@@ -25,7 +25,7 @@ class TeamRequest extends FormRequest
     {
         return [
             'sports'    => 'required|string',
-            'age'       => 'required|integer',
+            'age'       => 'required|string',
             'level'     => 'required|string',
             'area'      => 'required|string',
             'frequency' => 'required|string',
@@ -44,6 +44,7 @@ class TeamRequest extends FormRequest
         return [
             'sports.required'      => 'スポーツを選択してください。',
             'age.required'         => '年齢層を選択してください。',
+            'age.integer'          => 'aaa。',
             'level.required'       => '募集対象を選択してください。',
             'area.required'        => '地域は入力必須です。',
             'frequency.required'   => '活動頻度を選択してください。',

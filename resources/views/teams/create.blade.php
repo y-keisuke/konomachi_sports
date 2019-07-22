@@ -14,8 +14,8 @@
             <div class="form-group">
                 <label for="sports" class="col-md-4 col-form-label text-md-left">活動しているスポーツ ※必須</label>
                 <div class="col-md-12">
-                    <select name="sports" id="sports" class="form-control">
-                        <option value="">選択してください</option>
+                    <select name="sports" id="sports" class="form-control {{ $errors->has('sports') ? ' is-invalid' : '' }}">
+                        <option value="">- 選択してください</option>
                         @foreach($sports_list as $sport)
                             <option value="{{ $sport->sport }}" @if(old('sports') === $sport->sport) selected @endif>{{ $sport->sport }}</option>
                         @endforeach
@@ -31,8 +31,8 @@
             <div class="form-group">
                 <label for="age" class="col-md-4 col-form-label text-md-left">年齢層 ※必須</label>
                 <div class="col-md-12">
-                    <select name="age" id="age" class="form-control">
-                        <option value="">選択してください</option>
+                    <select name="age" id="age" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}">
+                        <option value="">- 選択してください</option>
                         @foreach($ages_list as $age)
                             <option value="{{ $age->age }}" @if(old('age') === $age->age) selected @endif>{{ $age->age }}</option>
                         @endforeach
@@ -48,8 +48,8 @@
             <div class="form-group">
                 <label for="level" class="col-md-4 col-form-label text-md-left">募集対象 ※必須</label>
                 <div class="col-md-12">
-                    <select name="level" id="level" class="form-control">
-                        <option value="">選択してください</option>
+                    <select name="level" id="level" class="form-control {{ $errors->has('level') ? ' is-invalid' : '' }}">
+                        <option value="">- 選択してください</option>
                         @foreach($levels_list as $level)
                             <option value="{{ $level->level }}" @if(old('level') === $level->level) selected @endif>{{ $level->level }}</option>
                         @endforeach
@@ -77,8 +77,8 @@
             <div class="form-group">
                 <label for="frequency" class="col-md-4 col-form-label text-md-left">活動頻度 ※必須</label>
                 <div class="col-md-12">
-                    <select name="frequency" id="frequency" class="form-control">
-                        <option value="">選択してください</option>
+                    <select name="frequency" id="frequency" class="form-control  {{ $errors->has('frequency') ? ' is-invalid' : '' }}">
+                        <option value="">- 選択してください</option>
                         @foreach($frequencies_list as $frequency)
                             <option value="{{ $frequency->frequency }}" @if(old('frequency') === $frequency->frequency) selected @endif>{{ $frequency->frequency }}</option>
                         @endforeach
@@ -94,8 +94,8 @@
             <div class="form-group">
                 <label for="weekday" class="col-md-4 col-form-label text-md-left">活動曜日 ※必須</label>
                 <div class="col-md-12">
-                    <select name="weekday" id="weekday" class="form-control">
-                        <option value="">選択してください</option>
+                    <select name="weekday" id="weekday" class="form-control {{ $errors->has('weekday') ? ' is-invalid' : '' }}">
+                        <option value="">- 選択してください</option>
                         @foreach($weekdays_list as $weekday)
                             <option value="{{ $weekday->weekday }}" @if(old('weekday') === $weekday->weekday) selected @endif>{{ $weekday->weekday }}</option>
                         @endforeach

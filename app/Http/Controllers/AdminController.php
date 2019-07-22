@@ -16,8 +16,8 @@ class AdminController extends Controller
         $sports_list = Sport::orderBy('sport', 'asc')->get();
         $ages_list = Age::orderBy('age', 'asc')->get();
         $levels_list = Level::orderBy('level', 'asc')->get();
-        $frequencies_list = Frequency::orderBy('frequency', 'asc')->get();
-        $weekdays_list = Weekday::orderBy('weekday', 'asc')->get();
+        $frequencies_list = Frequency::get();
+        $weekdays_list = Weekday::get();
         return view('admin.index', ['sports_list' => $sports_list, 'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list]);
     }
 }

@@ -58,7 +58,7 @@
                         <div class="form-group row">
                             <label for="sports1" class="col-md-4 col-form-label text-md-left">探したいスポーツ①</label>
                             <div class="col-md-6">
-                                <select name="sports1" id="sports1" class="form-control">
+                                <select name="sports1" id="sports1" class="form-control {{ $errors->has('sports1') ? ' is-invalid' : '' }}">
                                     <option value="">選択してください</option>
                                     @foreach($sports_list as $sport)
                                         <option value="{{ $sport->sport }}" @if(old('sports1') === $sport->sport) selected @endif>{{ $sport->sport }}</option>
@@ -87,8 +87,8 @@
                         <div class="form-group row">
                             <label for="sports2" class="col-md-4 col-form-label text-md-left">探したいスポーツ②</label>
                             <div class="col-md-6">
-                                <select name="sports2" id="sports2" class="form-control">
-                                    <option value="">選択してください</option>
+                                <select name="sports2" id="sports2" class="form-control {{ $errors->has('sports2') ? ' is-invalid' : '' }}">
+                                    <option value="">- 選択してください</option>
                                     @foreach($sports_list as $sport)
                                         <option value="{{ $sport->sport }}" @if(old('sports2') === $sport->sport) selected @endif>{{ $sport->sport }}</option>
                                     @endforeach
@@ -116,8 +116,8 @@
                         <div class="form-group row">
                             <label for="sports3" class="col-md-4 col-form-label text-md-left">探したいスポーツ③</label>
                             <div class="col-md-6">
-                                <select name="sports3" id="sports3" class="form-control">
-                                    <option value="">選択してください</option>
+                                <select name="sports3" id="sports3" class="form-control {{ $errors->has('sports3') ? ' is-invalid' : '' }}">
+                                    <option value="">- 選択してください</option>
                                     @foreach($sports_list as $sport)
                                         <option value="{{ $sport->sport }}" @if(old('sports3') === $sport->sport) selected @endif>{{ $sport->sport }}</option>
                                     @endforeach
@@ -146,8 +146,8 @@
                         <div class="form-group row">
                             <label for="age" class="col-md-4 col-form-label text-md-left">年齢</label>
                             <div class="col-md-6">
-                                <select name="age" id="age" class="form-control">
-                                    <option value="">選択してください</option>
+                                <select name="age" id="age" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}">
+                                    <option value="">- 選択してください</option>
                                     @foreach($ages_list as $age)
                                         <option value="{{ $age }}" @if(old('age') === $age) selected @endif>{{ $age }}</option>
                                     @endforeach
@@ -164,8 +164,8 @@
                         <div class="form-group row">
                             <label for="sex" class="col-md-4 col-form-label text-md-left">性別</label>
                             <div class="col-md-6">
-                                <select name="sex" id="sex" class="form-control">
-                                    <option value="">選択してください</option>
+                                <select name="sex" id="sex" class="form-control {{ $errors->has('sex') ? ' is-invalid' : '' }}">
+                                    <option value="">- 選択してください</option>
                                     @foreach($sex_list as $s)
                                         <option value="{{ $s->sex }}" @if(old('sex') === $s->sex) selected @endif>{{ $s->sex }}</option>
                                     @endforeach

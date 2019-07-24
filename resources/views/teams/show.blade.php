@@ -57,25 +57,31 @@
             <input type="submit" class="btn btn-primary" value="活動状況を投稿">
         </form>
 
-        <h2 class="mt-4">活動状況</h2>
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>タイトル</th>
-                    <th>本文</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($posts as $post)
+        {{--活動状況--}}
+        <section>
+            <h2 class="mt-4">活動状況</h2>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td><a href="{{ url('posts/' . $post->id) }}">{{ $post->title }}</a></td>
-                        <td>{{ Str::limit($post->body, 100 )}}</td>
+                        <th>タイトル</th>
+                        <th>本文</th>
                     </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                    @foreach($posts as $post)
+                        @if($loop->iteration < 6)
+                            <tr>
+                                <td><a href="{{ url('posts/' . $post->id) }}">{{ $post->title }}</a></td>
+                                <td>{{ Str::limit($post->body, 100 )}}</td>
+                            </tr>
+                        @endif
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <a href="{{url('posts?team_id=' . $team->id)}}">【活動状況一覧】</a>
+        </section>
 
         {{--チームに所属しているメンバー--}}
         <h2 class="mt-4">チームメンバー</h2>

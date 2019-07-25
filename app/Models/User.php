@@ -19,6 +19,21 @@ class User extends Authenticatable
         'name', 'email', 'password', 'sports1', 'sports_years1','sports2', 'sports_years2', 'sports3', 'sports_years3', 'age', 'sex', 'area',
     ];
 
+    public static $rules = array (
+        'name' => 'required|string',
+        'email' => 'required|email',
+        'sports1' => 'required|string',
+        'sports2' => 'required|string',
+        'sports3' => 'required|string',
+        'sports_years1' => 'required|integer',
+        'sports_years2' => 'required|integer',
+        'sports_years3' => 'required|integer',
+        'age' => 'required|integer',
+        'sex' => 'required|string',
+        'area' => 'required|string',
+        'password' => 'required|string',
+    );
+
     /**
      * The attributes that should be hidden for arrays.
      *

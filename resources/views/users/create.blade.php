@@ -75,10 +75,10 @@
                         <div class="form-group row">
                             <label for="sports-years1" class="col-md-4 col-form-label text-md-left">経験年数①</label>
                             <div class="col-md-6">
-                                <input id="sports-years1" type="number" class="form-control {{ $errors->has('sports-years1') ? ' is-invalid' : '' }}" name="sports-years1" value="{{ old('sports-years1') }}" placeholder="（例）3">
-                                @if($errors->has('sports-years1'))
+                                <input id="sports-years1" type="number" class="form-control {{ $errors->has('sports_years1') ? ' is-invalid' : '' }}" name="sports_years1" value="{{ old('sports-years1') }}" placeholder="（例）3">
+                                @if($errors->has('sports_years1'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('sports-years1') }}</strong>
+                                        <strong>{{ $errors->first('sports_years1') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -104,10 +104,10 @@
                         <div class="form-group row">
                             <label for="sports-years2" class="col-md-4 col-form-label text-md-left">経験年数②</label>
                             <div class="col-md-6">
-                                <input id="sports-years2" type="number" class="form-control {{ $errors->has('sports-years2') ? ' is-invalid' : '' }}" name="sports-years2" value="{{ old('sports-years2') }}" placeholder="（例）0">
-                                @if($errors->has('sports-years2'))
+                                <input id="sports-years2" type="number" class="form-control {{ $errors->has('sports_years2') ? ' is-invalid' : '' }}" name="sports_years2" value="{{ old('sports_years2') }}" placeholder="（例）0">
+                                @if($errors->has('sports_years2'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('sports-years2') }}</strong>
+                                        <strong>{{ $errors->first('sports_years2') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -133,10 +133,10 @@
                         <div class="form-group row">
                             <label for="sports-years3" class="col-md-4 col-form-label text-md-left">経験年数③</label>
                             <div class="col-md-6">
-                                <input id="sports-years3" type="number" class="form-control {{ $errors->has('sports-years3') ? ' is-invalid' : '' }}" name="sports-years3" value="{{ old('sports-years3') }}" placeholder="（例）10">
-                                @if($errors->has('sports-years3'))
+                                <input id="sports-years3" type="number" class="form-control {{ $errors->has('sports_years3') ? ' is-invalid' : '' }}" name="sports_years3" value="{{ old('sports_years3') }}" placeholder="（例）10">
+                                @if($errors->has('sports_years3'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('sports-years3') }}</strong>
+                                        <strong>{{ $errors->first('sports_years3') }}</strong>
                                     </span>
                                 @endif
                             </div>

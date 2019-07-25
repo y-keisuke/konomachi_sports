@@ -8,11 +8,14 @@
     <div class="container">
         <h1>{{ $title }}</h1>
 
-            <div class="mb-2">
-                <a href="{{ url('posts/create') }}" class="btn btn-primary">活動状況を投稿</a>
-            </div>
+        <form action="{{ url('posts/create') }}" class="mb-2">
+            <input type="hidden" name="team_id" value="{{ $team_id }}">
+            <input type="submit" class="btn btn-primary" value="活動状況を投稿">
+        </form>
 
-        <div class="table-responsive">
+        <a href="{{ url('teams/' . $team_id) }}">→チーム情報に戻る</a>
+
+        <div class="table-responsive mt-2">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -30,6 +33,6 @@
                 </tbody>
             </table>
         </div>
-        {{-- $users->links() --}}
+        {{ $posts->links() }}
     </div>
 @endsection

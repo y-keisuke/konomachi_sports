@@ -67,7 +67,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        $users = $team->users;
+        $users = $team->users()->paginate(10);
         $posts = $team->posts;
         $likes = $team->likes; //いいねをしてるすべてのユーザー
         $like = $team->likes->where('id', Auth::user()->id)->first(); //現在のログインユーザーがいいねをしているかどうか

@@ -4,6 +4,27 @@
   color: #fff !important;
 }
 
+section {
+  margin-bottom: 30px;
+}
+
+h2:before {
+  content: "\25A0";
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+h3:before {
+  display: inline-block;
+  vertical-align: middle;
+  content: "\25CF";
+  font-size: 0.8rem;
+  margin-right: 3px;
+  margin-left: 12px;
+}
+
 nav {
   max-height: 55px;
 }
@@ -121,5 +142,67 @@ footer p {
 
 .sports-index .form-wrap {
   width: 100%;
+}
+
+/*========================================
+チームページ
+======================================= */
+
+/* team-head */
+
+.team-head {
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.team-head h1 {
+  margin: 0;
+}
+
+.team-head button {
+  margin-left: 20px;
+}
+
+/* sec-head */
+
+.sec-head {
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+}
+
+.sec-head h2 {
+  margin: 0;
+}
+
+.sec-head form {
+  margin-left: 20px;
+}
+
+/* お気に入り登録 */
+
+.like-button {
+  border: none;
+  background: none;
+  font-size: 30px;
+}
+
+.fa-star {
+  color: #eded00;
+}
+
+/*========================================
+ユーザーページ
+======================================= */
+
+.button-box {
+  display: -webkit-box;
+  display: flex;
+  margin-bottom: 30px;
 }
 

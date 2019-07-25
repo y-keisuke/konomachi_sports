@@ -18,11 +18,11 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('sports1')->nullable();
-            $table->string('sports_years1')->nullable();
+            $table->integer('sports_years1')->nullable();
             $table->string('sports2')->nullable();
-            $table->string('sports_years2')->nullable();
+            $table->integer('sports_years2')->nullable();
             $table->string('sports3')->nullable();
-            $table->string('sports_years3')->nullable();
+            $table->integer('sports_years3')->nullable();
             $table->integer('age')->nullable();
             $table->string('sex')->nullable();
             $table->string('area')->nullable();

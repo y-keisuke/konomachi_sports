@@ -19,8 +19,8 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $team_id = $request->team_id;
-        $posts = Post::where('team_id', $team_id)->get();
-        return view('posts.index', ['posts' => $posts]);
+        $posts = Post::where('team_id', $team_id)->paginate(10);
+        return view('posts.index', ['posts' => $posts, 'team_id' => $team_id]);
     }
 
     /**

@@ -12,13 +12,13 @@
             @csrf
 
             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
-            <input type="hidden" name="team_id" value="{{ session('team_id') }}">
+            <input type="hidden" name="team_id" value="{{ $team_id }}">
 
             {{-- タイトル --}}
             <div class="form-group">
                 <label for="title" class="col-md-4 col-form-label text-md-left">タイトル</label>
                 <div class="col-md-12">
-                    <input id="title" type="text" class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}" autocomplete="sports">
+                    <input id="title" type="text" class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" value="{{ old('title') }}">
                     @if($errors->has('title'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('title') }}</strong>

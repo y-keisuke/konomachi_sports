@@ -77,6 +77,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $sports_list = Sport::orderBy('sport', 'asc')->get();
         $sex = Sex::select('sex')->get();
         $sports = Sport::select('sport')->get();
         $age_list = config('age');

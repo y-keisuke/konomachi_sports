@@ -7,6 +7,25 @@ $other-user-message-area2: #eeeeee;
         color: #fff!important;
     }
 }
+section {
+    margin-bottom: 30px;
+}
+h2 {
+    &:before {
+        content: '■';
+    }
+}
+h3 {
+    font-size: 1.3rem;
+    &:before {
+        display: inline-block;
+        vertical-align: middle;
+        content: '●';
+        font-size: 0.8rem;
+        margin-right: 3px;
+        margin-left: 12px;
+    }
+}
 nav {
     max-height: 55px;
 }
@@ -99,4 +118,51 @@ footer {
 /* sports/index */
 .sports-index .form-wrap {
     width: 100%;
+}
+
+/*========================================
+チームページ
+======================================= */
+/* team-head */
+.team-head {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    h1 {
+        margin: 0;
+    }
+    button {
+        margin-left: 20px;
+    }
+}
+
+/* sec-head */
+.sec-head {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    h2 {
+        margin: 0;
+    }
+    form {
+        margin-left: 20px;
+    }
+}
+
+/* お気に入り登録 */
+.like-button {
+    border: none;
+    background: none;
+    font-size: 30px;
+}
+.fa-star {
+    color: #eded00;
+}
+
+/*========================================
+ユーザーページ
+======================================= */
+.button-box {
+    display: flex;
+    margin-bottom: 30px;
 }

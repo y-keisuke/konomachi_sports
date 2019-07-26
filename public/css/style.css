@@ -19,8 +19,8 @@ h3 {
 h3:before {
   display: inline-block;
   vertical-align: middle;
-  content: "\25CF";
-  font-size: 0.8rem;
+  content: "\25A0";
+  font-size: 1rem;
   margin-right: 3px;
   margin-left: 12px;
 }
@@ -89,42 +89,48 @@ footer p {
   margin: 0;
 }
 
-/* メッセージルーム */
+/*========================================
+メッセージルーム
+======================================= */
 
-.message-area-box {
+#boards-show h1 {
+  margin-bottom: 30px;
+}
+
+#boards-show .message-area-box {
   height: 100vh;
   padding: 10px;
   overflow-y: scroll;
-  background: #e2f3ff;
+  background: #f3f3f3;
 }
 
-.message-area {
+#boards-show .message-area {
   padding: 20px;
   margin-top: 30px;
   border-radius: 20px;
 }
 
-.message-area .message {
+#boards-show .message-area .message {
   margin-bottom: 15px;
 }
 
-.message-area p {
+#boards-show .message-area p {
   margin: 0;
 }
 
-.user-message-area {
+#boards-show .user-message-area {
   background: #deffe2;
 }
 
-.other-user-message-area {
+#boards-show .other-user-message-area {
   background: #eeeeee;
 }
 
-.message-form {
+#boards-show .message-form {
   margin-top: 30px;
 }
 
-.message-form form {
+#boards-show .message-form form {
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: vertical;
@@ -132,7 +138,7 @@ footer p {
           flex-direction: column;
 }
 
-.message-form form input[type=submit] {
+#boards-show .message-form form input[type=submit] {
   margin-top: 10px;
   width: 10%;
   min-width: 100px;

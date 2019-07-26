@@ -53,12 +53,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * リレーション（主、多対多）
+     * リレーション（1対多）
      * チームに所属するユーザー情報を取得
      */
     public function teams()
     {
-        return $this->belongsToMany('App\Models\Team');
+        return $this->hasMany('App\Models\Team');
     }
 
     /**
@@ -112,5 +112,14 @@ class User extends Authenticatable
     public function messages()
     {
         return $this->hasMany('App\Models\Message');
+    }
+
+    /**
+     * リレーション（1対多）
+     *
+     */
+    public function sport()
+    {
+        return $this->hasOne('App\Models\Sport');
     }
 }

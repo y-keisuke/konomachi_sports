@@ -17,19 +17,24 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('sports1')->nullable();
+            $table->integer('sports1')->nullable()->unsigned();
             $table->integer('sports_years1')->nullable();
-            $table->string('sports2')->nullable();
+            $table->integer('sports2')->nullable()->unsigned();
             $table->integer('sports_years2')->nullable();
-            $table->string('sports3')->nullable();
+            $table->integer('sports3')->nullable()->unsigned();
             $table->integer('sports_years3')->nullable();
             $table->integer('age')->nullable();
-            $table->string('sex')->nullable();
+            $table->integer('sex')->nullable();
             $table->string('area')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+
+            //外部キー
+            $table->foreign('sports1')->references('id')->on('sports')->onDelete('cascade');
+            $table->foreign('sports2')->references('id')->on('sports')->onDelete('cascade');
+            $table->foreign('sports3')->references('id')->on('sports')->onDelete('cascade');
         });
     }
 

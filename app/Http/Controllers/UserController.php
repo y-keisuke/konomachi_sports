@@ -8,6 +8,7 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -58,15 +59,15 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        //ユーザー＝ユーザーページのユーザーでありログインユーザーではない
         $u = User::find($user->id);
-        $teams = $u->teams;
-        $likes = $u->likes;
+        $likes = $u->likes; //お気に入り登録情報
         $follow = $u->follow; //ユーザーがフォローしているユーザー
-        $followed = $u->followed; //ユーザーがフォローされているユーザー
-        $following = $followed->where('id', \Auth::user()->id)->first(); //ユーザーがログインユーザーをフォローしているかどうか
+        $followed = $u->followed; //ユーザーをフォローしているユーザー
+        $following = $followed->where('id', Auth::id())->first(); //ログインユーザーがユーザーをフォローしているかどうか
         $from_boards = $u->from_boards;
         $to_boards = $u->to_boards;
-        return view('users.show', ['user' => $user, 'teams' => $teams, 'likes' => $likes, 'follow' => $follow, 'followed' => $followed, 'following' => $following, 'from_boards' => $from_boards, 'to_boards' => $to_boards]);
+        return view('users.show', ['user' => $user, 'likes' => $likes, 'follow' => $follow, 'followed' => $followed, 'following' => $following, 'from_boards' => $from_boards, 'to_boards' => $to_boards]);
     }
 
     /**
@@ -78,10 +79,10 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $sports_list = Sport::orderBy('sport', 'asc')->get();
-        $sex = Sex::select('sex')->get();
-        $sports = Sport::select('sport')->get();
+        $sex_list = Sex::select('sex')->get();
+        $sports_list = Sport::select('sport')->get();
         $age_list = config('age');
-        return view('users.edit', ['user' => $user, 'sex' => $sex, 'sports' => $sports, 'age_list' => $age_list]);
+        return view('users.edit', ['user' => $user, 'sex_list' => $sex_list, 'sports_list' => $sports_list, 'age_list' => $age_list]);
     }
 
     /**

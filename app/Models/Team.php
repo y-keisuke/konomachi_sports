@@ -19,13 +19,14 @@ class Team extends Model
     );
 
     /**
-     * リレーション（多対多）
+     * リレーション（1対多）
      *
      */
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
+
     /**
      * リレーション（1対多）
      *
@@ -45,6 +46,60 @@ class Team extends Model
     }
 
     /**
+     * リレーション（1対多）
+     *
+     */
+    public function age()
+    {
+        return $this->belongsTo('App\Models\Age', 'age');
+    }
+
+    /**
+     * リレーション（1対多）
+     *
+     */
+    public function frequency()
+    {
+        return $this->belongsTo('App\Models\Frequency');
+    }
+
+    /**
+     * リレーション（1対多）
+     *
+     */
+    public function level()
+    {
+        return $this->belongsTo('App\Models\Level');
+    }
+
+    /**
+     * リレーション（1対多）
+     *
+     */
+    public function sex()
+    {
+        return $this->belongsTo('App\Models\Sex');
+    }
+
+    /**
+     * リレーション（1対多）
+     *
+     */
+    public function sport()
+    {
+        return $this->belongsTo('App\Models\Sport');
+    }
+
+    /**
+     * リレーション（1対多）
+     *
+     */
+    public function weekday()
+    {
+        return $this->belongsTo('App\Models\Weekday');
+    }
+
+    /**
      * ログインユーザーのお気に入り登録しているIDを取得
      *
      */
@@ -52,4 +107,6 @@ class Team extends Model
     {
         return Like::where('like_user_id', Auth::user()->id)->first;
     }
+
+
 }

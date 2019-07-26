@@ -3,17 +3,23 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" id="user-register">
+    <div class="container" id="search">
         <h1>{{ $title }}</h1>
         @if(count($errors) > 0)
             <p>入力エラー</p>
         @endif
         <form action="{{ url('search') }}" method="GET">
+
             {{-- スポーツ --}}
             <div class="form-group">
                 <label for="sports" class="col-md-4 col-form-label text-md-left">スポーツ</label>
                 <div class="col-md-12">
-                    <input id="sports" type="text" class="form-control {{ $errors->has('sports') ? ' is-invalid' : '' }}" name="sports" value="{{ $sports }}" autocomplete="sports">
+                    <select name="sports" id="sports" class="form-control {{ $errors->has('sports') ? ' is-invalid' : '' }}">
+                        <option value="">- 選択してください</option>
+                        @foreach($sports_list as $sport)
+                            <option value="{{ $sport->id }}" @if(old('sports') === $sport->id) selected @endif>{{ $sport->sport }}</option>
+                        @endforeach
+                    </select>
                     @if($errors->has('sports'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('sports') }}</strong>
@@ -21,7 +27,7 @@
                     @endif
                 </div>
             </div>
-            {{-- エリア --}}
+            {{-- 地域 --}}
             <div class="form-group">
                 <label for="area" class="col-md-4 col-form-label text-md-left">地域</label>
                 <div class="col-md-12">
@@ -37,7 +43,12 @@
             <div class="form-group">
                 <label for="age" class="col-md-4 col-form-label text-md-left">年齢層</label>
                 <div class="col-md-12">
-                    <input id="age" type="text" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}" name="age" value="{{ $age }}" autocomplete="age">
+                    <select name="age" id="age" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}">
+                        <option value="">- 選択してください</option>
+                        @foreach($ages_list as $age)
+                            <option value="{{ $age->id }}" @if(old('age') === $age->age) selected @endif>{{ $age->age }}</option>
+                        @endforeach
+                    </select>
                     @if($errors->has('ages'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('age') }}</strong>
@@ -49,7 +60,12 @@
             <div class="form-group">
                 <label for="level" class="col-md-4 col-form-label text-md-left">募集対象</label>
                 <div class="col-md-12">
-                    <input id="level" type="text" class="form-control {{ $errors->has('level') ? ' is-invalid' : '' }}" name="level" value="{{ $level }}" autocomplete="level">
+                    <select name="level" id="level" class="form-control {{ $errors->has('level') ? ' is-invalid' : '' }}">
+                        <option value="">- 選択してください</option>
+                        @foreach($levels_list as $level)
+                            <option value="{{ $level->id }}" @if(old('level') === $level->level) selected @endif>{{ $level->level }}</option>
+                        @endforeach
+                    </select>
                     @if($errors->has('level'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('level') }}</strong>
@@ -61,10 +77,32 @@
             <div class="form-group">
                 <label for="frequency" class="col-md-4 col-form-label text-md-left">活動頻度</label>
                 <div class="col-md-12">
-                    <input id="frequency" type="text" class="form-control {{ $errors->has('frequency') ? ' is-invalid' : '' }}" name="frequency" value="{{ $frequency }}" autocomplete="frequency">
+                    <select name="frequency" id="frequency" class="form-control  {{ $errors->has('frequency') ? ' is-invalid' : '' }}">
+                        <option value="">- 選択してください</option>
+                        @foreach($frequencies_list as $frequency)
+                            <option value="{{ $frequency->id }}" @if(old('frequency') === $frequency->frequency) selected @endif>{{ $frequency->frequency }}</option>
+                        @endforeach
+                    </select>
                     @if($errors->has('frequency'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('frequency') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+            {{-- 活動曜日 --}}
+            <div class="form-group">
+                <label for="weekday" class="col-md-4 col-form-label text-md-left">活動曜日</label>
+                <div class="col-md-12">
+                    <select name="weekday" id="weekday" class="form-control {{ $errors->has('weekday') ? ' is-invalid' : '' }}">
+                        <option value="">- 選択してください</option>
+                        @foreach($weekdays_list as $weekday)
+                            <option value="{{ $weekday->id }}" @if(old('weekday') === $weekday->weekday) selected @endif>{{ $weekday->weekday }}</option>
+                        @endforeach
+                    </select>
+                    @if($errors->has('weekday'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('weekday') }}</strong>
                         </span>
                     @endif
                 </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserLevelTable extends Migration
+class CreateFrequenciesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateUserLevelTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_level', function (Blueprint $table) {
+        Schema::create('frequencies', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('level');
+            $table->string('frequency')->unique();
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateUserLevelTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_level');
+        Schema::dropIfExists('frequencies');
     }
 }

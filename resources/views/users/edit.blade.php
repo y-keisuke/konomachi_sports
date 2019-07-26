@@ -31,7 +31,7 @@
                 <label for="sports1">スポーツ①</label>
                 <select name="sports1" id="sports1" class="form-control">
                     <option value="">- 選択してください</option>
-                    @foreach($sports as $sport)
+                    @foreach($sports_list as $sport)
                         <option value="{{ $sport->sport }}" @if($user->sports1 === $sport->sport) selected @endif>{{ old('sport1', $user->sports1) }}</option>
                     @endforeach
                 </select>
@@ -52,7 +52,7 @@
                 <label for="sports2">スポーツ②</label>
                 <select name="sports2" id="sports2" class="form-control">
                     <option value="">- 選択してください</option>
-                    @foreach($sports as $sport)
+                    @foreach($sports_list as $sport)
                         <option value="{{ $sport->sport }}" @if($user->sports2 === $sport->sport) selected @endif>{{ old('sport', $sport->sport) . $loop->parent }}</option>
                     @endforeach
                 </select>
@@ -73,7 +73,7 @@
                 <label for="sports3">スポーツ③</label>
                 <select name="sports3" id="sports3" class="form-control">
                     <option value="">- 選択してください</option>
-                    @foreach($sports as $sport)
+                    @foreach($sports_list as $sport)
                         <option value="{{ $sport->sport }}" @if($user->sports3 === $sport->sport) selected @endif>{{ old('sport', $sport->sport) }}</option>
                     @endforeach
                 </select>
@@ -107,7 +107,7 @@
                 <label for="sex">性別</label>
                 <select name="sex" id="sex" class="form-control">
                     <option value="">- 選択してください</option>
-                    @foreach($sex as $s)
+                    @foreach($sex_list as $s)
                         <option value="{{ $s->sex }}">{{ $s->sex }}</option>
                     @endforeach
                 </select>

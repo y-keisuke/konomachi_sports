@@ -12,12 +12,8 @@ class SexTableSeeder extends Seeder
     public function run()
     {
         $param = [
-            'sex' => '男性'
-        ];
-        DB::table('sex')->insert($param);
-
-        $param = [
-            'sex' => '女性'
+            ['sex' => '男性'],
+            ['sex' => '女性'],
         ];
         DB::table('sex')->insert($param);
     }

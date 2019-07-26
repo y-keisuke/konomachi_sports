@@ -17,11 +17,13 @@ class TeamsTableSeeder extends Seeder
         for ($i = 0; $i < 10; $i++)
         {
             DB::table('teams')->insert([
-                'sports' => $faker->randomElement(array ('バレーボール', '野球', 'サッカー', 'バドミントン', 'テニス', 'フットサル', 'ランニング')),
-                'age' => $faker->numberBetween(20,50),
-                'level' => $faker->randomElement(array ('初心者歓迎', '経験者求む')),
+                'user_id' => $faker->numberBetween(1,10),
+                'sports' => $faker->numberBetween(1,6),
+                'age' => $faker->numberBetween(1,12),
+                'level' => $faker->numberBetween(1,3),
                 'area' => $faker->city,
-                'frequency' => $faker->randomElement(array ('毎週木金', '毎週土曜', '毎週日曜', '第一三土曜', '第一金曜')),
+                'frequency' => $faker->numberBetween(1,4),
+                'weekday' => $faker->numberBetween(1,8),
                 'hp' => $faker->url,
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),

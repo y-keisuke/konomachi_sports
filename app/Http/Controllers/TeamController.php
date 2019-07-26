@@ -67,11 +67,16 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        $users = $team->users()->paginate(10);
-        $posts = $team->posts;
+        $sport = Sport::find($team->sports)->sport;//find($team->sport);
+        $age = Age::find($team->age)->age;
+        $level = Level::find($team->level)->level;
+        $frequency = Frequency::find($team->frequency)->frequency;
+        $weekday = Weekday::find($team->weekday)->weekday;
+        $user = User::find($team->user_id);
+        $posts = $team->posts; //活動状況取得
         $likes = $team->likes; //いいねをしてるすべてのユーザー
         $like = $team->likes->where('id', Auth::user()->id)->first(); //現在のログインユーザーがいいねをしているかどうか
-        return view('teams.show', ['team' => $team, 'users' => $users, 'posts' => $posts, 'likes' => $likes, 'like' => $like]);
+        return view('teams.show', ['team' => $team, 'sport' => $sport, 'age' => $age, 'level' => $level, 'frequency' => $frequency, 'weekday' => $weekday, 'user' => $user, 'posts' => $posts, 'likes' => $likes, 'like' => $like]);
     }
 
     /**
@@ -87,7 +92,7 @@ class TeamController extends Controller
         $levels_list = Level::orderBy('level', 'asc')->get();
         $frequencies_list = Frequency::orderBy('frequency', 'asc')->get();
         $weekdays_list = Weekday::orderBy('weekday', 'asc')->get();
-        return view('teams.edit', ['team' => $team, 'sports_list' => $sports_list, 'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list]);
+        return view('teams.edit', ['team' => $team, 'sports_list' => $sports_list,'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list]);
     }
 
     /**

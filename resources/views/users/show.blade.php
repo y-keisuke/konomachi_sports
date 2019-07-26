@@ -8,33 +8,33 @@
     <div class="container">
         <h1>{{ $title }}</h1>
         <div class="button-box">
-            {{--フォローボタン--}}
-            <form action="{{ url('follows') }}" method="post" class="mr-2">
-                @csrf
-                <input type="hidden" name="user_id" value="{{ $user->id }}">
-            @if($following)
-                @method('DELETE')
-                <input type="submit" class="btn btn-primary" value="フォローを解除する">
-            @else
-                <input type="submit" class="btn btn-primary" value="フォローする">
+            @if(Auth::check())
+                @if($user->id !== Auth::id())
+                    {{--フォローボタン--}}
+                    <form action="{{ url('follows') }}" method="post" class="mr-2">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+                    @if($following)
+                        @method('DELETE')
+                        <input type="submit" class="btn btn-primary" value="フォローを解除する">
+                    @else
+                        <input type="submit" class="btn btn-primary" value="フォローする">
+                    @endif
+                    </form>
+                    {{--メッセージ送信ボタン--}}
+                    <form action="{{ url('boards') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="from_user_id" value="{{ Auth::id() }}">
+                        <input type="hidden" name="to_user_id" value="{{ $user->id }}">
+                        <input type="submit" value="メッセージを送る" class="btn btn-primary">
+                    </form>
+                @endif
             @endif
-            </form>
-            {{--メッセージ送信ボタン--}}
-            <form action="{{ url('boards') }}" method="post">
-                @csrf
-                <input type="hidden" name="from_user_id" value="{{ \Auth::user()->id }}">
-                <input type="hidden" name="to_user_id" value="{{ $user->id }}">
-                <input type="submit" value="メッセージを送る" class="btn btn-primary">
-            </form>
         </div>
         {{-- ユーザーの情報 --}}
         <section>
             <h2>プロフィール</h2>
             <div class="profile-box">
-                <div class="profile-list row">
-                    <p class="col-md-2">User ID:</p>
-                    <p class="col-md-10">{{ $user->id }}</p>
-                </div>
                 <div class="profile-list row">
                     <p class="col-md-2">名前:</p>
                     <p class="col-md-10">{{ $user->name }}</p>
@@ -82,33 +82,25 @@
             </div>
 
             {{-- 編集ボタン --}}
-            <div class="flex">
-                {{--編集--}}
-                <button class="btn btn-primary mr-4">
-                    <a href="{{ url('users/' . $user->id . '/edit') }}">編集</a>
-                </button>
-            </div>
-        </section>
-
-        {{--ユーザーの所属するチーム--}}
-        <section>
-            <h2>所属チーム</h2>
-            @if(count($teams) > 0)
-                @foreach($teams as $team)
-                    <a href="{{ url('teams/' . $team->id) }}"><p>{{ $team->area . 'の'. $team->sports . 'チーム' }}</p></a>
-                @endforeach
-            @else
-                <p>所属しているチームはありません。</p>
+            @if($user->id === Auth::id())
+                <div class="flex">
+                    {{--編集--}}
+                    <button class="btn btn-primary mr-4">
+                        <a href="{{ url('users/' . $user->id . '/edit') }}">編集</a>
+                    </button>
+                </div>
             @endif
         </section>
 
         {{--お気に入り登録しているチーム--}}
         <section>
+            <h2>お気に入り登録をしているチーム</h2>
             @if(count($likes) > 0)
-                <h2>お気に入り登録をしているチーム</h2>
-                @foreach($likes as $team)
-                    <a href="{{ url('teams/' . $team->id) }}"><p>{{ $team->area . 'の'. $team->sports . 'チーム' }}</p></a>
-                @endforeach
+                <ul>
+                    @foreach($likes as $team)
+                        <li><a href="{{ url('teams/' . $team->id) }}">{{ $team->area . 'の'. $team->sports . 'チーム' }}</a></li>
+                    @endforeach
+                </ul>
             @else
                 <p>お気に入り登録しているチームはありません。</p>
             @endif
@@ -142,15 +134,19 @@
         </section>
 
         {{--メッセージ--}}
-        <h2>メッセージ</h2>
-        <ul>
-            @foreach($from_boards as $from_user)
-                <li><a href="{{ url('boards/' . $from_user->pivot->id) }}">{{ $from_user->name }}さんとのメッセージルーム</a></li>
-            @endforeach
-            @foreach($to_boards as $to_user)
-                <li><a href="{{ url('boards/' . $to_user->pivot->id) }}">{{ $to_user->name }}さんとのメッセージルーム</a></li>
-            @endforeach
-        </ul>
+        @if($user->id === Auth::id())
+            <section>
+                <h2>メッセージ</h2>
+                <ul>
+                    @foreach($from_boards as $from_user)
+                        <li><a href="{{ url('boards/' . $from_user->pivot->id) }}">{{ $from_user->name }}さんとのメッセージルーム</a></li>
+                    @endforeach
+                    @foreach($to_boards as $to_user)
+                        <li><a href="{{ url('boards/' . $to_user->pivot->id) }}">{{ $to_user->name }}さんとのメッセージルーム</a></li>
+                    @endforeach
+                </ul>
+            </section>
+        @endif
 
 
     {{-- $user->posts->links() --}}

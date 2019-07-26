@@ -1,4 +1,4 @@
-@php($title = $team->area . 'の'. $team->sports . 'チームのページ')
+@php($title = $team->area . 'の'. $sport . 'チームのページ')
 
 @extends('layouts.app')
 
@@ -23,28 +23,36 @@
         <section>
             <div class="team-info-box">
                 <div class="team-info-list row">
-                    <p class="col-md-2">活動エリア：</p>
-                    <p class="col-md-10">{{ emptyJudge($team->area, '-') }}</p>
+                    <p class="col-md-2">スポーツ：</p>
+                    <p class="col-md-10">{{ $sport }}</p>
+                </div>
+                <div class="team-info-list row">
+                    <p class="col-md-2">活動地域：</p>
+                    <p class="col-md-10">{{ $team->area }}</p>
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">年齢層：</p>
-                    <p class="col-md-10">{{ emptyJudge($team->age, '-') }}</p>
+                    <p class="col-md-10">{{ $age }}</p>
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">募集レベル：</p>
-                    <p class="col-md-10">{{ emptyJudge($team->level, '-') }}</p>
+                    <p class="col-md-10">{{ $level }}</p>
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">活動頻度：</p>
-                    <p class="col-md-10">{{ emptyJudge($team->frequency, '-') }}</p>
+                    <p class="col-md-10">{{ $frequency }}</p>
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">活動曜日：</p>
-                    <p class="col-md-10">{{ emptyJudge($team->weekday, '-') }}</p>
+                    <p class="col-md-10">{{ $weekday }}</p>
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">HP：</p>
                     <p class="col-md-10">{{ emptyJudge($team->hp, '-') }}</p>
+                </div>
+                <div class="team-info-list row">
+                    <p class="col-md-2">管理人：</p>
+                    <p class="col-md-10"><a href="{{ url('users/' . $user->id) }}">{{ $user->name }}</a></p>
                 </div>
             </div>
 
@@ -75,7 +83,8 @@
                     <input type="submit" class="btn btn-primary" value="活動状況を投稿">
                 </form>
             </div>
-            <div class="table-responsive">
+            <a href="{{url('posts?team_id=' . $team->id)}}">【活動状況一覧】</a>
+            <div class="table-responsive mt-4">
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -95,37 +104,23 @@
                     </tbody>
                 </table>
             </div>
-            <a href="{{url('posts?team_id=' . $team->id)}}">【活動状況一覧】</a>
-        </section>
-
-        {{--チームに所属しているメンバー--}}
-        <section>
-            <h2 class="mt-4">チームメンバー</h2>
-            @if(count($users) > 0)
-                <ul>
-                    @foreach($users as $user)
-                        <li><a href="{{ url('users/' . $user->id) }}"><p>{{ $user->name }}</p></a></li>
-                    @endforeach
-                </ul>
-            @else
-                <p class="ml-2">チームーメンバーはいません</p>
-            @endif
-            {{ $users->links() }}
         </section>
 
         {{--チームをお気に入り登録しているユーザー--}}
         <section>
-            <h2 id="like" class="mt-4">お気に入り登録をしているユーザー</h2>
-            <form action="{{ url('likes') }}" method="post" class="mb-2">
-                @csrf
-                <input type="hidden" name="team_id" value="{{ $team->id }}">
-                @if($like)
-                    @method('DELETE')
-                    <input type="submit" class="btn btn-primary" value="お気に入りを解除する">
-                @else
-                    <input type="submit" class="btn btn-primary" value="お気に入り登録する">
-                @endif
-            </form>
+            <div class="sec-head">
+                <h2 id="like">お気に入り登録をしているユーザー</h2>
+                <form action="{{ url('likes') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="team_id" value="{{ $team->id }}">
+                    @if($like)
+                        @method('DELETE')
+                        <input type="submit" class="btn btn-primary" value="お気に入りを解除する">
+                    @else
+                        <input type="submit" class="btn btn-primary" value="お気に入り登録する">
+                    @endif
+                </form>
+            </div>
             @if(count($likes) > 0)
                 <ul>
                     @foreach($likes as $user)

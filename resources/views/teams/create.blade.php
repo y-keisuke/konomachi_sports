@@ -27,6 +27,20 @@
                     @endif
                 </div>
             </div>
+
+            {{-- 地域 --}}
+            <div class="form-group">
+                <label for="area" class="col-md-4 col-form-label text-md-left">地域（市町村まで） ※必須</label>
+                <div class="col-md-12">
+                    <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ old('area') }}" placeholder="（例）北海道札幌市">
+                    @if($errors->has('area'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('area') }}</strong>
+                        </span>
+                    @endif
+                </div>
+            </div>
+
             {{-- 年齢層 --}}
             <div class="form-group">
                 <label for="age" class="col-md-4 col-form-label text-md-left">年齢層 ※必須</label>
@@ -61,18 +75,7 @@
                     @endif
                 </div>
             </div>
-            {{-- 地域 --}}
-            <div class="form-group">
-                <label for="area" class="col-md-4 col-form-label text-md-left">地域（市町村まで） ※必須</label>
-                <div class="col-md-12">
-                    <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ old('area') }}" placeholder="（例）北海道札幌市">
-                    @if($errors->has('area'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('area') }}</strong>
-                        </span>
-                    @endif
-                </div>
-            </div>
+
             {{-- 活動頻度 --}}
             <div class="form-group">
                 <label for="frequency" class="col-md-4 col-form-label text-md-left">活動頻度 ※必須</label>

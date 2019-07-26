@@ -14,7 +14,7 @@ class BoardsTableSeeder extends Seeder
     {
         $faker = Factory::create('ja_JP');
 
-        for ($i = 0; $i < 20; $i++)
+        for ($i = 0; $i < 5; $i++)
         {
             DB::table('boards')->insert([
                 'from_user_id' =>$faker->numberBetween(1, 20),

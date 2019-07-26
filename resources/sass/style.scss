@@ -20,8 +20,8 @@ h3 {
     &:before {
         display: inline-block;
         vertical-align: middle;
-        content: '●';
-        font-size: 0.8rem;
+        content: '■';
+        font-size: 1rem;
         margin-right: 3px;
         margin-left: 12px;
     }
@@ -78,39 +78,46 @@ footer {
     }
 }
 
-/* メッセージルーム */
-.message-area-box {
-    height: 100vh;
-    padding: 10px;
-    overflow-y: scroll;
-    background: #e2f3ff;
-}
-.message-area {
-    padding: 20px;
-    margin-top: 30px;
-    border-radius: 20px;
-    .message {
-        margin-bottom: 15px;
+/*========================================
+メッセージルーム
+======================================= */
+#boards-show{
+    h1 {
+        margin-bottom: 30px;
     }
-    p {
-        margin: 0;
+    .message-area-box {
+        height: 100vh;
+        padding: 10px;
+        overflow-y: scroll;
+        background: #f3f3f3;
     }
-}
-.user-message-area {
-    background: $user-message-area;
-}
-.other-user-message-area {
-    background: $other-user-message-area2;
-}
-.message-form {
-    margin-top: 30px;
-    form {
-        display: flex;
-        flex-direction: column;
-        input[type="submit"] {
-            margin-top: 10px;
-            width: 10%;
-            min-width: 100px;
+    .message-area {
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 20px;
+        .message {
+            margin-bottom: 15px;
+        }
+        p {
+            margin: 0;
+        }
+    }
+    .user-message-area {
+        background: $user-message-area;
+    }
+    .other-user-message-area {
+        background: $other-user-message-area2;
+    }
+    .message-form {
+        margin-top: 30px;
+        form {
+            display: flex;
+            flex-direction: column;
+            input[type="submit"] {
+                margin-top: 10px;
+                width: 10%;
+                min-width: 100px;
+            }
         }
     }
 }

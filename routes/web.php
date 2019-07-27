@@ -40,7 +40,7 @@ Route::post('messages', 'MessageController@store');
 
 //検索
 Route::get('search', 'SearchController@search');
-Route::get('searched', 'SearchController@index');
+Route::post('search', 'SearchController@reset');
 
 //管理者用
 Route::get('admin', 'AdminController@index');

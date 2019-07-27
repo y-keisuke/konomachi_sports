@@ -67,7 +67,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        $sport = Sport::find($team->sports)->sport;//find($team->sport);
+        $sport = Sport::find($team->sports)->sport;
         $age = Age::find($team->age)->age;
         $level = Level::find($team->level)->level;
         $frequency = Frequency::find($team->frequency)->frequency;

@@ -173,3 +173,16 @@ footer {
     display: flex;
     margin-bottom: 30px;
 }
+
+/*========================================
+検索ページ
+======================================= */
+#search {
+    .form-sec {
+        position: relative;
+    }
+    .reset-btn {
+        position: absolute;
+        transform: translate(100%, -100%);
+    }
+}

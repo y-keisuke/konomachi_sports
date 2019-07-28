@@ -5,18 +5,17 @@
 @section('content')
     <div class="container" id="search">
         <h1>{{ $title }}</h1>
-        <section>
+        <section class="form-sec">
             <form action="{{ url('search') }}" method="GET">
 
                 {{-- スポーツ --}}
                 <div class="form-group">
                     <label for="sports" class="col-md-4 col-form-label text-md-left">スポーツ</label>
                     <div class="col-md-12">
-                        {{$sports}}
                         <select name="sports" id="sports" class="form-control {{ $errors->has('sports') ? ' is-invalid' : '' }}">
                             <option value="">- 選択してください</option>
                             @foreach($sports_list as $s)
-                                <option value="{{ $s->id }}" @if((int)$sports === $s->id) selected @endif>{{ $s->sport }}</option>
+                                <option value="{{ $s->sport }}" @if($sports === $s->sport) selected @endif>{{ $s->sport }}</option>
                             @endforeach
                         </select>
                         @if($errors->has('sports'))
@@ -28,7 +27,7 @@
                 </div>
                 {{-- 地域 --}}
                 <div class="form-group">
-                    <label for="area" class="col-md-4 col-form-label text-md-left">地域</label>
+                    <label for="area" class="col-md-4 col-form-label text-md-left">地域（都道府県名や市町村名のみでも検索可能）</label>
                     <div class="col-md-12">
                         <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ $area }}" autocomplete="area">
                         @if($errors->has('area'))
@@ -45,7 +44,7 @@
                         <select name="age" id="age" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}">
                             <option value="">- 選択してください</option>
                             @foreach($ages_list as $a)
-                                <option value="{{ $a->id }}" @if((int)$age === $a->id) selected @endif>{{ $a->age }}</option>
+                                <option value="{{ $a->age }}" @if($age === $a->age) selected @endif>{{ $a->age }}</option>
                             @endforeach
                         </select>
                         @if($errors->has('ages'))
@@ -62,7 +61,7 @@
                         <select name="level" id="level" class="form-control {{ $errors->has('level') ? ' is-invalid' : '' }}">
                             <option value="">- 選択してください</option>
                             @foreach($levels_list as $l)
-                                <option value="{{ $l->id }}" @if((int)$level === $l->id) selected @endif>{{ $l->level }}</option>
+                                <option value="{{ $l->level }}" @if($level === $l->level) selected @endif>{{ $l->level }}</option>
                             @endforeach
                         </select>
                         @if($errors->has('level'))
@@ -79,7 +78,7 @@
                         <select name="frequency" id="frequency" class="form-control  {{ $errors->has('frequency') ? ' is-invalid' : '' }}">
                             <option value="">- 選択してください</option>
                             @foreach($frequencies_list as $f)
-                                <option value="{{ $f->id }}" @if((int)$frequency === $f->id) selected @endif>{{ $f->frequency }}</option>
+                                <option value="{{ $f->frequency }}" @if($frequency === $f->frequency) selected @endif>{{ $f->frequency }}</option>
                             @endforeach
                         </select>
                         @if($errors->has('frequency'))
@@ -96,7 +95,7 @@
                         <select name="weekday" id="weekday" class="form-control {{ $errors->has('weekday') ? ' is-invalid' : '' }}">
                             <option value="">- 選択してください</option>
                             @foreach($weekdays_list as $w)
-                                <option value="{{ $w->id }}" @if((int)$weekday === $w->id) selected @endif>{{ $w->weekday }}</option>
+                                <option value="{{ $w->weekday }}" @if($weekday === $w->weekday) selected @endif>{{ $w->weekday }}</option>
                             @endforeach
                         </select>
                         @if($errors->has('weekday'))
@@ -116,16 +115,15 @@
                     </div>
                 </div>
             </form>
-            <form action="{{ url('search') }}" method="post">
+            <form action="{{ url('search') }}" method="POST" class="reset-btn">
                 @csrf
                 <button type="submit" class="btn btn-danger">検索情報をリセット</button>
             </form>
         </section>
-{{$teams}}
-        <section>
-            @if(!empty($teams))
+        <section id="search">
+            @if(count($teams) > 0)
                 <div class="table-responsive">
-                    <h2>検索結果</h2>
+                    <h2>検索結果（{{ count($teams) }}件）</h2>
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -139,19 +137,19 @@
                         </thead>
                         <tbody>
                         @foreach($teams as $team)
-                            {{$s_sport->teams()->get()}}
                             <tr>
-                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $s_sport->where('id', $team->sports) }}</a></td>
+                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->sports }}</a></td>
                                 <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->area }}</a></td>
-                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $s_age->where($team->age) }}</a></td>
-                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $s_level->where($team->level) }}</a></td>
-                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $s_frequency->where($team->frequency) }}</a></td>
-                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $s_weekday->where($team->weekday) }}</a></td>
+                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->age }}</a></td>
+                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->level }}</a></td>
+                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->frequency }}</a></td>
+                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->weekday }}</a></td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
+                {{ $teams->links() }}
             @endif
         </section>
     </div>

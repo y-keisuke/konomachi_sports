@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
 
         $faker = Factory::create('ja_JP');
 
-        for ($i = 0; $i < 20; $i++)
+        for ($i = 0; $i < 30; $i++)
         {
             DB::table('users')->insert([
                 'name' => $faker->name,

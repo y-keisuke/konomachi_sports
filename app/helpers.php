@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\DB;
+use App\Models\Sport;
+use App\Models\Age;
+use App\Models\Level;
+use App\Models\Frequency;
+use App\Models\Weekday;
 
 //アクティブなURLを判定
 
@@ -23,11 +28,51 @@ function emptyJudge($data, $string = '')
 }
 
 /**
- * sexテーブルデータを取得
- *
+ * SportDB情報取得
+ * @param $id
+ * @return
  */
-function sex()
-{
-    $sex = DB::table('sex')->select('id', 'sex')->get();
-    return $sex;
+function sportGet($id) {
+    $data = Sport::find($id)->sport;
+    return $data;
+}
+
+/**
+ * AgeDB情報取得
+ * @param $id
+ * @return
+ */
+function ageGet($id) {
+    $data = Age::find($id)->age;
+    return $data;
+}
+
+/**
+ * LevelDB情報取得
+ * @param $id
+ * @return
+ */
+function levelGet($id) {
+    $data = Level::find($id)->level;
+    return $data;
+}
+
+/**
+ * FrequencyDB情報取得
+ * @param $id
+ * @return
+ */
+function frequencyGet($id) {
+    $data = Frequency::find($id)->frequency;
+    return $data;
+}
+
+/**
+ * WeekdayDB情報取得
+ * @param $id
+ * @return
+ */
+function weekdayGet($id) {
+    $data = Weekday::find($id)->weekday;
+    return $data;
 }

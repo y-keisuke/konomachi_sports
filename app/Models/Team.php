@@ -108,5 +108,84 @@ class Team extends Model
         return Like::where('like_user_id', Auth::user()->id)->first;
     }
 
+    /**
+     * スコープでスポーツ情報取得
+     * @param $query
+     * @param $str
+     * @return mixed
+     */
+    public function scopeEqualSports($query, $str)
+    {
+        if ($str) {
+            return $query->where('sports', $str);
+        }
+    }
+
+    /**
+     * スコープで地域情報取得
+     * @param $query
+     * @param $str
+     * @return mixed
+     */
+    public function scopeFuzzyAreas($query, $str)
+    {
+        if ($str) {
+            return $query->where('area', 'like', "%{$str}%");
+        }
+    }
+
+    /**
+     * スコープで年齢層情報取得
+     * @param $query
+     * @param $str
+     * @return mixed
+     */
+    public function scopeEqualAges($query, $str)
+    {
+        if ($str) {
+            return $query->where('age', $str);
+        }
+    }
+
+    /**
+     * スコープで募集対象情報取得
+     * @param $query
+     * @param $str
+     * @return mixed
+     */
+    public function scopeEqualLevels($query, $str)
+    {
+        if ($str) {
+            return $query->where('level', $str);
+        }
+    }
+
+    /**
+     * スコープで活動頻度情報取得
+     * @param $query
+     * @param $str
+     * @return mixed
+     */
+    public function scopeEqualFrequencies($query, $str)
+    {
+        if ($str) {
+            return $query->where('frequency', $str);
+        }
+    }
+
+    /**
+     * スコープで活動曜日情報取得
+     * @param $query
+     * @param $str
+     * @return mixed
+     */
+    public function scopeEqualWeekdays($query, $str)
+    {
+        if ($str) {
+            return $query->where('weekday', $str);
+        }
+    }
+
+
 
 }

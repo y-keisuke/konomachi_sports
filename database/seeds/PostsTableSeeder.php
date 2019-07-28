@@ -17,8 +17,8 @@ class PostsTableSeeder extends Seeder
         for ($i = 0; $i < 40; $i++)
         {
             DB::table('posts')->insert([
-                'user_id' =>$faker->numberBetween(1, 20),
-                'team_id' =>$faker->numberBetween(1, 10),
+                'user_id' =>$faker->numberBetween(1, 30),
+                'team_id' =>$faker->numberBetween(1, 30),
                 'title' => $faker->sentence(2),
                 'body' => $faker->paragraph(),
                 'created_at' => $faker->dateTime(),

@@ -212,3 +212,17 @@ footer p {
   margin-bottom: 30px;
 }
 
+/*========================================
+検索ページ
+======================================= */
+
+#search .form-sec {
+  position: relative;
+}
+
+#search .reset-btn {
+  position: absolute;
+  -webkit-transform: translate(100%, -100%);
+          transform: translate(100%, -100%);
+}
+

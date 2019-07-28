@@ -1,4 +1,4 @@
-@php($title = $team->area . 'の'. $sport . 'チームのページ')
+@php($title = $team->area . 'の'. $team->sports . 'チームのページ')
 
 @extends('layouts.app')
 
@@ -24,7 +24,7 @@
             <div class="team-info-box">
                 <div class="team-info-list row">
                     <p class="col-md-2">スポーツ：</p>
-                    <p class="col-md-10">{{ $sport }}</p>
+                    <p class="col-md-10">{{ $team->sports }}</p>
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">活動地域：</p>
@@ -32,23 +32,27 @@
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">年齢層：</p>
-                    <p class="col-md-10">{{ $age }}</p>
+                    <p class="col-md-10">{{ $team->age }}</p>
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">募集レベル：</p>
-                    <p class="col-md-10">{{ $level }}</p>
+                    <p class="col-md-10">{{ $team->level }}</p>
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">活動頻度：</p>
-                    <p class="col-md-10">{{ $frequency }}</p>
+                    <p class="col-md-10">{{ $team->frequency }}</p>
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">活動曜日：</p>
-                    <p class="col-md-10">{{ $weekday }}</p>
+                    <p class="col-md-10">{{ $team->weekday }}</p>
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">HP：</p>
-                    <p class="col-md-10">{{ emptyJudge($team->hp, '-') }}</p>
+                    @if($team->hp)
+                        <a href="{{ $team->hp }}" class="col-md-10"><p>{{ $team->hp }}</p></a>
+                    @else
+                        <p class="col-md-10">-</p>
+                    @endif
                 </div>
                 <div class="team-info-list row">
                     <p class="col-md-2">管理人：</p>
@@ -83,27 +87,31 @@
                     <input type="submit" class="btn btn-primary" value="活動状況を投稿">
                 </form>
             </div>
-            <a href="{{url('posts?team_id=' . $team->id)}}">【活動状況一覧】</a>
-            <div class="table-responsive mt-4">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>タイトル</th>
-                        <th>本文</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach($posts as $post)
-                        @if($loop->iteration < 6)
-                            <tr>
-                                <td><a href="{{ url('posts/' . $post->id) }}">{{ $post->title }}</a></td>
-                                <td>{{ Str::limit($post->body, 100 )}}</td>
-                            </tr>
-                        @endif
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
+            @if(count($posts) > 0)
+                <a href="{{url('posts?team_id=' . $team->id)}}">【活動状況一覧】</a>
+                <div class="table-responsive mt-4">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>タイトル</th>
+                            <th>本文</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($posts as $post)
+                            @if($loop->iteration < 6)
+                                <tr>
+                                    <td><a href="{{ url('posts/' . $post->id) }}">{{ $post->title }}</a></td>
+                                    <td>{{ Str::limit($post->body, 100 )}}</td>
+                                </tr>
+                            @endif
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @else
+                <p>まだ活動状況の投稿はありません。</p>
+            @endif
         </section>
 
         {{--チームをお気に入り登録しているユーザー--}}

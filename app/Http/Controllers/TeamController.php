@@ -67,16 +67,11 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        $sport = Sport::find($team->sports)->sport;
-        $age = Age::find($team->age)->age;
-        $level = Level::find($team->level)->level;
-        $frequency = Frequency::find($team->frequency)->frequency;
-        $weekday = Weekday::find($team->weekday)->weekday;
         $user = User::find($team->user_id);
         $posts = $team->posts; //活動状況取得
         $likes = $team->likes; //いいねをしてるすべてのユーザー
         $like = $team->likes->where('id', Auth::user()->id)->first(); //現在のログインユーザーがいいねをしているかどうか
-        return view('teams.show', ['team' => $team, 'sport' => $sport, 'age' => $age, 'level' => $level, 'frequency' => $frequency, 'weekday' => $weekday, 'user' => $user, 'posts' => $posts, 'likes' => $likes, 'like' => $like]);
+        return view('teams.show', ['team' => $team, 'user' => $user, 'posts' => $posts, 'likes' => $likes, 'like' => $like]);
     }
 
     /**

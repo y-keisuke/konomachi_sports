@@ -107,7 +107,7 @@
                 </div>
 
                 {{-- 登録ボタン --}}
-                <div class="form-group row mb-0 pl-3">
+                <div class="form-group row mb-0 pl-3 mt-4">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-primary">
                             チームを探す
@@ -123,7 +123,7 @@
         <section id="search">
             @if(count($teams) > 0)
                 <div class="table-responsive">
-                    <h2>検索結果（{{ count($teams) }}件）</h2>
+                    <h2>検索結果（{{ $teams->total() }}件）</h2>
                     <table class="table table-striped">
                         <thead>
                         <tr>

@@ -40,7 +40,7 @@ class SearchController extends Controller
                 ->equalLevels($level)
                 ->equalFrequencies($frequency)
                 ->equalWeekdays($weekday)
-                ->paginate(10);
+                ->paginate(2);
         }
 
         return view('search.search', ['teams' => $teams, 'sports_list' => $sports_list,'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list, 'sports' => $sports, 'age' => $age, 'level' => $level, 'area' => $area, 'frequency' => $frequency, 'weekday' => $weekday]);

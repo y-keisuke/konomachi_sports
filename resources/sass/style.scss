@@ -6,6 +6,9 @@ $other-user-message-area2: #eeeeee;
     a {
         color: #fff!important;
     }
+    &:focus {
+        box-shadow: none;
+    }
 }
 section {
     margin-bottom: 30px;
@@ -32,17 +35,49 @@ nav {
 option {
     background: #ecfbe4;
 }
+
+
+/*========================================
+レイアウト
+======================================= */
+#app {
+    nav {
+        position: relative;
+        a {
+            color: #333;
+        }
+        li {
+            &:hover {
+                border-bottom: 1px solid #333;
+            }
+        }
+    }
+}
+/* フラッシュメッセージ */
+.flash-msg {
+    position: absolute;
+    top: 60px;
+    z-index: 100;
+}
+
+/*========================================
+トップページ
+======================================= */
 .jumbotron {
     position: relative;
     background: url("/images/gym.jpg");
     background-size: cover;
     border-radius: 0;
     height: calc(100vh - 95px);
+    min-height: 600px;
     margin: 0;
     border-top: 1px black solid;
     border-bottom: 1px black solid;
     p {
         font-weight: bold;
+        &:last-of-type {
+            font-size: 12px;
+        }
     }
     &:before {
         content: '';

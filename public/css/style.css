@@ -4,6 +4,10 @@
   color: #fff !important;
 }
 
+.btn:focus {
+  box-shadow: none;
+}
+
 section {
   margin-bottom: 30px;
 }
@@ -33,12 +37,41 @@ option {
   background: #ecfbe4;
 }
 
+/*========================================
+レイアウト
+======================================= */
+
+#app nav {
+  position: relative;
+}
+
+#app nav a {
+  color: #333;
+}
+
+#app nav li:hover {
+  border-bottom: 1px solid #333;
+}
+
+/* フラッシュメッセージ */
+
+.flash-msg {
+  position: absolute;
+  top: 60px;
+  z-index: 100;
+}
+
+/*========================================
+トップページ
+======================================= */
+
 .jumbotron {
   position: relative;
   background: url("/images/gym.jpg");
   background-size: cover;
   border-radius: 0;
   height: calc(100vh - 95px);
+  min-height: 600px;
   margin: 0;
   border-top: 1px black solid;
   border-bottom: 1px black solid;
@@ -46,6 +79,10 @@ option {
 
 .jumbotron p {
   font-weight: bold;
+}
+
+.jumbotron p:last-of-type {
+  font-size: 12px;
 }
 
 .jumbotron:before {

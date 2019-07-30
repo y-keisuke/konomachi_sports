@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label for="area" class="col-md-4 col-form-label text-md-left">地域（都道府県名や市町村名のみでも検索可能）</label>
                     <div class="col-md-12">
-                        <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ $area }}" autocomplete="area">
+                        <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ $area }}" placeholder="（例）札幌">
                         @if($errors->has('area'))
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('area') }}</strong>
@@ -149,7 +149,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $teams->links() }}
+                {{ $teams->appends(request()->input())->links() }}
             @endif
         </section>
     </div>

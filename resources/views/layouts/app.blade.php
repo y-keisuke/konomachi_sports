@@ -27,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="bg-light navbar navbar-expand-md navbar-light shadow-sm">
+        <nav class="bg-light navbar navbar-expand-md shadow-sm text-dark">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -40,62 +40,70 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         {{-- 「記事」と「ユーザ」へのリンク--}}
-                        <li class="nav-item {{ isActiveUrl('users') }}">
-                            <a href="{{ url('users') }}" class="nav-link">
-                                ユーザー
-                            </a>
-                        </li>
-                        <li class="nav-item {{ isActiveUrl('teams') }}">
-                            <a href="{{ url('teams') }}" class="nav-link">
-                                チーム
-                            </a>
-                        </li>
-                        <li class="nav-item {{ isActiveUrl('posts') }}">
-                            <a href="{{ url('posts') }}" class="nav-link">
-                                活動状況
-                            </a>
-                        </li>
+                        @if(Auth::id() === 1)
+                            <li class="nav-item {{ isActiveUrl('users') }}">
+                                <a href="{{ url('users') }}" class="nav-link">
+                                    ユーザー
+                                </a>
+                            </li>
+                            <li class="nav-item {{ isActiveUrl('teams') }}">
+                                <a href="{{ url('teams') }}" class="nav-link">
+                                    チーム
+                                </a>
+                            </li>
+                            <li class="nav-item {{ isActiveUrl('posts') }}">
+                                <a href="{{ url('posts') }}" class="nav-link">
+                                    活動状況
+                                </a>
+                            </li>
+                        @endif
                         <li class="nav-item {{ isActiveUrl('search') }}">
                             <a href="{{ url('search') }}" class="nav-link">
                                 チームを探す
                             </a>
                         </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav">
-                        <!-- Authentication Links -->
+                        @auth
+                            <li class="nav-item {{ isActiveUrl('search') }}">
+                                <a href="{{ url('users/' . Auth::id()) }}" class="nav-link">
+                                    マイページ
+                                </a>
+                            </li>
+                            <li class="nav-item {{ isActiveUrl('search') }}">
+                                <form action="{{ route('logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn">
+                                        ログアウト
+                                    </button>
+                                </form>
+                            </li>
+                            <li class="nav-item nav-link font-weight-bold border-0 {{ isActiveUrl('search') }}">
+                                {{ Auth::user()->name }}
+                            </li>
+                        @endauth
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">ログイン</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('users/create') }}">ユーザー登録</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="{{ url('users/' . Auth::id()) }}" class="dropdown-item">マイページ</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        ログアウト
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url('users/create') }}">個人登録</a>
                             </li>
                         @endguest
                     </ul>
                 </div>
+                {{--フラッシュメッセージ--}}
+                @if(session('success_msg'))
+                    <div class="container mt-2 flash-msg">
+                        <div class="alert alert-success">
+                            {{ session('success_msg') }}
+                        </div>
+                    </div>
+                @elseif(session('alert_msg'))
+                    <div class="container mt-2 flash-msg">
+                        <div class="alert alert-danger">
+                            {{ session('alert_msg') }}
+                        </div>
+                    </div>
+                @endif
             </div>
         </nav>
 
@@ -106,6 +114,6 @@
     <footer id="footer" class="bg-light flex-column justify-content-center">
         <p>© 2019 この町スポーツ All Rights Reserved.</p>
     </footer>
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

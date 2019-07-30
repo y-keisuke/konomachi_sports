@@ -13,9 +13,9 @@
 
                         {{-- 名前--}}
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-left">名前 ※必須 </label>
+                            <label for="name" class="col-md-4 col-form-label text-md-left">名前（最大10文字） ※必須 </label>
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}">
+                                <input id="name" type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="ニックネーム可">
                                 @if($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>

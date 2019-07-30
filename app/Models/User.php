@@ -20,7 +20,7 @@ class User extends Authenticatable
     ];
 
     public static $rules = array (
-        'name' => 'required|string',
+        'name' => 'required|string|max:10',
         'email' => 'required|email',
         'sports1' => 'required|string',
         'sports2' => 'required|string',

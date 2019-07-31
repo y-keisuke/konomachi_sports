@@ -51,10 +51,12 @@
                     <p class="col-md-2">活動希望地域:</p>
                     <p class="col-md-10">{{ emptyJudge($user->area, '-') }}</p>
                 </div>
+                @if(Auth::id() === $user->id)
                 <div class="profile-list row">
-                    <p class="col-md-2">メールアドレス:</p>
+                    <p class="col-md-2">メールアドレス（本人のみ表示）:</p>
                     <p class="col-md-10">{{ emptyJudge($user->email, '-') }}</p>
                 </div>
+                @endif
                 <div class="profile-list row">
                     <p class="col-md-2">経験スポーツ①:</p>
                     <p class="col-md-10">{{ emptyJudge($user->sports1, '-') }}</p>
@@ -94,7 +96,7 @@
 
         {{--お気に入り登録しているチーム--}}
         <section>
-            <h2>お気に入り登録をしているチーム</h2>
+            <h2>お気に入り登録をしているチーム（{{ count($likes) }}チーム）</h2>
             @if(count($likes) > 0)
                 <ul>
                     @foreach($likes as $team)
@@ -109,7 +111,7 @@
         {{--フォローユーザー--}}
         <section>
             <h2 id="follow">フォロー</h2>
-            <h3>{{ $user->name }}のフォローユーザー</h3>
+            <h3>{{ $user->name }}のフォローユーザー（{{ count($follow) }}人）</h3>
             @if(count($follow) > 0)
                 <ol>
                     @foreach($follow as $follow_user)
@@ -121,7 +123,7 @@
             @endif
 
             {{--フォロワーユーザー--}}
-            <h3>{{ $user->name }}のフォロワーユーザー</h3>
+            <h3>{{ $user->name }}のフォロワーユーザー（{{ count($followed) }}人）</h3>
             @if(count($followed) > 0)
                 <ol>
                 @foreach($followed as $followed_user)
@@ -137,14 +139,18 @@
         @if($user->id === Auth::id())
             <section>
                 <h2>メッセージ</h2>
-                <ul>
-                    @foreach($from_boards as $from_user)
-                        <li><a href="{{ url('boards/' . $from_user->pivot->id) }}">{{ $from_user->name }}さんとのメッセージルーム</a></li>
-                    @endforeach
-                    @foreach($to_boards as $to_user)
-                        <li><a href="{{ url('boards/' . $to_user->pivot->id) }}">{{ $to_user->name }}さんとのメッセージルーム</a></li>
-                    @endforeach
-                </ul>
+                @if(count($from_boards) > 0 | count($to_boards) > 0)
+                    <ul>
+                        @foreach($from_boards as $from_user)
+                            <li><a href="{{ url('boards/' . $from_user->pivot->id) }}">{{ $from_user->name }}さんとのメッセージルーム</a></li>
+                        @endforeach
+                        @foreach($to_boards as $to_user)
+                            <li><a href="{{ url('boards/' . $to_user->pivot->id) }}">{{ $to_user->name }}さんとのメッセージルーム</a></li>
+                        @endforeach
+                    </ul>
+                @else
+                    <p class="ml-4">メッセージはありません。</p>
+                @endif
             </section>
         @endif
 

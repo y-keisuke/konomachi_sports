@@ -8,16 +8,18 @@
     <div class="container" id="teams-show">
         <div class="team-head">
             <h1>{{ $title }}</h1>
-            <form action="{{ url('likes') }}" method="post" class="mb-2">
-                @csrf
-                <input type="hidden" name="team_id" value="{{ $team->id }}">
-                @if($like)
-                    @method('DELETE')
-                    <button type="submit" class="like-button"><i class="fas fa-star"></i></button>
-                @else
-                    <button type="submit" class="like-button"><i class="far fa-star"></i></button>
-                @endif
-            </form>
+            @if(Auth::check())
+                <form action="{{ url('likes') }}" method="post" class="mb-2">
+                    @csrf
+                    <input type="hidden" name="team_id" value="{{ $team->id }}">
+                    @if($like)
+                        @method('DELETE')
+                        <button type="submit" class="like-button"><i class="fas fa-star"></i></button>
+                    @else
+                        <button type="submit" class="like-button"><i class="far fa-star"></i></button>
+                    @endif
+                </form>
+            @endif
         </div>
         {{-- チームの情報 --}}
         <section>
@@ -61,19 +63,21 @@
             </div>
 
             {{-- 編集・削除ボタン --}}
-            <div class="flex mb-3">
-                {{--編集--}}
-                <button class="btn btn-primary mr-4">
-                    <a href="{{ url('teams/' . $team->id . '/edit') }}">編集</a>
-                </button>
+            @if(Auth::id() === $team->user_id)
+                <div class="flex mb-3">
+                    {{--編集--}}
+                    <button class="btn btn-primary mr-4">
+                        <a href="{{ url('teams/' . $team->id . '/edit') }}">編集</a>
+                    </button>
 
-                {{--削除--}}
-                @component('components.btn-del')
-                    @slot('controller', 'teams')
-                    @slot('id', $team->id)
-                    @slot('name', $team->area . 'の' . $team->sports . 'チーム')
-                @endcomponent
-            </div>
+                    {{--削除--}}
+                    @component('components.btn-del')
+                        @slot('controller', 'teams')
+                        @slot('id', $team->id)
+                        @slot('name', $team->area . 'の' . $team->sports . 'チーム')
+                    @endcomponent
+                </div>
+            @endif
 
             <a href="{{ url('teams') }}">> チーム一覧に戻る</a>
         </section>
@@ -82,10 +86,12 @@
         <section>
             <div class="sec-head">
                 <h2>活動状況</h2>
-                <form action="{{ url('posts/create') }}" class="my-2">
-                    <input type="hidden" name="team_id" value="{{ $team->id }}">
-                    <input type="submit" class="btn btn-primary" value="活動状況を投稿">
-                </form>
+                @if(Auth::id() === $team->user_id)
+                    <form action="{{ url('posts/create') }}" class="my-2">
+                        <input type="hidden" name="team_id" value="{{ $team->id }}">
+                        <input type="submit" class="btn btn-primary" value="活動状況を投稿">
+                    </form>
+                @endif
             </div>
             @if(count($posts) > 0)
                 <a href="{{url('posts?team_id=' . $team->id)}}">【活動状況一覧】</a>
@@ -118,16 +124,18 @@
         <section>
             <div class="sec-head">
                 <h2 id="like">お気に入り登録をしているユーザー</h2>
-                <form action="{{ url('likes') }}" method="post">
-                    @csrf
-                    <input type="hidden" name="team_id" value="{{ $team->id }}">
-                    @if($like)
-                        @method('DELETE')
-                        <input type="submit" class="btn btn-primary" value="お気に入りを解除する">
-                    @else
-                        <input type="submit" class="btn btn-primary" value="お気に入り登録する">
-                    @endif
-                </form>
+                @if(Auth::check())
+                    <form action="{{ url('likes') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="team_id" value="{{ $team->id }}">
+                        @if($like)
+                            @method('DELETE')
+                            <input type="submit" class="btn btn-primary" value="お気に入りを解除する">
+                        @else
+                            <input type="submit" class="btn btn-primary" value="お気に入り登録する">
+                        @endif
+                    </form>
+                @endif
             </div>
             @if(count($likes) > 0)
                 <ul>

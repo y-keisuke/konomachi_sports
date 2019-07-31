@@ -74,7 +74,11 @@ class TeamController extends Controller
         $user = User::find($team->user_id);
         $posts = $team->posts; //活動状況取得
         $likes = $team->likes; //いいねをしてるすべてのユーザー
-        $like = $team->likes->where('id', Auth::user()->id)->first(); //現在のログインユーザーがいいねをしているかどうか
+        if (Auth::check()) {
+            $like = $team->likes->where('id', Auth::user()->id)->first(); //現在のログインユーザーがいいねをしているかどうか
+        } else {
+            $like = '';
+        }
         return view('teams.show', ['team' => $team, 'user' => $user, 'posts' => $posts, 'likes' => $likes, 'like' => $like]);
     }
 

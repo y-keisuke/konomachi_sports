@@ -121,8 +121,8 @@ footer {
         margin-bottom: 30px;
     }
     .message-area-box {
-        height: 100vh;
-        padding: 10px;
+        max-height: 100vh;
+        padding: 25px;
         overflow-y: scroll;
         background: #f3f3f3;
     }
@@ -130,6 +130,9 @@ footer {
         padding: 20px;
         margin-top: 30px;
         border-radius: 20px;
+        &:first-child {
+            margin: 0;
+        }
         .message {
             margin-bottom: 15px;
         }

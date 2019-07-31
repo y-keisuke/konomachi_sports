@@ -39,23 +39,28 @@ class BoardController extends Controller
         $b1 = Board::where([
             ['from_user_id', $from_user_id],
             ['to_user_id', $to_user_id],
-        ])->get();
+        ])->first();
         $b2 = Board::where([
             ['from_user_id', $to_user_id],
             ['to_user_id', $from_user_id],
-        ])->get();
+        ])->first();
         //上記で取得した情報があるか確認
         //なければ作成
-        if (count($b1) === 0 && count($b2) === 0) {
+        if (empty($b1) && empty($b2)) {
             $board = new Board;
             $board->from_user_id = $from_user_id;
             $board->to_user_id = $to_user_id;
             $board->save();
-        } elseif (count($b1) !== 0) {
+            $board = Board::where([
+                ['from_user_id', $from_user_id],
+                ['to_user_id', $to_user_id],
+            ])->first();
+        } elseif (!empty($b1)) {
             $board = $b1;
-        } elseif (count($b2) !== 0) {
+        } elseif (!empty($b2)) {
             $board = $b2;
         }
-        return redirect('boards/' . $board->implode('id'));
+
+        return redirect('boards/' . $board->id);
     }
 }

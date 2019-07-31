@@ -135,8 +135,8 @@ footer p {
 }
 
 #boards-show .message-area-box {
-  height: 100vh;
-  padding: 10px;
+  max-height: 100vh;
+  padding: 25px;
   overflow-y: scroll;
   background: #f3f3f3;
 }
@@ -145,6 +145,10 @@ footer p {
   padding: 20px;
   margin-top: 30px;
   border-radius: 20px;
+}
+
+#boards-show .message-area:first-child {
+  margin: 0;
 }
 
 #boards-show .message-area .message {

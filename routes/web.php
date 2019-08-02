@@ -54,3 +54,9 @@ Route::resource('levels', 'LevelController');
 Route::resource('frequencies', 'FrequencyController');
 //活動曜日
 Route::resource('weekdays', 'WeekdayController');
+
+//メール
+Route::get('sample/mailable/preview', function () {
+    return new App\Mail\SampleNotification();
+});
+Route::get('sample/mailable/send', 'SampleController@SampleNotification');

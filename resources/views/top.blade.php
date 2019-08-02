@@ -11,7 +11,7 @@
                     <a href="{{ url('users/create') }}" class="center btn btn-primary mr-4">個人登録</a>
                     <a href="{{ url('teams/create') }}" class="center btn btn-primary">チーム登録</a>
                 </div>
-                <p class="mt-2">※チーム登録は個人登録後に行えます</p>
+                <p class="mt-2">※チーム登録、メッセージ送信、お気に入り登録、<br>ユーザーフォローは個人登録及びログイン後に行えます</p>
                 @if(!Auth::check())
                     <form action="{{ route('login') }}" method="POST" class="mt-3">
                         @csrf

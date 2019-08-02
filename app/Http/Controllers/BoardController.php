@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Board;
 use App\Models\Message;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class BoardController extends Controller
 {
@@ -17,11 +18,14 @@ class BoardController extends Controller
      */
     public function show(Board $board)
     {
-        $b = Message::where('board_id', $board->id)->orderBy('created_at', 'desc');
-        $user = \Auth::user();
-        $other_user = $board->otherUser;
-        $messages = $board->messages->sortByDesc('created_at');
-        return view('boards.show', ['user' => $user, 'board' => $board, 'other_user' => $other_user, 'messages' => $messages, 'b' => $b]);
+        if (Auth::id() === $board->from_user_id | Auth::id() === $board->to_user_id) {
+            $b = Message::where('board_id', $board->id)->orderBy('created_at', 'desc');
+            $user = Auth::user();
+            $other_user = $board->otherUser;
+            $messages = $board->messages->sortByDesc('created_at');
+            return view('boards.show', ['user' => $user, 'board' => $board, 'other_user' => $other_user, 'messages' => $messages, 'b' => $b]);
+        }
+        return redirect('/')->with('alert_msg', '不正アクセスです。');
     }
 
     /**

@@ -37,6 +37,8 @@ function sportGet($id) {
     return $data;
 }
 
+
+
 /**
  * AgeDB情報取得
  * @param $id

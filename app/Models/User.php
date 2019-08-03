@@ -2,27 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use Illuminate\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\CustomResetPassword;
 use App\Notifications\CustomVerifyEmail;
+use Illuminate\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
     use MustVerifyEmail, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password', 'sports1', 'sports_years1','sports2', 'sports_years2', 'sports3', 'sports_years3', 'age', 'sex', 'area',
-    ];
-
-    public static $rules = array (
+    public static $rules = [
         'name' => 'required|string|max:10',
         'email' => 'required|email',
         'sports1' => 'string|nullable',
@@ -35,7 +26,16 @@ class User extends Authenticatable implements MustVerifyEmailContract
         'sex' => 'string|nullable',
         'area' => 'string|nullable',
         'password' => 'required|string',
-    );
+    ];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password', 'sports1', 'sports_years1', 'sports2', 'sports_years2', 'sports3', 'sports_years3', 'age', 'sex', 'area',
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -59,9 +59,8 @@ class User extends Authenticatable implements MustVerifyEmailContract
      * パスワード再設定メール送信
      *
      * @param string $token
-     * @return void
      */
-    public function sendPasswordResetNotification($token)
+    public function sendPasswordResetNotification($token): void
     {
         $this->notify(new CustomResetPassword($token));
     }
@@ -69,7 +68,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     /**
      * メールアドレス確認用メール
      */
-    public function sendEmailVerificationNotification()
+    public function sendEmailVerificationNotification(): void
     {
         $this->notify(new CustomVerifyEmail());
     }
@@ -112,6 +111,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     /**
      * 自分から送ったメッセージ部屋の情報
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function from_boards()
@@ -121,6 +121,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     /**
      * 相手から受け取ったメッセージ部屋の情報
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function to_boards()
@@ -128,9 +129,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return $this->belongsToMany('App\Models\User', 'boards', 'to_user_id', 'from_user_id')->withPivot('id');
     }
 
-    /**
-     *
-     */
     public function messages()
     {
         return $this->hasMany('App\Models\Message');
@@ -138,7 +136,6 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     /**
      * リレーション（1対多）
-     *
      */
     public function sport()
     {

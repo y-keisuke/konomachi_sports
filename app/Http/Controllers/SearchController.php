@@ -6,9 +6,9 @@ use App\Models\Age;
 use App\Models\Frequency;
 use App\Models\Level;
 use App\Models\Sport;
+use App\Models\Team;
 use App\Models\Weekday;
 use Illuminate\Http\Request;
-use App\Models\Team;
 
 class SearchController extends Controller
 {
@@ -43,11 +43,12 @@ class SearchController extends Controller
                 ->paginate(2);
         }
 
-        return view('search.search', ['teams' => $teams, 'sports_list' => $sports_list,'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list, 'sports' => $sports, 'age' => $age, 'level' => $level, 'area' => $area, 'frequency' => $frequency, 'weekday' => $weekday]);
+        return view('search.search', ['teams' => $teams, 'sports_list' => $sports_list, 'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list, 'sports' => $sports, 'age' => $age, 'level' => $level, 'area' => $area, 'frequency' => $frequency, 'weekday' => $weekday]);
     }
 
     /**
      * 検索結果のリセット
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function reset()
@@ -62,6 +63,6 @@ class SearchController extends Controller
         //チーム情報取得
         $teams = Team::paginate(10);
 
-        return view('search.search', ['teams' => $teams, 'sports_list' => $sports_list,'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list, 'sports' => '', 'age' => '', 'level' => '', 'area' => '', 'frequency' => '', 'weekday' => '']);
+        return view('search.search', ['teams' => $teams, 'sports_list' => $sports_list, 'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list, 'sports' => '', 'age' => '', 'level' => '', 'area' => '', 'frequency' => '', 'weekday' => '']);
     }
 }

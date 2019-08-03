@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
-use App\Models\User;
-use App\Models\Team;
-
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -26,8 +23,6 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param \App\Models\User $user
-     * @param \App\Models\Team $team
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
@@ -39,14 +34,15 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(PostRequest $request)
     {
         $form = $request->all();
         unset($form['_token']);
-        $post = new Post;
+        $post = new Post();
         $post->fill($form)->save();
         return redirect('posts/' . $post->id);
     }
@@ -54,7 +50,6 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
@@ -67,7 +62,6 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -78,8 +72,8 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post $post
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(PostRequest $request, Post $post)
@@ -93,7 +87,6 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)

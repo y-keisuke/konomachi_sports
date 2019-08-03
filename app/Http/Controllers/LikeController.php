@@ -2,31 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
+use App\Models\Team;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
-use App\Models\Team;
-use App\Models\Like;
-
 
 class LikeController extends Controller
 {
     /**
      * Store a newly created resource in storage.
      *
-     * @param Team $team
-     * @param Request $request
      * @return Response
      */
     public function store(Team $team, Request $request)
     {
         $team->id = $request->team_id;
         Like::create(
-            array (
+            [
                 'like_user_id' => \Auth::user()->id,
                 'liked_team_id' => $team->id,
-            )
+            ]
         );
         return redirect('teams/' . $team->id . '#like');
     }
@@ -34,7 +31,6 @@ class LikeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Request $request
      * @return Response
      */
     public function destroy(Request $request)

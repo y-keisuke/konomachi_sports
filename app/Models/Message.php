@@ -3,18 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Board;
-use App\Models\User;
 
 class Message extends Model
 {
-    protected $guarded = array('id');
-
-    public static $rules = array (
+    public static $rules = [
         'board_id' => 'required|integer',
         'user_id' => 'required|integer',
         'message' => 'required|string',
-    );
+    ];
+
+    protected $guarded = ['id'];
 
     /**
      * ボード情報を取得

@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Sex;
 use App\Models\Sport;
-use App\Models\Team;
-use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -39,14 +37,13 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $form = $request->all();
         unset($form['_token']);
-        $user = new User;
+        $user = new User();
         $user->fill($form)->save();
         return redirect('users/' . $user->id);
     }
@@ -54,7 +51,6 @@ class UserController extends Controller
     /**
      * ユーザーの詳細ページ
      *
-     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -73,7 +69,6 @@ class UserController extends Controller
     /**
      * ユーザー情報の編集画面
      *
-     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -88,8 +83,6 @@ class UserController extends Controller
     /**
      * 編集内容にてDBデータベースを更新
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -103,7 +96,6 @@ class UserController extends Controller
     /**
      * ユーザー情報を削除
      *
-     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)

@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Like extends Model
 {
-    protected $guarded = array('id');
-
-    public static $rules = array (
+    public static $rules = [
         'like_user_id' => 'required|integer',
         'liked_team_id' => 'required|integer',
-    );
+    ];
+
+    protected $guarded = ['id'];
 }

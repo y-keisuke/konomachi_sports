@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Team;
-use App\Models\TeamUser;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
@@ -38,7 +36,8 @@ class PostRequest extends FormRequest
      *
      * @return array
      */
-    public function messages() {
+    public function messages()
+    {
         return [
             'title.required' => 'タイトルは必ず入力してください',
             'title.max' => 'タイトルは150字以内で入力してください',

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Level extends Model
 {
-    protected $guarded = array('id');
+    protected $guarded = ['id'];
 }

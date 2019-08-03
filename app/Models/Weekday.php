@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Weekday extends Model
 {
-    protected $guarded = array('id');
+    protected $guarded = ['id'];
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Age;
 use App\Models\Level;
 use Illuminate\Http\Request;
 
@@ -15,7 +14,6 @@ class LevelController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -31,14 +29,13 @@ class LevelController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $form = $request->all();
         unset($form['_token']);
-        $level = new Level;
+        $level = new Level();
         $level->fill($form)->save();
         return redirect('admin');
     }
@@ -46,30 +43,28 @@ class LevelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param Level $level
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Level $level)
@@ -83,9 +78,9 @@ class LevelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Level $level
-     * @return \Illuminate\Http\Response
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Level $level)
     {

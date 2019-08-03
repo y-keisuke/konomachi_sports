@@ -7,7 +7,6 @@ use App\Models\Frequency;
 use App\Models\Level;
 use App\Models\Sport;
 use App\Models\Weekday;
-use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {

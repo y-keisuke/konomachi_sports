@@ -3,24 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Like;
 
 class Team extends Model
 {
-    protected $guarded = array('id');
-
-    public static $rules = array (
+    public static $rules = [
         'sports' => 'required|string',
         'age' => 'required|integer',
         'level' => 'required|string',
         'area' => 'required|string',
         'frequency' => 'required|string',
         'hp' => 'url',
-    );
+    ];
+
+    protected $guarded = ['id'];
 
     /**
      * リレーション（1対多）
-     *
      */
     public function user()
     {
@@ -29,7 +27,6 @@ class Team extends Model
 
     /**
      * リレーション（1対多）
-     *
      */
     public function posts()
     {
@@ -47,7 +44,6 @@ class Team extends Model
 
     /**
      * リレーション（1対多）
-     *
      */
     public function age()
     {
@@ -56,7 +52,6 @@ class Team extends Model
 
     /**
      * リレーション（1対多）
-     *
      */
     public function frequency()
     {
@@ -65,7 +60,6 @@ class Team extends Model
 
     /**
      * リレーション（1対多）
-     *
      */
     public function level()
     {
@@ -74,7 +68,6 @@ class Team extends Model
 
     /**
      * リレーション（1対多）
-     *
      */
     public function sex()
     {
@@ -83,7 +76,6 @@ class Team extends Model
 
     /**
      * リレーション（1対多）
-     *
      */
     public function sport()
     {
@@ -92,7 +84,6 @@ class Team extends Model
 
     /**
      * リレーション（1対多）
-     *
      */
     public function weekday()
     {
@@ -101,7 +92,6 @@ class Team extends Model
 
     /**
      * ログインユーザーのお気に入り登録しているIDを取得
-     *
      */
     public function like_by()
     {
@@ -110,9 +100,9 @@ class Team extends Model
 
     /**
      * スコープでスポーツ情報取得
+     *
      * @param $query
      * @param $str
-     * @return mixed
      */
     public function scopeEqualSports($query, $str)
     {
@@ -123,9 +113,9 @@ class Team extends Model
 
     /**
      * スコープで地域情報取得
+     *
      * @param $query
      * @param $str
-     * @return mixed
      */
     public function scopeFuzzyAreas($query, $str)
     {
@@ -136,9 +126,9 @@ class Team extends Model
 
     /**
      * スコープで年齢層情報取得
+     *
      * @param $query
      * @param $str
-     * @return mixed
      */
     public function scopeEqualAges($query, $str)
     {
@@ -149,9 +139,9 @@ class Team extends Model
 
     /**
      * スコープで募集対象情報取得
+     *
      * @param $query
      * @param $str
-     * @return mixed
      */
     public function scopeEqualLevels($query, $str)
     {
@@ -162,9 +152,9 @@ class Team extends Model
 
     /**
      * スコープで活動頻度情報取得
+     *
      * @param $query
      * @param $str
-     * @return mixed
      */
     public function scopeEqualFrequencies($query, $str)
     {
@@ -175,9 +165,9 @@ class Team extends Model
 
     /**
      * スコープで活動曜日情報取得
+     *
      * @param $query
      * @param $str
-     * @return mixed
      */
     public function scopeEqualWeekdays($query, $str)
     {
@@ -185,7 +175,4 @@ class Team extends Model
             return $query->where('weekday', $str);
         }
     }
-
-
-
 }

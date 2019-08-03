@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sport extends Model
 {
-    protected $guarded = array('id');
+    protected $guarded = ['id'];
 
     /**
      * リレーション（1対多）
-     *
      */
     public function teams()
     {

@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TeamRequest;
 use App\Models\Age;
 use App\Models\Frequency;
 use App\Models\Level;
 use App\Models\Sport;
-use App\Models\TeamUser;
-use App\Models\Weekday;
-use Illuminate\Http\Request;
-use App\Http\Requests\TeamRequest;
 use App\Models\Team;
 use App\Models\User;
-use App\Models\Post;
+use App\Models\Weekday;
 use Illuminate\Support\Facades\Auth;
 
 class TeamController extends Controller
@@ -31,7 +28,6 @@ class TeamController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
     public function create(User $user)
@@ -51,14 +47,13 @@ class TeamController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\TeamRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(TeamRequest $request)
     {
         $form = $request->all();
         unset($form['_token']);
-        $team = new Team;
+        $team = new Team();
         $team->fill($form)->save();
         return redirect('teams/' . $team->id);
     }
@@ -66,7 +61,6 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Team $team
      * @return \Illuminate\Http\Response
      */
     public function show(Team $team)
@@ -85,7 +79,6 @@ class TeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Team $team
      * @return \Illuminate\Http\Response
      */
     public function edit(Team $team)
@@ -95,14 +88,12 @@ class TeamController extends Controller
         $levels_list = Level::orderBy('level', 'asc')->get();
         $frequencies_list = Frequency::orderBy('frequency', 'asc')->get();
         $weekdays_list = Weekday::orderBy('weekday', 'asc')->get();
-        return view('teams.edit', ['team' => $team, 'sports_list' => $sports_list,'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list]);
+        return view('teams.edit', ['team' => $team, 'sports_list' => $sports_list, 'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\TeamRequest  $request
-     * @param  \App\Models\Team $team
      * @return \Illuminate\Http\Response
      */
     public function update(TeamRequest $request, Team $team)
@@ -116,9 +107,9 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Models\Team $team
-     * @return \Illuminate\Http\Response
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Team $team)
     {

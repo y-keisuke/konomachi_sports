@@ -14,7 +14,6 @@ class SportController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -30,14 +29,13 @@ class SportController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $form = $request->all();
         unset($form['_token']);
-        $sport = new Sport;
+        $sport = new Sport();
         $sport->fill($form)->save();
         return redirect('admin');
     }
@@ -45,7 +43,8 @@ class SportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -56,19 +55,17 @@ class SportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Sport $sport)
@@ -82,7 +79,6 @@ class SportController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Sport $sport)

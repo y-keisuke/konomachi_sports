@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Board;
 use App\Models\Message;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BoardController extends Controller
@@ -13,7 +13,6 @@ class BoardController extends Controller
     /**
      * メッセージルーム
      *
-     * @param Board $board
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Board $board)
@@ -31,7 +30,6 @@ class BoardController extends Controller
     /**
      * メッセージルーム作成
      *
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
@@ -51,7 +49,7 @@ class BoardController extends Controller
         //上記で取得した情報があるか確認
         //なければ作成
         if (empty($b1) && empty($b2)) {
-            $board = new Board;
+            $board = new Board();
             $board->from_user_id = $from_user_id;
             $board->to_user_id = $to_user_id;
             $board->save();

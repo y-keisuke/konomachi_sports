@@ -3,16 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
 
 class Board extends Model
 {
-    protected $guarded = array('id');
-
-    public static $rules = array (
+    public static $rules = [
         'from_user_id' => 'required|integer',
         'to_user_id' => 'required|integer',
-    );
+    ];
+
+    protected $guarded = ['id'];
 
     /**
      * メッセージを送ったユーザーを取得
@@ -43,6 +42,7 @@ class Board extends Model
     {
         $user_id = \Auth::id();
         $other_key = '';
+
         if ($user_id === $this->from_user_id) {
             $other_key = 'to_user_id';
         } elseif ($user_id === $this->to_user_id) {
@@ -60,5 +60,4 @@ class Board extends Model
     {
         return $this->hasMany('App\Models\Message');
     }
-
 }

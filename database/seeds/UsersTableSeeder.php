@@ -37,7 +37,7 @@ class UsersTableSeeder extends Seeder
                 'sports_years2' => $faker->numberBetween(1, 10),
                 'sports3' => $faker->randomElement(['バレーボール', 'サッカー','ラグビー','野球','バスケットボール','テニス']),
                 'sports_years3' => $faker->numberBetween(1, 10),
-                'age' => $faker->numberBetween(20,50),
+                'age' => $faker->numberBetween(20, 50),
                 'sex' => $faker->randomElement(['男性', '女性']),
                 'password' => $faker->password,
                 'area' => $faker->city,

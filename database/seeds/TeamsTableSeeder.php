@@ -17,7 +17,7 @@ class TeamsTableSeeder extends Seeder
         for ($i = 0; $i < 30; $i++)
         {
             DB::table('teams')->insert([
-                'user_id' => $faker->numberBetween(1,30),
+                'user_id' => $faker->numberBetween(1, 30),
                 'sports' => $faker->randomElement(['バレーボール', 'サッカー','ラグビー','野球','バスケットボール','テニス']),
                 'age' => $faker->randomElement(['10代～20代','20代～30代','30代～40代','40代～50代','50代～60代','20代～40代','30代～50代','40代～60代','50代～70代']),
                 'level' => $faker->randomElement(['初心者歓迎','経験者募集','経験問いません','ガチ勢募集']),

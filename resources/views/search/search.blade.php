@@ -122,32 +122,32 @@
         </section>
         <section id="search">
             @if(count($teams) > 0)
-                <div class="table-responsive">
-                    <h2>検索結果（{{ $teams->total() }}件）</h2>
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>スポーツ</th>
-                            <th>地域</th>
-                            <th>年齢層</th>
-                            <th>募集対象</th>
-                            <th>活動頻度</th>
-                            <th>活動曜日</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                <h2>検索結果（{{ $teams->total() }}件）</h2>
+                <div class="search-table">
+                    <div class="search-table-header">
+                        <ul class="search-list">
+                            <li class="search-list-item">スポーツ</li>
+                            <li class="search-list-item">地域</li>
+                            <li class="search-list-item">年齢層</li>
+                            <li class="search-list-item">募集対象</li>
+                            <li class="search-list-item">活動頻度</li>
+                            <li class="search-list-item">活動曜日</li>
+                        </ul>
+                    </div>
+                    <div class="search-table-body">
                         @foreach($teams as $team)
-                            <tr>
-                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->sports }}</a></td>
-                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->area }}</a></td>
-                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->age }}</a></td>
-                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->level }}</a></td>
-                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->frequency }}</a></td>
-                                <td><a href="{{ url('teams/' . $team->id) }}">{{ $team->weekday }}</a></td>
-                            </tr>
+                            <a href="{{url('teams/' . $team->id)}}">
+                                <ul class="search-list">
+                                    <li class="search-list-item">{{ $team->sports }}</li>
+                                    <li class="search-list-item">{{ $team->area }}</li>
+                                    <li class="search-list-item">{{ $team->age }}</li>
+                                    <li class="search-list-item">{{ $team->level }}</li>
+                                    <li class="search-list-item">{{ $team->frequency }}</li>
+                                    <li class="search-list-item">{{ $team->weekday }}</li>
+                                </ul>
+                            </a>
                         @endforeach
-                        </tbody>
-                    </table>
+                    </div>
                 </div>
                 {{ $teams->appends(request()->input())->links() }}
             @endif

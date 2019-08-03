@@ -257,6 +257,10 @@ footer p {
 検索ページ
 ======================================= */
 
+#search li {
+  list-style: none;
+}
+
 #search .form-sec {
   position: relative;
 }
@@ -265,5 +269,29 @@ footer p {
   position: absolute;
   -webkit-transform: translate(100%, -100%);
           transform: translate(100%, -100%);
+}
+
+#search .search-table-header {
+  border-top: 1px solid #dbdbdb;
+  font-weight: bold;
+}
+
+#search .search-table-body a:nth-of-type(odd) .search-list {
+  background: #ebebeb;
+}
+
+#search .search-list {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  margin: 0;
+  padding: 10px 0 10px;
+  border-bottom: 1px solid #dbdbdb;
+}
+
+#search .search-list .search-list-item {
+  width: 16.6%;
+  padding-left: 20px;
 }
 

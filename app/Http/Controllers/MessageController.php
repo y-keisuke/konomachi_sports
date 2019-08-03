@@ -9,7 +9,6 @@ class MessageController extends Controller
 {
     public function store(Request $request)
     {
-        $user_id = $request->user_id;
         $board_id = $request->board_id;
         $form = $request->all();
         unset($form['_token']);

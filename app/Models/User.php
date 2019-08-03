@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
+use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\CustomResetPassword;
+use App\Notifications\CustomVerifyEmail;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmailContract
 {
-    use Notifiable;
+    use MustVerifyEmail, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -23,15 +25,15 @@ class User extends Authenticatable
     public static $rules = array (
         'name' => 'required|string|max:10',
         'email' => 'required|email',
-        'sports1' => 'required|string',
-        'sports2' => 'required|string',
-        'sports3' => 'required|string',
-        'sports_years1' => 'required|integer',
-        'sports_years2' => 'required|integer',
-        'sports_years3' => 'required|integer',
-        'age' => 'required|integer',
-        'sex' => 'required|string',
-        'area' => 'required|string',
+        'sports1' => 'string|nullable',
+        'sports2' => 'string|nullable',
+        'sports3' => 'string|nullable',
+        'sports_years1' => 'integer|nullable',
+        'sports_years2' => 'integer|nullable',
+        'sports_years3' => 'integer|nullable',
+        'age' => 'integer|nullable',
+        'sex' => 'string|nullable',
+        'area' => 'string|nullable',
         'password' => 'required|string',
     );
 
@@ -62,6 +64,14 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new CustomResetPassword($token));
+    }
+
+    /**
+     * メールアドレス確認用メール
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new CustomVerifyEmail());
     }
 
     /**

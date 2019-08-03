@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/email/verify';
 
     /**
      * Create a new controller instance.
@@ -52,15 +52,15 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'sports1' => ['string'],
-            'sports_years1' =>['string'],
-            'sports2' => ['string'],
-            'sports_years2' => ['string'],
-            'sports3' => ['string'],
-            'sports_years3' => ['string'],
-            'age' => ['integer'],
-            'sex' => ['string'],
-            'area' => ['string'],
+            'sports1' => ['string', 'nullable'],
+            'sports_years1' =>['string', 'nullable'],
+            'sports2' => ['string', 'nullable'],
+            'sports_years2' => ['string', 'nullable'],
+            'sports3' => ['string', 'nullable'],
+            'sports_years3' => ['string', 'nullable'],
+            'age' => ['integer', 'nullable'],
+            'sex' => ['string', 'nullable'],
+            'area' => ['string', 'nullable'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -77,11 +77,11 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'sports1' => $data['sports1'],
-            'sports_years1' => $data['sports-years1'],
+            'sports_years1' => $data['sports_years1'],
             'sports2' => $data['sports2'],
-            'sports_years2' => $data['sports-years2'],
+            'sports_years2' => $data['sports_years2'],
             'sports3' => $data['sports3'],
-            'sports_years3' => $data['sports-years3'],
+            'sports_years3' => $data['sports_years3'],
             'age' => $data['age'],
             'sex' => $data['sex'],
             'area' => $data['area'],

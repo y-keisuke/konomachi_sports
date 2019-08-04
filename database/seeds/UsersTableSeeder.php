@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder
     {
         User::create([
             'name' => '管理者',
-            'email' => 'keisuke.test.yamauchi@gmail.com',
+            'email' => 'info@konomachi-sports.com',
             'password' => bcrypt('12341234'),
         ]);
         User::create([
@@ -24,26 +24,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
-        $faker = Factory::create('ja_JP');
+        factory(App\Models\User::class, 50)->create();
 
-        for ($i = 0; $i < 30; $i++)
-        {
-            DB::table('users')->insert([
-                'name' => $faker->name,
-                'email' => $faker->email,
-                'sports1' => $faker->randomElement(['バレーボール', 'サッカー','ラグビー','野球','バスケットボール','テニス']),
-                'sports_years1' => $faker->numberBetween(1, 10),
-                'sports2' => $faker->randomElement(['バレーボール', 'サッカー','ラグビー','野球','バスケットボール','テニス']),
-                'sports_years2' => $faker->numberBetween(1, 10),
-                'sports3' => $faker->randomElement(['バレーボール', 'サッカー','ラグビー','野球','バスケットボール','テニス']),
-                'sports_years3' => $faker->numberBetween(1, 10),
-                'age' => $faker->numberBetween(20, 50),
-                'sex' => $faker->randomElement(['男性', '女性']),
-                'password' => $faker->password,
-                'area' => $faker->city,
-                'created_at' => $faker->dateTime(),
-                'updated_at' => $faker->dateTime(),
-            ]);
-        }
     }
 }

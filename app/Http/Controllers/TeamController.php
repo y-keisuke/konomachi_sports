@@ -25,7 +25,7 @@ class TeamController extends Controller
             $teams = Team::all();
             return view('teams.index', ['teams' => $teams]);
         }
-        return redirect('/')->with('alert_msg', ALERT_MSG01);
+        return redirect('/')->with('alert_msg', '不正アクセスです');
     }
 
     /**
@@ -44,7 +44,7 @@ class TeamController extends Controller
             return view('teams.create', ['user' => $user, 'sports_list' => $sports_list, 'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list])->with('success_msg', SUCCESS_MSG04);
         }
 
-        return redirect('users/create')->with('alert_msg', ALERT_MSG02);
+        return redirect('users/create')->with('alert_msg', 'チーム登録は個人登録後に行えます');
     }
 
     /**
@@ -58,7 +58,7 @@ class TeamController extends Controller
         unset($form['_token']);
         $team = new Team();
         $team->fill($form)->save();
-        return redirect('teams/' . $team->id);
+        return redirect('teams/' . $team->id)->with('success_msg', 'チームを作成しました');
     }
 
     /**
@@ -104,7 +104,7 @@ class TeamController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $team->fill($form)->save();
-        return redirect('teams/' . $team->id)->with('success_msg', SUCCESS_MSG05);
+        return redirect('teams/' . $team->id)->with('success_msg', 'チーム情報を更新しました');
     }
 
     /**
@@ -117,6 +117,6 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         $team->delete();
-        return redirect('teams')->with('success_msg', SUCCESS_MSG06);
+        return redirect('teams')->with('success_msg', 'チームを削除しました');
     }
 }

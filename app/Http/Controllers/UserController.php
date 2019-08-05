@@ -21,7 +21,7 @@ class UserController extends Controller
             $users = User::all();
             return view('users.index', ['users' => $users]);
         }
-        return redirect('/')->with('alert_msg', ALERT_MSG01);
+        return redirect('/')->with('alert_msg', '不正アクセスです');
     }
 
     /**

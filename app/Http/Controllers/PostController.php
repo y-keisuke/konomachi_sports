@@ -44,7 +44,7 @@ class PostController extends Controller
         unset($form['_token']);
         $post = new Post();
         $post->fill($form)->save();
-        return redirect('posts/' . $post->id)->with('success_msg', SUCCESS_MSG01);
+        return redirect('posts/' . $post->id)->with('success_msg', '活動状況を投稿しました');
     }
 
     /**
@@ -81,7 +81,7 @@ class PostController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $post->fill($form)->save();
-        return redirect('posts/' . $post->id)->with('success_msg', SUCCESS_MSG02);
+        return redirect('posts/' . $post->id)->with('success_msg', '活動状況を編集しました');
     }
 
     /**
@@ -94,6 +94,6 @@ class PostController extends Controller
         $p = Post::find($post->id);
         $team_id = $p->team->id;
         $post->delete();
-        return redirect('teams/' . $team_id)->with('success_msg', SUCCESS_MSG03);
+        return redirect('teams/' . $team_id)->with('success_msg', '活動状況を削除しました');
     }
 }

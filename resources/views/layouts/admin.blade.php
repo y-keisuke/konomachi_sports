@@ -96,6 +96,20 @@
                         @endguest
                     </ul>
                 </div>
+                {{--フラッシュメッセージ--}}
+                @if(session('success_msg'))
+                    <div class="container mt-2 flash-msg">
+                        <div class="alert alert-success">
+                            {{ session('success_msg') }}
+                        </div>
+                    </div>
+                @elseif(session('alert_msg'))
+                    <div class="container mt-2 flash-msg">
+                        <div class="alert alert-danger">
+                            {{ session('alert_msg') }}
+                        </div>
+                    </div>
+                @endif
             </div>
         </nav>
 
@@ -106,6 +120,6 @@
     <footer id="footer" class="bg-success flex-column justify-content-center">
         <p>© 2019 この町スポーツ All Rights Reserved.</p>
     </footer>
-    <script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

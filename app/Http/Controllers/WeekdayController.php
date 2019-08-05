@@ -37,7 +37,7 @@ class WeekdayController extends Controller
         unset($form['_token']);
         $weekday = new Weekday();
         $weekday->fill($form)->save();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【活動曜日】' . $form['weekday'] . 'を追加しました');
     }
 
     /**
@@ -72,7 +72,7 @@ class WeekdayController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $weekday->fill($form)->save();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【活動曜日】' . $form['weekday'] . 'を変更しました');
     }
 
     /**
@@ -85,6 +85,6 @@ class WeekdayController extends Controller
     public function destroy(Weekday $weekday)
     {
         $weekday->delete();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【活動曜日】' . $weekday->weekday . 'を削除しました');
     }
 }

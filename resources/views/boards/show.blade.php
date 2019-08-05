@@ -13,14 +13,14 @@
                         @if($message->user_id === $user->id)
                             <div class="message-area user-message-area">
                                 <p class="message">{{ $message->message }}</p>
-                                <p class="name">{{ $user->name }}</p>
-                                <p class="time">{{ $message->created_at }}</p>
+                                <p class="name">- {{ $user->name }}</p>
+                                <p class="time">- {{ $message->created_at }}</p>
                             </div>
                         @elseif($message->user_id === $other_user->id)
                             <div class="message-area other-user-message-area">
                                 <p class="message">{{ $message->message }}</p>
-                                <p class="name">{{ $other_user->name }}</p>
-                                <p class="time">{{ $message->created_at }}</p>
+                                <p class="name">- {{ $other_user->name }}</p>
+                                <p class="time">- {{ $message->created_at }}</p>
                             </div>
                         @endif
                     @endforeach

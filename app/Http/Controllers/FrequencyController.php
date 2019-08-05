@@ -37,7 +37,7 @@ class FrequencyController extends Controller
         unset($form['_token']);
         $frequency = new Frequency();
         $frequency->fill($form)->save();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【活動頻度】' . $form['frequency'] . 'を追加しました');
     }
 
     /**
@@ -72,7 +72,7 @@ class FrequencyController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $frequency->fill($form)->save();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【活動頻度】' . $form['frequency'] . 'を変更しました');
     }
 
     /**
@@ -83,6 +83,6 @@ class FrequencyController extends Controller
     public function destroy(Frequency $frequency)
     {
         $frequency->delete();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【活動頻度】' . $frequency->frequency . 'を削除しました');
     }
 }

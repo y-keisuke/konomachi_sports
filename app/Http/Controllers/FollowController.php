@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Follow;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,13 +15,14 @@ class FollowController extends Controller
     public function store(Request $request)
     {
         $followed_user_id = $request->user_id;
+        $user = User::where('id', $followed_user_id)->first();
         Follow::create(
             [
                 'follow_user_id' => \Auth::user()->id,
                 'followed_user_id' => $followed_user_id,
             ]
         );
-        return redirect('users/' . $followed_user_id . '#follow');
+        return redirect('users/' . $followed_user_id . '#follow')->with('success_msg', $user->name . 'さんをフォローしました');
     }
 
     /**
@@ -29,8 +31,9 @@ class FollowController extends Controller
     public function destory(Request $request)
     {
         $followed_user_id = $request->user_id;
+        $user = User::where('id', $followed_user_id)->first();
         $follow_user_id = \Auth::user()->id;
         DB::table('follows')->where([['follow_user_id', $follow_user_id], ['followed_user_id', $followed_user_id]])->delete();
-        return redirect('users/' . $followed_user_id . '#follow');
+        return redirect('users/' . $followed_user_id . '#follow')->with('success_msg', $user->name . 'さんをフォロー解除しました');
     }
 }

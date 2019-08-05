@@ -55,7 +55,7 @@ option {
 }
 /* フラッシュメッセージ */
 .flash-msg {
-    position: absolute;
+    position: fixed;
     top: 60px;
     z-index: 100;
 }
@@ -135,6 +135,7 @@ footer {
         }
         .message {
             margin-bottom: 15px;
+            font-size: 16px;
         }
         p {
             margin: 0;
@@ -157,6 +158,9 @@ footer {
                 min-width: 100px;
             }
         }
+    }
+    .name, .time {
+        font-size: 12px;
     }
 }
 

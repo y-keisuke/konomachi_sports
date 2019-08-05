@@ -37,7 +37,7 @@ class SportController extends Controller
         unset($form['_token']);
         $sport = new Sport();
         $sport->fill($form)->save();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【スポーツ】' . $form['sport'] . 'を追加しました');
     }
 
     /**
@@ -73,7 +73,7 @@ class SportController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $sport->fill($form)->save();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【スポーツ】' . $form['sport'] . 'を変更しました');
     }
 
     /**
@@ -84,6 +84,6 @@ class SportController extends Controller
     public function destroy(Sport $sport)
     {
         $sport->delete();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【スポーツ】' . $sport->sport . 'を削除しました');
     }
 }

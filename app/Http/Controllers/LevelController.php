@@ -37,7 +37,7 @@ class LevelController extends Controller
         unset($form['_token']);
         $level = new Level();
         $level->fill($form)->save();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【募集対象】' . $form['level'] . 'を追加しました');
     }
 
     /**
@@ -72,7 +72,7 @@ class LevelController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $level->fill($form)->save();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【募集対象】' . $form['level'] . 'を変更しました');
     }
 
     /**
@@ -85,6 +85,6 @@ class LevelController extends Controller
     public function destroy(Level $level)
     {
         $level->delete();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【募集対象】' . $level->level . 'を削除しました');
     }
 }

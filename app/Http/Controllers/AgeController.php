@@ -37,7 +37,7 @@ class AgeController extends Controller
         unset($form['_token']);
         $age = new Age();
         $age->fill($form)->save();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【年齢層】' . $form['age'] . 'を追加しました');
     }
 
     /**
@@ -72,7 +72,7 @@ class AgeController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $age->fill($form)->save();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【年齢層】' . $form['age'] . 'を変更しました');
     }
 
     /**
@@ -85,6 +85,6 @@ class AgeController extends Controller
     public function destroy(Age $age)
     {
         $age->delete();
-        return redirect('admin');
+        return redirect('admin')->with('success_msg', '【年齢層】' . $age->age . 'を削除しました');
     }
 }

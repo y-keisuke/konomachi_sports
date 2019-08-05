@@ -17,8 +17,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('users.index', ['users' => $users]);
+        if (Auth::id() === 1) {
+            $users = User::all();
+            return view('users.index', ['users' => $users]);
+        }
+        return redirect('/')->with('alert_msg', ALERT_MSG01);
     }
 
     /**

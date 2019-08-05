@@ -25,7 +25,7 @@ class LikeController extends Controller
                 'liked_team_id' => $team->id,
             ]
         );
-        return redirect('teams/' . $team->id . '#like');
+        return redirect('teams/' . $team->id . '#like')->with('success_msg', 'お気に入り登録しました');
     }
 
     /**
@@ -38,6 +38,6 @@ class LikeController extends Controller
         $team_id = $request['team_id'];
         $user_id = \Auth::user()->id;
         DB::table('likes')->where([['like_user_id', $user_id], ['liked_team_id', $team_id]])->delete();
-        return redirect('teams/' . $team_id . '#like');
+        return redirect('teams/' . $team_id . '#like')->with('success_msg', 'お気に入り解除しました');
     }
 }

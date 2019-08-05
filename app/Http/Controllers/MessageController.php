@@ -14,6 +14,6 @@ class MessageController extends Controller
         unset($form['_token']);
         $message = new Message();
         $message->fill($form)->save();
-        return redirect('boards/' . $board_id);
+        return redirect('boards/' . $board_id)->with('success_msg', 'メッセージを投稿しました');
     }
 }

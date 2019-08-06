@@ -15,19 +15,20 @@ class AccessTest extends TestCase
         //外部キー制限解除
         Schema::disableForeignKeyConstraints();
 
-        $user1 = factory(User::class)->create([
-            'name' => '管理者',
-            'email' => 'info@konomachi-sports.com',
+        $user = factory(User::class)->create([
+            'admin' => 1,
         ]);
-        $response = $this->actingAs($user1)->get('admin');
+
+        $response = $this->actingAs($user)->get('/admin');
         $response->assertStatus(200);
 
-        $user2 = factory(User::class)->create([
-            'name' => 'テストユーザー',
-            'email' => 'test@example.com',
+        $user = factory(User::class)->create([
+            'admin'=> 0,
         ]);
-        $response = $this->actingAs($user2)->get('admin');
+        $response = $this->actingAs($user)->get('/admin');
         $response->assertStatus(302);
+        $response = $this->actingAs($user)->get('/hogehoge');
+        $response->assertStatus(404);
 
         //外部キー制限解除を解除
         Schema::enableForeignKeyConstraints();

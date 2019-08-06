@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('team_id')->unsigned();
             $table->string('title');
+            $table->string('image')->nullable();
             $table->text('body');
             $table->timestamps();
             //外部キー

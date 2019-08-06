@@ -17,6 +17,7 @@ class UsersTableSeeder extends Seeder
             'name' => '管理者',
             'email' => 'info@konomachi-sports.com',
             'password' => bcrypt('12341234'),
+            'admin' => 1,
         ]);
         User::create([
             'name' => 'テストユーザー',

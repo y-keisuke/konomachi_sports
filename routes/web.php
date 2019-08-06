@@ -42,8 +42,6 @@ Route::post('messages', 'MessageController@store');
 Route::get('search', 'SearchController@search');
 Route::post('search', 'SearchController@reset');
 
-//管理者用
-Route::get('admin', 'AdminController@index');
 //スポーツ
 Route::resource('sports', 'SportController');
 //年齢層
@@ -55,3 +53,7 @@ Route::resource('frequencies', 'FrequencyController');
 //活動曜日
 Route::resource('weekdays', 'WeekdayController');
 
+//管理者権限用
+Route::group(['middleware' => 'admin_auth'], function () {
+    Route::get('admin', 'AdminController@index');
+});

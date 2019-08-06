@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -40,10 +43,20 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
+        $time = new Carbon(Carbon::now());
+        $post = new Post;
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->user_id = $request->user_id;
+        $post->team_id = $request->team_id;
+        if ($request->image) {
+            $post->image = $request->image->storeAs('public/post_images', $time . '_' . $request->user_id . '.jpg');
+        }
         $form = $request->all();
         unset($form['_token']);
-        $post = new Post();
+
         $post->fill($form)->save();
+
         return redirect('posts/' . $post->id)->with('success_msg', '活動状況を投稿しました');
     }
 
@@ -56,7 +69,8 @@ class PostController extends Controller
     {
         $p = Post::find($post->id);
         $team_id = $p->team->id;
-        return view('posts.show', ['post' => $post, 'team_id' => $team_id]);
+        $image = str_replace('public/', 'storage/', $post->image);
+        return view('posts.show', ['post' => $post, 'team_id' => $team_id, 'image' => $image]);
     }
 
     /**

@@ -94,6 +94,20 @@
             @endif
         </section>
 
+        {{-- 管理人を努めているチーム--}}
+        <section>
+            <h2>管理人をしているチーム</h2>
+            @if(count($user->teams) > 0)
+                <ul>
+                    @foreach($user->teams as $team)
+                        <li><a href="{{ url('teams/' . $team->id) }}">{{ $team->area . 'の'. $team->sports . 'チーム' }}</a></li>
+                    @endforeach
+                </ul>
+            @else
+                <p>管理人をしているチームをしているチームはありません</p>
+            @endif
+        </section>
+
         {{--お気に入り登録しているチーム--}}
         <section>
             <h2>お気に入り登録をしているチーム（{{ count($likes) }}チーム）</h2>

@@ -42,6 +42,11 @@
                         {{-- 「記事」と「ユーザ」へのリンク--}}
                         @if(Auth::id() === 1)
                             <li class="nav-item {{ isActiveUrl('users') }}">
+                                <a href="{{ url('admin') }}" class="nav-link">
+                                    管理画面
+                                </a>
+                            </li>
+                            <li class="nav-item {{ isActiveUrl('users') }}">
                                 <a href="{{ url('users') }}" class="nav-link">
                                     ユーザー
                                 </a>

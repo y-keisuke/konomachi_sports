@@ -41,6 +41,11 @@
                     <ul class="navbar-nav ml-auto">
                         {{-- 「記事」と「ユーザ」へのリンク--}}
                         <li class="nav-item {{ isActiveUrl('users') }}">
+                            <a href="{{ url('admin') }}" class="nav-link">
+                                管理画面
+                            </a>
+                        </li>
+                        <li class="nav-item {{ isActiveUrl('users') }}">
                             <a href="{{ url('users') }}" class="nav-link">
                                 ユーザー
                             </a>

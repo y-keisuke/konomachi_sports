@@ -8,6 +8,7 @@ use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -71,6 +72,14 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function sendEmailVerificationNotification(): void
     {
         $this->notify(new CustomVerifyEmail());
+    }
+
+    /**
+     * admin用アクセサ作成
+     */
+    public function getIsAdminAttribute()
+    {
+        return (Auth::user()->admin === 1);
     }
 
     /**

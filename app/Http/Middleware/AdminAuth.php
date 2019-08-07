@@ -16,7 +16,7 @@ class AdminAuth
      */
     public function handle($request, Closure $next)
     {
-        // 管理者でなければトップページにリダイレクト
+        // ログイン済かつ管理者でなければトップページにリダイレクト
         if (Auth::check() && Auth::user()->is_admin) {
             return $next($request);
         }

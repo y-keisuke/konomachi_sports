@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Http\Middleware\AdminAuth;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -19,7 +21,9 @@ class AccessTest extends TestCase
             'admin' => 1,
         ]);
 
+
         $response = $this->actingAs($user)->get('/admin');
+        dump();
         $response->assertStatus(200);
 
         $user = factory(User::class)->create([

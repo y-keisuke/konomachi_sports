@@ -54,7 +54,7 @@
             </div>
 
             {{-- 投稿ボタン --}}
-            <div class="form-group row mb-0 pl-3">
+            <div class="form-group row mb-3 pl-3">
                 <div class="col-md-6">
                     <button type="submit" class="btn btn-primary">
                         投稿
@@ -62,5 +62,6 @@
                 </div>
             </div>
         </form>
+        <a href="{{ url('teams/' . $team_id) }}">▶チームページへ戻る</a>
     </div>
 @endsection

@@ -29,8 +29,7 @@
         </dd>
     </dl>
     <h2>活動内容</h2>
-        {{$image}}
-    @if($image)
+    @if(!empty($image))
         <figure>
             <img src="{{ $image }}" alt="">
         </figure>

@@ -52,10 +52,7 @@ class PostController extends Controller
         if ($request->image) {
             $post->image = $request->image->storeAs('public/post_images', $time . '_' . $request->user_id . '.jpg');
         }
-        $form = $request->all();
-        unset($form['_token']);
-
-        $post->fill($form)->save();
+        $post->save();
 
         return redirect('posts/' . $post->id)->with('success_msg', '活動状況を投稿しました');
     }
@@ -69,7 +66,7 @@ class PostController extends Controller
     {
         $p = Post::find($post->id);
         $team_id = $p->team->id;
-        $image = str_replace('public/', 'storage/', $post->image);
+        $image = str_replace('public/', '/storage/', $post->image);
         return view('posts.show', ['post' => $post, 'team_id' => $team_id, 'image' => $image]);
     }
 

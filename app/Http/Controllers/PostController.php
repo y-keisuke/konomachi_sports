@@ -43,14 +43,13 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $time = new Carbon(Carbon::now());
         $post = new Post;
         $post->title = $request->title;
         $post->body = $request->body;
         $post->user_id = $request->user_id;
         $post->team_id = $request->team_id;
         if ($request->image) {
-            $post->image = $request->image->storeAs('public/post_images', $time . '_' . $request->user_id . '.jpg');
+            $post->image = $request->image->storeAs('public/post_images', now() . '_' . $request->user_id . '.jpg');
         }
         $post->save();
 

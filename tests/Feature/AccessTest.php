@@ -21,9 +21,8 @@ class AccessTest extends TestCase
             'admin' => 1,
         ]);
 
-
         $response = $this->actingAs($user)->get('/admin');
-        dump();
+        dump($response);
         $response->assertStatus(200);
 
         $user = factory(User::class)->create([

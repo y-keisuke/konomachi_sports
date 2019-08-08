@@ -62,6 +62,6 @@
                 </div>
             </div>
         </form>
-        <a href="{{ url('teams/' . $team_id) }}">▶チームページへ戻る</a>
+        <a href="{{ url('teams/' . $team_id) }}">▶ チームページへ戻る</a>
     </div>
 @endsection

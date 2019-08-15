@@ -103,6 +103,7 @@ class Team extends Model
      *
      * @param $query
      * @param $str
+     * @return mixed
      */
     public function scopeEqualSports($query, $str)
     {
@@ -116,6 +117,7 @@ class Team extends Model
      *
      * @param $query
      * @param $str
+     * @return
      */
     public function scopeFuzzyAreas($query, $str)
     {
@@ -129,6 +131,7 @@ class Team extends Model
      *
      * @param $query
      * @param $str
+     * @return
      */
     public function scopeEqualAges($query, $str)
     {
@@ -142,6 +145,7 @@ class Team extends Model
      *
      * @param $query
      * @param $str
+     * @return
      */
     public function scopeEqualLevels($query, $str)
     {
@@ -155,6 +159,7 @@ class Team extends Model
      *
      * @param $query
      * @param $str
+     * @return
      */
     public function scopeEqualFrequencies($query, $str)
     {
@@ -168,6 +173,7 @@ class Team extends Model
      *
      * @param $query
      * @param $str
+     * @return
      */
     public function scopeEqualWeekdays($query, $str)
     {

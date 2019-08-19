@@ -14,13 +14,29 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('sports1')->nullable();
+            $table->integer('sports_years1')->nullable();
+            $table->string('sports2')->nullable();
+            $table->integer('sports_years2')->nullable();
+            $table->string('sports3')->nullable();
+            $table->integer('sports_years3')->nullable();
+            $table->integer('age')->nullable();
+            $table->string('sex')->nullable();
+            $table->string('area')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('admin')->default(0);
             $table->rememberToken();
             $table->timestamps();
+
+            //外部キー
+            $table->foreign('sports1')->references('sport')->on('sports')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('sports2')->references('sport')->on('sports')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('sports3')->references('sport')->on('sports')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('sex')->references('sex')->on('sex')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -31,6 +47,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('users');
+        Schema::enableForeignKeyConstraints();
     }
 }

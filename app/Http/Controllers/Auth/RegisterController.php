@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -28,12 +30,10 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/email/verify';
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -43,14 +43,22 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'sports1' => ['string', 'nullable'],
+            'sports_years1' => ['string', 'nullable'],
+            'sports2' => ['string', 'nullable'],
+            'sports_years2' => ['string', 'nullable'],
+            'sports3' => ['string', 'nullable'],
+            'sports_years3' => ['string', 'nullable'],
+            'age' => ['integer', 'nullable'],
+            'sex' => ['string', 'nullable'],
+            'area' => ['string', 'nullable'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -58,14 +66,22 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'sports1' => $data['sports1'],
+            'sports_years1' => $data['sports_years1'],
+            'sports2' => $data['sports2'],
+            'sports_years2' => $data['sports_years2'],
+            'sports3' => $data['sports3'],
+            'sports_years3' => $data['sports_years3'],
+            'age' => $data['age'],
+            'sex' => $data['sex'],
+            'area' => $data['area'],
             'password' => Hash::make($data['password']),
         ]);
     }

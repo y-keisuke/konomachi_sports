@@ -20,3 +20,8 @@ composer.phar
 /node_modules
 /.vagrant
 .php_cs
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

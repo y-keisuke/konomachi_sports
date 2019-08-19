@@ -9,6 +9,7 @@
 .env.php
 .env.*.php
 .phpunit.result.cache
+package-lock.json
 Homestead.json
 Homestead.yaml
 npm-debug.log

@@ -55,11 +55,6 @@
                                 チーム
                             </a>
                         </li>
-                        <li class="nav-item {{ isActiveUrl('posts') }}">
-                            <a href="{{ url('posts') }}" class="nav-link">
-                                活動状況
-                            </a>
-                        </li>
                         <li class="nav-item {{ isActiveUrl('search') }}">
                             <a href="{{ url('search') }}" class="nav-link">
                                 チームを探す

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Http\Middleware\AdminAuth;
+use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
@@ -14,23 +15,6 @@ class AccessTest extends TestCase
 {
 
     use RefreshDatabase;
-
-    public function testAllUserAccess()
-    {
-        // 未ログインユーザーもアクセス可能
-        $responce = $this->get('/');
-        $responce->assertStatus(200);
-
-        $responce = $this->get('/search');
-        $responce->assertStatus(200);
-
-        $response = $this->get('/users/create');
-        $response->assertStatus(200);
-
-        $responce = $this->from('/users/create')->post('/register', ['name' => '山田 太郎', 'email' => 'example@example.com', 'password' => 'password']);
-        $this->assertDatabaseHas('users', ['name' => '山田 太郎']);
-        $responce->assertStatus(200);
-    }
 
     public function testAdminAccess()
     {
@@ -63,4 +47,74 @@ class AccessTest extends TestCase
         //外部キー制限解除を解除
         Schema::enableForeignKeyConstraints();
     }
+
+    public function testLoginUserAccess()
+    {
+        // ログインユーザー
+
+        //外部キー制限解除
+        Schema::disableForeignKeyConstraints();
+        // テスト用ユーザー作成
+        $user = factory(User::class)->create();
+        $user2 = factory(User::class)->create();
+        // テスト用チーム作成
+        $team = factory(Team::class)->create([
+            'user_id' => $user->id,
+            ]);
+        //外部キー制限解除を解除
+        Schema::enableForeignKeyConstraints();
+
+        // チーム編集ページ
+        $response = $this->actingAs($user)->get('teams/' . $team->id . 'edit');
+        $response->assertOk();
+
+        // ユーザー詳細画面
+        $response = $this->actingAs($user)->get('users/' . $user2->id);
+        $response->assertSee('<input type="submit" class="btn btn-primary" value="フォローする">');
+        $response->assertSee('<input type="submit" value="メッセージを送る" class="btn btn-primary">');
+
+        // チーム詳細画面
+        $response = $this->actingAs($user)->get('teams/' . $team->id);
+        $response->assertSee('<input type="submit" class="btn btn-primary" value="お気に入り登録する">');
+
+    }
+
+    public function testAllUserAccess()
+    {
+        // 未ログインユーザーもアクセス可能
+
+        //外部キー制限解除
+        Schema::disableForeignKeyConstraints();
+        // テスト用チーム作成
+        $team = factory(Team::class)->create();
+        // テスト用ユーザー作成
+        $user = factory(User::class)->create();
+        //外部キー制限解除を解除
+        Schema::enableForeignKeyConstraints();
+
+        // トップページ
+        $response = $this->get('/');
+        $response->assertStatus(200);
+
+        // 検索ページ
+        $response = $this->get('/search');
+        $response->assertStatus(200);
+
+        // ユーザー登録ページ
+        $response = $this->get('/users/create');
+        $response->assertStatus(200);
+
+        // ユーザー詳細ページ
+        $response = $this->get('/users/' . $user->id);
+        $response->assertStatus(200);
+        $response->assertDontSee('<input type="submit" class="btn btn-primary" value="フォローする">');
+        $response->assertDontSee('<input type="submit" value="メッセージを送る" class="btn btn-primary">');
+
+        // チーム詳細ページ
+        $response = $this->get('/teams/' . $team->id);
+        //$response->assertStatus(200);
+        $response->assertDontSee('<input type="submit" class="btn btn-primary" value="お気に入り登録する">');
+
+    }
+
 }

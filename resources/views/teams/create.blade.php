@@ -4,11 +4,20 @@
 
 @section('content')
     <div class="container" id="user-register">
+        @foreach($errors as $error)
+            <p>{{$error}}</p>
+        @endforeach
+        {{$errors}}
         <h1>{{ $title }}</h1>
         <form action="{{ url('teams') }}" method="POST">
             @csrf
 
-            <input type="hidden" value="{{ Auth::id() }}">
+            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+            @if($errors->has('user_id'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('user_id') }}</strong>
+                </span>
+            @endif
 
             {{-- スポーツ --}}
             <div class="form-group">

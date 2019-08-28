@@ -10,6 +10,8 @@
         <form action="{{ url('teams/' .$team->id) }}" method="post">
             @csrf
             @method('PUT')
+
+            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
             {{-- スポーツ --}}
             <div class="form-group">
                 <label for="sports">活動しているスポーツ</label>

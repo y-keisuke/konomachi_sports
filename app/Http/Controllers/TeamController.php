@@ -31,6 +31,7 @@ class TeamController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function create(User $user)
@@ -50,6 +51,7 @@ class TeamController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param TeamRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(TeamRequest $request)
@@ -64,6 +66,7 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Team $team
      * @return \Illuminate\Http\Response
      */
     public function show(Team $team)
@@ -82,10 +85,14 @@ class TeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param Team $team
      * @return \Illuminate\Http\Response
      */
     public function edit(Team $team)
     {
+        if ($team->user_id !== Auth::id()) {
+            return redirect('/teams/' . $team->id)->with('alert_msg', '不正アクセスです');
+        }
         $sports_list = Sport::orderBy('sport', 'asc')->get();
         $ages_list = Age::orderBy('age', 'asc')->get();
         $levels_list = Level::orderBy('level', 'asc')->get();
@@ -97,6 +104,8 @@ class TeamController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param TeamRequest $request
+     * @param Team $team
      * @return \Illuminate\Http\Response
      */
     public function update(TeamRequest $request, Team $team)
@@ -110,9 +119,9 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @throws \Exception
-     *
+     * @param Team $team
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Team $team)
     {

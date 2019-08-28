@@ -110,6 +110,7 @@ class Team extends Model
         if ($str) {
             return $query->where('sports', $str);
         }
+        return null;
     }
 
     /**
@@ -124,6 +125,7 @@ class Team extends Model
         if ($str) {
             return $query->where('area', 'like', "%{$str}%");
         }
+        return null;
     }
 
     /**
@@ -138,6 +140,7 @@ class Team extends Model
         if ($str) {
             return $query->where('age', $str);
         }
+        return null;
     }
 
     /**
@@ -152,6 +155,7 @@ class Team extends Model
         if ($str) {
             return $query->where('level', $str);
         }
+        return null;
     }
 
     /**
@@ -166,6 +170,7 @@ class Team extends Model
         if ($str) {
             return $query->where('frequency', $str);
         }
+        return null;
     }
 
     /**
@@ -180,5 +185,6 @@ class Team extends Model
         if ($str) {
             return $query->where('weekday', $str);
         }
+        return null;
     }
 }

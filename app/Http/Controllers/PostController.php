@@ -76,7 +76,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', ['post' => $post]);
+        $image = str_replace('public/', '/storage/', $post->image);
+        if ($post->user_id === Auth::id()) {
+            return view('posts.edit', ['post' => $post, 'image' => $image]);
+        }
+        return  redirect('posts/' . $post->id)->with('alert_msg', '不正アクセスです');
     }
 
     /**
@@ -88,9 +92,13 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        $form = $request->all();
-        unset($form['_token']);
-        $post->fill($form)->save();
+        $user_id = Auth::id();
+        $post->title = $request->title;
+        $post->body = $request->body;
+        if ($request->image) {
+            $post->image = $request->image->storeAs('public/post_images', now() . '_' . $user_id . '.jpg');
+        }
+        $post->save();
         return redirect('posts/' . $post->id)->with('success_msg', '活動状況を編集しました');
     }
 

@@ -66,6 +66,11 @@
                         </li>
                         @auth
                             <li class="nav-item">
+                                <a href="{{ url('teams/create') }}" class="nav-link">
+                                    チームを作る
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ url('users/' . Auth::id()) }}" class="nav-link">
                                     マイページ
                                 </a>

@@ -60,37 +60,27 @@
                                 チームを探す
                             </a>
                         </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav">
-                        <!-- Authentication Links -->
-                        @auth
-                            <li class="nav-item">
-                                <a href="{{ url('users/' . Auth::id()) }}" class="nav-link">
-                                    マイページ
-                                </a>
-                            </li>
-                            <li class="nav-item nav-link font-weight-bold border-0">
-                                {{ Auth::user()->name }}
-                            </li>
-                            <li class="nav-item no-underline ml-2">
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger ">
-                                        ログアウト
-                                    </button>
-                                </form>
-                            </li>
-                        @endauth
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url('users/create') }}">個人登録</a>
-                            </li>
-                            <li class="nav-item no-underline ml-2">
-                                <a class="nav-link btn btn-success text-white" href="{{ route('login') }}">ログイン</a>
-                            </li>
-                        @endguest
+                        <li class="nav-item">
+                            <a href="{{ url('teams/create') }}" class="nav-link">
+                                チームを作る
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('users/' . Auth::id()) }}" class="nav-link">
+                                マイページ
+                            </a>
+                        </li>
+                        <li class="nav-item nav-link font-weight-bold border-0">
+                            {{ Auth::user()->name }}
+                        </li>
+                        <li class="nav-item no-underline ml-2">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger ">
+                                    ログアウト
+                                </button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
                 {{--フラッシュメッセージ--}}

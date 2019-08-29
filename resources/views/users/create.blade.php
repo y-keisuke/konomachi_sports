@@ -58,6 +58,55 @@
                             </div>
                         </div>
 
+                        {{-- 年齢 --}}
+                        <div class="form-group row">
+                            <label for="age" class="col-md-4 col-form-label text-md-left">年齢</label>
+                            <div class="col-md-6">
+                                <select name="age" id="age" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}">
+                                    <option value="">- 選択してください</option>
+                                    @foreach($ages_list as $age)
+                                        <option value="{{ $age }}" @if(old('age') === $age) selected @endif>{{ $age }}</option>
+                                    @endforeach
+                                </select>
+                                @if($errors->has('age'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('age') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        {{-- 性別 --}}
+                        <div class="form-group row">
+                            <label for="sex" class="col-md-4 col-form-label text-md-left">性別</label>
+                            <div class="col-md-6">
+                                <select name="sex" id="sex" class="form-control {{ $errors->has('sex') ? ' is-invalid' : '' }}">
+                                    <option value="">- 選択してください</option>
+                                    @foreach($sex_list as $s)
+                                        <option value="{{ $s->sex }}" @if(old('sex') === $s->sex) selected @endif>{{ $s->sex }}</option>
+                                    @endforeach
+                                </select>
+                                @if($errors->has('sex'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('sex') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        {{-- エリア --}}
+                        <div class="form-group row">
+                            <label for="area" class="col-md-4 col-form-label text-md-left">活動希望地域（市町村まで）</label>
+                            <div class="col-md-6">
+                                <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ old('area') }}" autocomplete="area" placeholder="（例）北海道札幌市">
+                                @if($errors->has('area'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('area') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         {{-- スポーツ1 --}}
                         <div class="form-group row">
                             <label for="sports1" class="col-md-4 col-form-label text-md-left">探したいスポーツ①</label>
@@ -146,55 +195,6 @@
                                 @if($errors->has('sports_years3'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('sports_years3') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        {{-- 年齢 --}}
-                        <div class="form-group row">
-                            <label for="age" class="col-md-4 col-form-label text-md-left">年齢</label>
-                            <div class="col-md-6">
-                                <select name="age" id="age" class="form-control {{ $errors->has('age') ? ' is-invalid' : '' }}">
-                                    <option value="">- 選択してください</option>
-                                    @foreach($ages_list as $age)
-                                        <option value="{{ $age }}" @if(old('age') === $age) selected @endif>{{ $age }}</option>
-                                    @endforeach
-                                </select>
-                                @if($errors->has('age'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('age') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        {{-- 性別 --}}
-                        <div class="form-group row">
-                            <label for="sex" class="col-md-4 col-form-label text-md-left">性別</label>
-                            <div class="col-md-6">
-                                <select name="sex" id="sex" class="form-control {{ $errors->has('sex') ? ' is-invalid' : '' }}">
-                                    <option value="">- 選択してください</option>
-                                    @foreach($sex_list as $s)
-                                        <option value="{{ $s->sex }}" @if(old('sex') === $s->sex) selected @endif>{{ $s->sex }}</option>
-                                    @endforeach
-                                </select>
-                                @if($errors->has('sex'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('sex') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        {{-- エリア --}}
-                        <div class="form-group row">
-                            <label for="area" class="col-md-4 col-form-label text-md-left">地域（市町村まで）</label>
-                            <div class="col-md-6">
-                                <input id="area" type="text" class="form-control {{ $errors->has('area') ? ' is-invalid' : '' }}" name="area" value="{{ old('area') }}" autocomplete="area" placeholder="（例）北海道札幌市">
-                                @if($errors->has('area'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('area') }}</strong>
                                     </span>
                                 @endif
                             </div>

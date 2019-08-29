@@ -39,6 +39,12 @@
                     <p class="col-md-2">名前:</p>
                     <p class="col-md-10">{{ $user->name }}</p>
                 </div>
+                @if(Auth::id() === $user->id)
+                    <div class="profile-list row">
+                        <p class="col-md-2">メールアドレス（本人のみ表示）:</p>
+                        <p class="col-md-10">{{ emptyJudge($user->email, '-') }}</p>
+                    </div>
+                @endif
                 <div class="profile-list row">
                     <p class="col-md-2">年齢:</p>
                     <p class="col-md-10">{{ emptyJudge($user->age, '-') }}</p>
@@ -51,12 +57,6 @@
                     <p class="col-md-2">活動希望地域:</p>
                     <p class="col-md-10">{{ emptyJudge($user->area, '-') }}</p>
                 </div>
-                @if(Auth::id() === $user->id)
-                <div class="profile-list row">
-                    <p class="col-md-2">メールアドレス（本人のみ表示）:</p>
-                    <p class="col-md-10">{{ emptyJudge($user->email, '-') }}</p>
-                </div>
-                @endif
                 <div class="profile-list row">
                     <p class="col-md-2">経験スポーツ①:</p>
                     <p class="col-md-10">{{ emptyJudge($user->sports1, '-') }}</p>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserEditRequest;
-use App\Http\Requests\UserRequesut;
 use App\Models\Sex;
 use App\Models\Sport;
 use App\Models\User;

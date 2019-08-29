@@ -40,23 +40,25 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         {{-- 「記事」と「ユーザ」へのリンク--}}
-                        @if(Auth::user()->is_admin)
-                            <li class="nav-item">
-                                <a href="{{ url('admin') }}" class="nav-link">
-                                    管理画面
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('users') }}" class="nav-link">
-                                    ユーザー一覧
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('teams') }}" class="nav-link">
-                                    チーム一覧
-                                </a>
-                            </li>
-                        @endif
+                        @auth
+                            @if(Auth::user()->is_admin)
+                                <li class="nav-item">
+                                    <a href="{{ url('admin') }}" class="nav-link">
+                                        管理画面
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('users') }}" class="nav-link">
+                                        ユーザー一覧
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('teams') }}" class="nav-link">
+                                        チーム一覧
+                                    </a>
+                                </li>
+                            @endif
+                        @endauth
                         <li class="nav-item">
                             <a href="{{ url('search') }}" class="nav-link">
                                 チームを探す

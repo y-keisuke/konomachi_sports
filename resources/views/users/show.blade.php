@@ -90,6 +90,13 @@
                     <button class="btn btn-primary mr-4">
                         <a href="{{ url('users/' . $user->id . '/edit') }}">編集</a>
                     </button>
+                    {{--削除--}}
+                    @component('components.user-btn-del')
+                        @slot('controller', 'users')
+                        @slot('id', $user->id)
+                        @slot('name', $user->name)
+                    @endcomponent
+
                 </div>
             @endif
         </section>

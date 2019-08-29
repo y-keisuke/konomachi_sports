@@ -23,19 +23,14 @@ class PostControllerTest extends TestCase
         Schema::disableForeignKeyConstraints();
 
         // 投稿ユーザー作成
-        factory(User::class)->create();
-        $user = User::find(1);
-        $data = $user->toArray();
-        $this->assertDatabaseHas('users', $data);
+        $user = factory(User::class)->create();
 
         // 投稿先チーム作成
-        factory(Team::class)->create([
-            'user_id' => 1,
+        $team = factory(Team::class)->create([
+            'user_id' => $user->id,
         ]);
-        $team = Team::find(1);
-        $data = $team->toArray();
-        $this->assertDatabaseHas('teams', $data);
-
+        //外部キー制限解除を解除
+        Schema::enableForeignKeyConstraints();
 
         // 活動状況一覧 index
         $response = $this->get('posts?team_id=' . $team->id);
@@ -79,8 +74,6 @@ class PostControllerTest extends TestCase
         $this->actingAs($user)->delete('posts/' . $post->id);
         $this->assertDatabaseMissing('posts', $data);
 
-        //外部キー制限解除を解除
-        Schema::enableForeignKeyConstraints();
     }
 
 }

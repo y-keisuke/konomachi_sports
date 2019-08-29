@@ -37,14 +37,14 @@ class VerificationController extends Controller
         }
 
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect($this->redirectPath())->with('success_msg', 'ユーザー登録が完了しました');
+            return redirect($this->redirectPath())->with('success_msg', 'すでにユーザー登録済です');
         }
 
         if ($request->user()->markEmailAsVerified()) {
             event(new Verified($request->user()));
         }
 
-        return redirect($this->redirectPath())->with('verified', true)->with('success_msg', 'すでにユーザー登録済です');
+        return redirect($this->redirectPath())->with('verified', true)->with('success_msg', 'ユーザー登録が完了しました');
     }
 
     /**

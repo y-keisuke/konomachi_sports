@@ -5,6 +5,7 @@
 @section('title', $title)
 
 @section('content')
+    {{ $errors }}
     <div class="container">
         <h1>{{ $title }}</h1>
         <form action="{{ url('users/' .$user->id) }}" method="post">
@@ -32,7 +33,7 @@
                 <select name="sports1" id="sports1" class="form-control">
                     <option value="">- 選択してください</option>
                     @foreach($sports_list as $sport)
-                        <option value="{{ $sport->sport }}" @if($user->sports1 === $sport->sport) selected @endif>{{ old('sport1', $user->sports1) }}</option>
+                        <option value="{{ $sport->sport }}" @if($user->sports1 === $sport->sport) selected @endif>{{ old('sport1', $sport->sport) }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('sports1'))
@@ -53,7 +54,7 @@
                 <select name="sports2" id="sports2" class="form-control">
                     <option value="">- 選択してください</option>
                     @foreach($sports_list as $sport)
-                        <option value="{{ $sport->sport }}" @if($user->sports2 === $sport->sport) selected @endif>{{ old('sport', $sport->sport) . $loop->parent }}</option>
+                        <option value="{{ $sport->sport }}" @if($user->sports2 === $sport->sport) selected @endif>{{ old('sports2', $sport->sport) }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('sports2'))
@@ -74,7 +75,7 @@
                 <select name="sports3" id="sports3" class="form-control">
                     <option value="">- 選択してください</option>
                     @foreach($sports_list as $sport)
-                        <option value="{{ $sport->sport }}" @if($user->sports3 === $sport->sport) selected @endif>{{ old('sport', $sport->sport) }}</option>
+                        <option value="{{ $sport->sport }}" @if($user->sports3 === $sport->sport) selected @endif>{{ old('sports3', $sport->sport) }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('sports3'))

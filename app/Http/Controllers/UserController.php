@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserEditRequest;
+use App\Http\Requests\UserRequesut;
 use App\Models\Sex;
 use App\Models\Sport;
 use App\Models\User;
@@ -40,9 +42,10 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     * @param UserRequesut $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequesut $request)
     {
         $form = $request->all();
         unset($form['_token']);
@@ -72,11 +75,11 @@ class UserController extends Controller
     /**
      * ユーザー情報の編集画面
      *
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
     {
-        $sports_list = Sport::orderBy('sport', 'asc')->get();
         $sex_list = Sex::select('sex')->get();
         $sports_list = Sport::select('sport')->get();
         $age_list = config('age');
@@ -86,9 +89,11 @@ class UserController extends Controller
     /**
      * 編集内容にてDBデータベースを更新
      *
+     * @param UserEditRequest $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserEditRequest $request, User $user)
     {
         $form = $request->all();
         unset($form['_token']);
@@ -99,7 +104,9 @@ class UserController extends Controller
     /**
      * ユーザー情報を削除
      *
+     * @param User $user
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(User $user)
     {

@@ -91,12 +91,13 @@
                         <a href="{{ url('users/' . $user->id . '/edit') }}">編集</a>
                     </button>
                     {{--削除--}}
-                    @component('components.user-btn-del')
-                        @slot('controller', 'users')
-                        @slot('id', $user->id)
-                        @slot('name', $user->name)
-                    @endcomponent
-
+                    @if(!Auth::id() === 2)
+                        @component('components.user-btn-del')
+                            @slot('controller', 'users')
+                            @slot('id', $user->id)
+                            @slot('name', $user->name)
+                        @endcomponent
+                    @endif
                 </div>
             @endif
         </section>

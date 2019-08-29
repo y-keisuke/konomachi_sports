@@ -13,6 +13,7 @@ class Team extends Model
         'area' => 'required|string',
         'frequency' => 'required|string',
         'hp' => 'url',
+        'user_id' => 'required',
     ];
 
     protected $guarded = ['id'];

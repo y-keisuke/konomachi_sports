@@ -40,7 +40,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         {{-- 「記事」と「ユーザ」へのリンク--}}
-                        @if(Auth::id() === 1)
+                        @if(Auth::user()->is_admin)
                             <li class="nav-item">
                                 <a href="{{ url('admin') }}" class="nav-link">
                                     管理画面
@@ -48,17 +48,12 @@
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('users') }}" class="nav-link">
-                                    ユーザー
+                                    ユーザー一覧
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{ url('teams') }}" class="nav-link">
-                                    チーム
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ url('posts') }}" class="nav-link">
-                                    活動状況
+                                    チーム一覧
                                 </a>
                             </li>
                         @endif

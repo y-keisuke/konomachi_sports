@@ -47,12 +47,12 @@
                         </li>
                         <li class="nav-item {{ isActiveUrl('users') }}">
                             <a href="{{ url('users') }}" class="nav-link">
-                                ユーザー
+                                ユーザー一覧
                             </a>
                         </li>
                         <li class="nav-item {{ isActiveUrl('teams') }}">
                             <a href="{{ url('teams') }}" class="nav-link">
-                                チーム
+                                チーム一覧
                             </a>
                         </li>
                         <li class="nav-item {{ isActiveUrl('search') }}">

@@ -45,6 +45,10 @@
                 <input type="submit" value="送信" class="btn btn-primary">
             </form>
         </section>
+        <div class="back-link">
+            <a href="{{ url('users/' . $user->id) }}">→自分のマイページへ戻る</a>
+            <a href="{{ url('users/' . $other_user->id) }}">→{{$other_user->name}}さんのマイページへ戻る</a>
+        </div>
     </div>
 
 @endsection

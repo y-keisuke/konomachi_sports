@@ -126,6 +126,6 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         $team->delete();
-        return redirect('teams')->with('success_msg', 'チームを削除しました');
+        return redirect('/')->with('success_msg', 'チームを削除しました');
     }
 }

@@ -79,7 +79,6 @@
                 </div>
             @endif
 
-            <a href="{{ url('teams') }}">> チーム一覧に戻る</a>
         </section>
 
         {{--活動状況--}}

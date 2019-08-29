@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MessageRequest;
 use App\Models\Message;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-    public function store(Request $request)
+    public function store(MessageRequest $request)
     {
         $board_id = $request->board_id;
         $form = $request->all();

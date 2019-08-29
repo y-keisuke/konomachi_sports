@@ -36,7 +36,12 @@
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                 <input type="hidden" name="board_id" value="{{ $board->id }}">
                 <label for="message">メッセージを入力</label>
-                <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                <textarea name="message" id="message" cols="30" rows="10" class="form-control {{ $errors->has('message') ? ' is-invalid' : '' }}"></textarea>
+                @if($errors->has('message'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('message') }}</strong>
+                    </span>
+                @endif
                 <input type="submit" value="送信" class="btn btn-primary">
             </form>
         </section>

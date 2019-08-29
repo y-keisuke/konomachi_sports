@@ -31,6 +31,10 @@ option {
   background-color: #f8f9fa !important;
   padding-left: 0 !important; }
 
+.back-link {
+  display: flex;
+  flex-direction: column; }
+
 /*========================================
 レイアウト
 ======================================= */

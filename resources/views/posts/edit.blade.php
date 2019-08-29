@@ -40,23 +40,26 @@
             </div>
             {{-- 活動写真 --}}
             <div class="form-group">
-                <label for="image" class="col-md-4 col-form-label text-md-left">活動写真</label>
-                <div class="col-md-12">
-                    @if(!empty($image))
-                        <figure>
-                            <img src="{{ $image }}" alt="">
-                        </figure>
-                    @endif
-                    <input id="image" type="file" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }} form-cont-none" name="image" value="{{ old('image', $post->image) }}">
-                    @if($errors->has('image'))
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('image') }}</strong>
-                        </span>
-                    @endif
-                </div>
+                <label for="image">活動写真</label>
+                @if(!empty($image))
+                    <figure>
+                        <img src="{{ $image }}" alt="">
+                    </figure>
+                @endif
+                <p class="mb-0">↓写真を投稿or変更する↓</p>
+                <p class="mb-0" style="font-size: .7rem;">※写真は一枚までです。新しく投稿したら、古い写真は表示されません</p>
+                <input id="image" type="file" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }} form-cont-none" name="image" value="{{ old('image', $post->image) }}">
+                @if($errors->has('image'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('image') }}</strong>
+                    </span>
+                @endif
             </div>
             <button class="btn btn-primary mb-2" type="submit">活動内容を更新</button>
         </form>
-        <a href="{{ url('posts/' . $post->id) }}">→記事ページに戻る</a>
+        <div class="back-link">
+            <a href="{{ url('posts/' . $post->id) }}">→記事ページに戻る</a>
+            <a href="{{ url('teams/' . $post->team_id) }}">→チームページに戻る</a>
+        </div>
     </div>
 @endsection

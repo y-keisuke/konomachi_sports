@@ -43,6 +43,14 @@ option {
   padding-left: 0 !important;
 }
 
+.back-link {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+}
+
 /*========================================
 レイアウト
 ======================================= */

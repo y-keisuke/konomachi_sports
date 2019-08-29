@@ -60,6 +60,11 @@ option {
                 border-bottom: 1px solid #333;
             }
         }
+        .no-underline {
+            &:hover {
+                border-bottom: none;
+            }
+        }
     }
 }
 /* フラッシュメッセージ */

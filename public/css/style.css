@@ -67,6 +67,10 @@ option {
   border-bottom: 1px solid #333;
 }
 
+#app nav .no-underline:hover {
+  border-bottom: none;
+}
+
 /* フラッシュメッセージ */
 
 .flash-msg {

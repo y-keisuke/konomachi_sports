@@ -97,6 +97,8 @@
                             @slot('id', $user->id)
                             @slot('name', $user->name)
                         @endcomponent
+                    @else
+                        <button class="btn btn-danger">本来のユーザーはここが削除ボタン</button>
                     @endif
                 </div>
             @endif

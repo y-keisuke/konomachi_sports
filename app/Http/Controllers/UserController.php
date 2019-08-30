@@ -104,6 +104,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if ($user->admin === 1) {
+            return redirect('/')->with('alert_msg', '管理者は削除できません');
+        }
         $user->delete();
         return redirect('/');
     }

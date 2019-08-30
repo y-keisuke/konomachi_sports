@@ -1,6 +1,6 @@
-@php($title = 'チーム登録')
+@php($title = 'スポーツ登録')
 
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container" id="sports-create">

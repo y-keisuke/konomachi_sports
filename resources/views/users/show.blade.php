@@ -84,23 +84,36 @@
             </div>
 
             {{-- 編集ボタン --}}
-            @if($user->id === Auth::id())
-                <div class="flex">
-                    {{--編集--}}
+            @if(Auth::check())
+                @if($user->id === Auth::id())
+                    <div class="flex">
+                        {{--編集--}}
+                        <button class="btn btn-primary mr-4">
+                            <a href="{{ url('users/' . $user->id . '/edit') }}">編集</a>
+                        </button>
+                        {{--削除--}}
+                        @if(Auth::id() === 2)
+                            <button class="btn btn-danger">本来のユーザーはここが削除ボタン</button>
+                        @elseif($user->is_admin)
+                            <button class="btn btn-danger">管理者は削除できません</button>
+                        @else
+                            @component('components.user-btn-del')
+                                @slot('controller', 'users')
+                                @slot('id', $user->id)
+                                @slot('name', $user->name)
+                            @endcomponent
+                        @endif
+                    </div>
+                @elseif($user->is_admin)
                     <button class="btn btn-primary mr-4">
                         <a href="{{ url('users/' . $user->id . '/edit') }}">編集</a>
                     </button>
-                    {{--削除--}}
-                    @if(!Auth::id() === 2)
-                        @component('components.user-btn-del')
-                            @slot('controller', 'users')
-                            @slot('id', $user->id)
-                            @slot('name', $user->name)
-                        @endcomponent
-                    @else
-                        <button class="btn btn-danger">本来のユーザーはここが削除ボタン</button>
-                    @endif
-                </div>
+                    @component('components.user-btn-del')
+                        @slot('controller', 'users')
+                        @slot('id', $user->id)
+                        @slot('name', $user->name)
+                    @endcomponent
+                @endif
             @endif
         </section>
 

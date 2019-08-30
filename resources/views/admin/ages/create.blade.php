@@ -1,6 +1,6 @@
-@php($title = 'チーム登録')
+@php($title = '年齢層登録')
 
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container" id="ages-create">

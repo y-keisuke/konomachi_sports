@@ -1,6 +1,6 @@
 @php($title = '活動頻度登録')
 
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container" id="ages-create">

@@ -19,23 +19,23 @@ http://konomachi-sports.com
 8.管理者機能（スポーツ、年齢層、募集対象、活動頻度、活動曜日の追加・編集・削除）  
 
 ### 管理者機能について
-![alt](storage/app/machi-spo_admin.PNG)  
+![alt](storage/machi-spo_admin.PNG)  
 こちらは管理者画面のメインの画面です。  
 各タブからそれぞれの項目の追加、更新、削除が可能です。  
 「○○を追加」というボタンを押すことで、項目の追加ページに遷移します。  
 
-![alt](storage/app/machi-spo_admin2.PNG)  
+![alt](storage/machi-spo_admin2.PNG)  
 こちらが各項目の追加画面です。  
 
-![alt](storage/app/machi-spo_admin3.PNG)  
+![alt](storage/machi-spo_admin3.PNG)  
 こちらは管理者のマイページです。  
 管理者は誤って削除できないようにしています。
 
-![alt](storage/app/machi-spo_admin4.PNG)  
+![alt](storage/machi-spo_admin4.PNG)  
 こちらは管理者から他のユーザーのマイページへアクセスした際の画面です。  
 管理者はすべてのユーザーの「編集・削除」が行えます。
 
-![alt](storage/app/machi-spo_admin5.PNG)  
+![alt](storage/machi-spo_admin5.PNG)  
 こちらは管理者から他のユーザーが管理人をしているチームにアクセスした際の画面です。
 こちらも同様にすべてのチームの「編集・削除」を行うことが可能です。
 

@@ -63,20 +63,36 @@
             </div>
 
             {{-- 編集・削除ボタン --}}
-            @if(Auth::id() === $team->user_id)
-                <div class="flex mb-3">
-                    {{--編集--}}
-                    <button class="btn btn-primary mr-4">
-                        <a href="{{ url('teams/' . $team->id . '/edit') }}">編集</a>
-                    </button>
+            @if(Auth::check())
+                @if(Auth::id() === $team->user_id)
+                    <div class="flex mb-3">
+                        {{--編集--}}
+                        <button class="btn btn-primary mr-4">
+                            <a href="{{ url('teams/' . $team->id . '/edit') }}">編集</a>
+                        </button>
 
-                    {{--削除--}}
-                    @component('components.btn-del')
-                        @slot('controller', 'teams')
-                        @slot('id', $team->id)
-                        @slot('name', $team->area . 'の' . $team->sports . 'チーム')
-                    @endcomponent
-                </div>
+                        {{--削除--}}
+                        @component('components.btn-del')
+                            @slot('controller', 'teams')
+                            @slot('id', $team->id)
+                            @slot('name', $team->area . 'の' . $team->sports . 'チーム')
+                        @endcomponent
+                    </div>
+                @elseif(Auth::user()->is_admin)
+                    <div class="flex mb-3">
+                        {{--編集--}}
+                        <button class="btn btn-primary mr-4">
+                            <a href="{{ url('teams/' . $team->id . '/edit') }}">編集</a>
+                        </button>
+
+                        {{--削除--}}
+                        @component('components.btn-del')
+                            @slot('controller', 'teams')
+                            @slot('id', $team->id)
+                            @slot('name', $team->area . 'の' . $team->sports . 'チーム')
+                        @endcomponent
+                    </div>
+                @endif
             @endif
 
         </section>

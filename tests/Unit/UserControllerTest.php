@@ -3,10 +3,9 @@
 namespace Tests\Unit;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserControllerTest extends TestCase
 {
@@ -15,7 +14,7 @@ class UserControllerTest extends TestCase
     /**
      * ユーザーコントローラーのテスト(登録、更新、削除)
      */
-    public function testUserController()
+    public function test_user_controller(): void
     {
         //外部キー制限解除
         Schema::disableForeignKeyConstraints();
@@ -23,7 +22,7 @@ class UserControllerTest extends TestCase
         // ダミーで利用するデータ
         $data = [
             'name' => '山田太郎',
-            ];
+        ];
         $user = factory(User::class)->create($data);
 
         //ダミーデータを取得
@@ -42,5 +41,4 @@ class UserControllerTest extends TestCase
         //外部キー制限解除を解除
         Schema::enableForeignKeyConstraints();
     }
-
 }

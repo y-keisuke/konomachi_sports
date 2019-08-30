@@ -79,7 +79,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
      */
     public function getIsAdminAttribute()
     {
-        return (Auth::user()->admin === 1);
+        return Auth::user()->admin === 1;
     }
 
     /**

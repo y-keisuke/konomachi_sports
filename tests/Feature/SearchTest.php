@@ -2,18 +2,16 @@
 
 namespace Tests\Feature;
 
+use App\Models\Team;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
-use App\Models\Team;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Mockery;
 
 class SearchTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testSearch()
+    public function test_search(): void
     {
         // 外部キー制限解除
         Schema::disableForeignKeyConstraints();

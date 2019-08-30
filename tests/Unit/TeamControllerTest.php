@@ -4,10 +4,9 @@ namespace Tests\Unit;
 
 use App\Models\Team;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TeamControllerTest extends TestCase
 {
@@ -16,7 +15,7 @@ class TeamControllerTest extends TestCase
     /**
      * チームコントローラーのテスト(登録、更新、削除)
      */
-    public function testTeamController()
+    public function test_team_controller(): void
     {
         //外部キー制限解除
         Schema::disableForeignKeyConstraints();
@@ -81,6 +80,5 @@ class TeamControllerTest extends TestCase
 
         //外部キー制限解除を解除
         Schema::enableForeignKeyConstraints();
-
     }
 }

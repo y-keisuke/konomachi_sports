@@ -2,23 +2,18 @@
 
 namespace Tests\Feature;
 
-use App\Http\Middleware\AdminAuth;
 use App\Models\Team;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class AccessTest extends TestCase
 {
-
     use RefreshDatabase;
 
-    public function testAdminAccess()
+    public function test_admin_access(): void
     {
-
         //管理者のみアクセス可能
         $responce = $this->get('/users');
         $responce->assertStatus(302);
@@ -37,7 +32,7 @@ class AccessTest extends TestCase
         $response->assertStatus(200);
 
         $user = factory(User::class)->create([
-            'admin'=> 0,
+            'admin' => 0,
         ]);
         $response = $this->actingAs($user)->get('/admin');
         $response->assertStatus(302);
@@ -48,7 +43,7 @@ class AccessTest extends TestCase
         Schema::enableForeignKeyConstraints();
     }
 
-    public function testLoginUserAccess()
+    public function test_login_user_access(): void
     {
         // ログインユーザー
 
@@ -60,7 +55,7 @@ class AccessTest extends TestCase
         // テスト用チーム作成
         $team = factory(Team::class)->create([
             'user_id' => $user->id,
-            ]);
+        ]);
         //外部キー制限解除を解除
         Schema::enableForeignKeyConstraints();
 
@@ -76,10 +71,9 @@ class AccessTest extends TestCase
         // チーム詳細画面
         $response = $this->actingAs($user)->get('teams/' . $team->id);
         $response->assertSee('<input type="submit" class="btn btn-primary" value="お気に入り登録する">');
-
     }
 
-    public function testAllUserAccess()
+    public function test_all_user_access(): void
     {
         // 未ログインユーザーもアクセス可能
 
@@ -114,7 +108,5 @@ class AccessTest extends TestCase
         $response = $this->get('/teams/' . $team->id);
         //$response->assertStatus(200);
         $response->assertDontSee('<input type="submit" class="btn btn-primary" value="お気に入り登録する">');
-
     }
-
 }

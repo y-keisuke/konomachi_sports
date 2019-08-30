@@ -1,5 +1,6 @@
 <?php
-return array (
+
+return [
     '15',
     '16',
     '17',
@@ -86,4 +87,4 @@ return array (
     '97',
     '98',
     '99',
-);
+];

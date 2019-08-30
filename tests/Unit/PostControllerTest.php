@@ -5,10 +5,9 @@ namespace Tests\Unit;
 use App\Models\Post;
 use App\Models\Team;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PostControllerTest extends TestCase
 {
@@ -17,7 +16,7 @@ class PostControllerTest extends TestCase
     /**
      * ポストコントローラーのテスト(登録、更新、削除)
      */
-    public function testPostController()
+    public function test_post_controller(): void
     {
         //外部キー制限解除
         Schema::disableForeignKeyConstraints();
@@ -43,8 +42,8 @@ class PostControllerTest extends TestCase
         // 活動状況投稿 store
         $data = [
             'id' => 1,
-            'title'    => 'タイトルタイトル',
-            'body'       => 'ボディボディボディボディ',
+            'title' => 'タイトルタイトル',
+            'body' => 'ボディボディボディボディ',
             'user_id' => $user->id,
             'team_id' => $team->id,
         ];
@@ -64,8 +63,8 @@ class PostControllerTest extends TestCase
         $data = [
             'user_id' => $user->id,
             'team_id' => $team->id,
-            'title'    => 'タタタタタイトル',
-            'body'       => 'ボボボボディ',
+            'title' => 'タタタタタイトル',
+            'body' => 'ボボボボディ',
         ];
         $this->actingAs($user)->put('posts/' . $post->id, $data);
         $this->assertDatabaseHas('posts', $data);
@@ -73,7 +72,5 @@ class PostControllerTest extends TestCase
         // 活動状況削除 destroy
         $this->actingAs($user)->delete('posts/' . $post->id);
         $this->assertDatabaseMissing('posts', $data);
-
     }
-
 }

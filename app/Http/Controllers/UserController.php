@@ -6,7 +6,6 @@ use App\Http\Requests\UserEditRequest;
 use App\Models\Sex;
 use App\Models\Sport;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -41,7 +40,6 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param UserRequesut $request
      * @return \Illuminate\Http\Response
      */
     public function store(UserRequesut $request)
@@ -74,7 +72,6 @@ class UserController extends Controller
     /**
      * ユーザー情報の編集画面
      *
-     * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -88,8 +85,6 @@ class UserController extends Controller
     /**
      * 編集内容にてDBデータベースを更新
      *
-     * @param UserEditRequest $request
-     * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function update(UserEditRequest $request, User $user)
@@ -103,9 +98,9 @@ class UserController extends Controller
     /**
      * ユーザー情報を削除
      *
-     * @param User $user
-     * @return \Illuminate\Http\Response
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
     {

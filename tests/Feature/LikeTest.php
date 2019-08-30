@@ -6,17 +6,13 @@ use App\Models\Team;
 use App\Models\User;
 use Illuminate\Support\Facades\Schema;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class LikeTest extends TestCase
 {
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
-    public function testLike()
+    public function test_like(): void
     {
         //外部キー制限解除
         Schema::disableForeignKeyConstraints();

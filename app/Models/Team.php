@@ -104,14 +104,12 @@ class Team extends Model
      *
      * @param $query
      * @param $str
-     * @return mixed
      */
     public function scopeEqualSports($query, $str)
     {
         if ($str) {
             return $query->where('sports', $str);
         }
-        return null;
     }
 
     /**
@@ -119,6 +117,7 @@ class Team extends Model
      *
      * @param $query
      * @param $str
+     *
      * @return
      */
     public function scopeFuzzyAreas($query, $str)
@@ -126,7 +125,6 @@ class Team extends Model
         if ($str) {
             return $query->where('area', 'like', "%{$str}%");
         }
-        return null;
     }
 
     /**
@@ -134,6 +132,7 @@ class Team extends Model
      *
      * @param $query
      * @param $str
+     *
      * @return
      */
     public function scopeEqualAges($query, $str)
@@ -141,7 +140,6 @@ class Team extends Model
         if ($str) {
             return $query->where('age', $str);
         }
-        return null;
     }
 
     /**
@@ -149,6 +147,7 @@ class Team extends Model
      *
      * @param $query
      * @param $str
+     *
      * @return
      */
     public function scopeEqualLevels($query, $str)
@@ -156,7 +155,6 @@ class Team extends Model
         if ($str) {
             return $query->where('level', $str);
         }
-        return null;
     }
 
     /**
@@ -164,6 +162,7 @@ class Team extends Model
      *
      * @param $query
      * @param $str
+     *
      * @return
      */
     public function scopeEqualFrequencies($query, $str)
@@ -171,7 +170,6 @@ class Team extends Model
         if ($str) {
             return $query->where('frequency', $str);
         }
-        return null;
     }
 
     /**
@@ -179,6 +177,7 @@ class Team extends Model
      *
      * @param $query
      * @param $str
+     *
      * @return
      */
     public function scopeEqualWeekdays($query, $str)
@@ -186,6 +185,5 @@ class Team extends Model
         if ($str) {
             return $query->where('weekday', $str);
         }
-        return null;
     }
 }

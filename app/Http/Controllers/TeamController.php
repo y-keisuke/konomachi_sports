@@ -31,7 +31,6 @@ class TeamController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param User $user
      * @return \Illuminate\Http\Response
      */
     public function create(User $user)
@@ -51,7 +50,6 @@ class TeamController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param TeamRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(TeamRequest $request)
@@ -66,7 +64,6 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Team $team
      * @return \Illuminate\Http\Response
      */
     public function show(Team $team)
@@ -85,7 +82,6 @@ class TeamController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Team $team
      * @return \Illuminate\Http\Response
      */
     public function edit(Team $team)
@@ -104,8 +100,6 @@ class TeamController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param TeamRequest $request
-     * @param Team $team
      * @return \Illuminate\Http\Response
      */
     public function update(TeamRequest $request, Team $team)
@@ -119,9 +113,9 @@ class TeamController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Team $team
-     * @return \Illuminate\Http\Response
      * @throws \Exception
+     *
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Team $team)
     {

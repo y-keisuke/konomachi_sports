@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateBoardsTable extends Migration
 {
@@ -13,7 +13,7 @@ class CreateBoardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('boards', function (Blueprint $table) {
+        Schema::create('boards', function (Blueprint $table): void {
             $table->increments('id');
             $table->integer('from_user_id')->unsigned();
             $table->integer('to_user_id')->unsigned();

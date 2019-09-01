@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -43,11 +42,12 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $post = new Post;
+        $post = new Post();
         $post->title = $request->title;
         $post->body = $request->body;
         $post->user_id = $request->user_id;
         $post->team_id = $request->team_id;
+
         if ($request->image) {
             $post->image = $request->image->storeAs('public/post_images', now() . '_' . $request->user_id . '.jpg');
         }
@@ -65,7 +65,7 @@ class PostController extends Controller
     {
         $p = Post::find($post->id);
         $team_id = $p->team->id;
-        $image = str_replace('public/', '/storage/', $post->image);
+        $image = \str_replace('public/', '/storage/', $post->image);
         return view('posts.show', ['post' => $post, 'team_id' => $team_id, 'image' => $image]);
     }
 
@@ -76,7 +76,12 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', ['post' => $post]);
+        $image = \str_replace('public/', '/storage/', $post->image);
+
+        if ($post->user_id === Auth::id()) {
+            return view('posts.edit', ['post' => $post, 'image' => $image]);
+        }
+        return  redirect('posts/' . $post->id)->with('alert_msg', '不正アクセスです');
     }
 
     /**
@@ -88,9 +93,14 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        $form = $request->all();
-        unset($form['_token']);
-        $post->fill($form)->save();
+        $user_id = Auth::id();
+        $post->title = $request->title;
+        $post->body = $request->body;
+
+        if ($request->image) {
+            $post->image = $request->image->storeAs('public/post_images', now() . '_' . $user_id . '.jpg');
+        }
+        $post->save();
         return redirect('posts/' . $post->id)->with('success_msg', '活動状況を編集しました');
     }
 

@@ -21,7 +21,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        if (Auth::id() === 1) {
+        if (Auth::user()->is_admin) {
             $teams = Team::all();
             return view('teams.index', ['teams' => $teams]);
         }
@@ -41,7 +41,7 @@ class TeamController extends Controller
             $levels_list = Level::orderBy('level', 'asc')->get();
             $frequencies_list = Frequency::orderBy('frequency', 'asc')->get();
             $weekdays_list = Weekday::orderBy('weekday', 'asc')->get();
-            return view('teams.create', ['user' => $user, 'sports_list' => $sports_list, 'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list])->with('success_msg', SUCCESS_MSG04);
+            return view('teams.create', ['user' => $user, 'sports_list' => $sports_list, 'ages_list' => $ages_list, 'levels_list' => $levels_list, 'frequencies_list' => $frequencies_list, 'weekdays_list' => $weekdays_list]);
         }
 
         return redirect('users/create')->with('alert_msg', 'チーム登録は個人登録後に行えます');
@@ -86,6 +86,9 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
+        if ($team->user_id !== Auth::id()) {
+            return redirect('/teams/' . $team->id)->with('alert_msg', '不正アクセスです');
+        }
         $sports_list = Sport::orderBy('sport', 'asc')->get();
         $ages_list = Age::orderBy('age', 'asc')->get();
         $levels_list = Level::orderBy('level', 'asc')->get();
@@ -117,6 +120,6 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         $team->delete();
-        return redirect('teams')->with('success_msg', 'チームを削除しました');
+        return redirect('/')->with('success_msg', 'チームを削除しました');
     }
 }

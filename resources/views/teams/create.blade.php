@@ -8,7 +8,7 @@
         <form action="{{ url('teams') }}" method="POST">
             @csrf
 
-            <input type="hidden" value="{{ Auth::id() }}">
+            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
 
             {{-- スポーツ --}}
             <div class="form-group">

@@ -47,17 +47,12 @@
                         </li>
                         <li class="nav-item {{ isActiveUrl('users') }}">
                             <a href="{{ url('users') }}" class="nav-link">
-                                ユーザー
+                                ユーザー一覧
                             </a>
                         </li>
                         <li class="nav-item {{ isActiveUrl('teams') }}">
                             <a href="{{ url('teams') }}" class="nav-link">
-                                チーム
-                            </a>
-                        </li>
-                        <li class="nav-item {{ isActiveUrl('posts') }}">
-                            <a href="{{ url('posts') }}" class="nav-link">
-                                活動状況
+                                チーム一覧
                             </a>
                         </li>
                         <li class="nav-item {{ isActiveUrl('search') }}">
@@ -65,40 +60,27 @@
                                 チームを探す
                             </a>
                         </li>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">ログイン</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('users/create') }}">ユーザー登録</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a href="{{ url('users/' . Auth::id()) }}" class="dropdown-item">マイページ</a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        ログアウト
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
+                        <li class="nav-item">
+                            <a href="{{ url('teams/create') }}" class="nav-link">
+                                チームを作る
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('users/' . Auth::id()) }}" class="nav-link">
+                                マイページ
+                            </a>
+                        </li>
+                        <li class="nav-item nav-link font-weight-bold border-0">
+                            {{ Auth::user()->name }}
+                        </li>
+                        <li class="nav-item no-underline ml-2">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger ">
+                                    ログアウト
+                                </button>
+                            </form>
+                        </li>
                     </ul>
                 </div>
                 {{--フラッシュメッセージ--}}

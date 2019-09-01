@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserEditRequest;
 use App\Models\Sex;
 use App\Models\Sport;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -42,7 +42,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequesut $request)
     {
         $form = $request->all();
         unset($form['_token']);
@@ -76,7 +76,6 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        $sports_list = Sport::orderBy('sport', 'asc')->get();
         $sex_list = Sex::select('sex')->get();
         $sports_list = Sport::select('sport')->get();
         $age_list = config('age');
@@ -88,7 +87,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UserEditRequest $request, User $user)
     {
         $form = $request->all();
         unset($form['_token']);
@@ -99,11 +98,16 @@ class UserController extends Controller
     /**
      * ユーザー情報を削除
      *
+     * @throws \Exception
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
     {
+        if ($user->admin === 1) {
+            return redirect('/')->with('alert_msg', '管理者は削除できません');
+        }
         $user->delete();
-        return redirect('users');
+        return redirect('/');
     }
 }

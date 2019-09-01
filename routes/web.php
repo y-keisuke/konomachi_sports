@@ -11,7 +11,6 @@
 |
 */
 
-
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -54,6 +53,6 @@ Route::resource('frequencies', 'FrequencyController');
 Route::resource('weekdays', 'WeekdayController');
 
 //管理者権限用
-Route::group(['middleware' => 'admin_auth'], function () {
+Route::group(['middleware' => 'admin_auth'], function (): void {
     Route::get('admin', 'AdminController@index');
 });

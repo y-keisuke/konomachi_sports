@@ -14,11 +14,10 @@ class BoardsTableSeeder extends Seeder
     {
         $faker = Factory::create('ja_JP');
 
-        for ($i = 0; $i < 5; $i++)
-        {
+        for ($i = 0; $i < 5; $i++) {
             DB::table('boards')->insert([
-                'from_user_id' =>$faker->numberBetween(1, 20),
-                'to_user_id' =>$faker->numberBetween(1, 20),
+                'from_user_id' => $faker->numberBetween(1, 20),
+                'to_user_id' => $faker->numberBetween(1, 20),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
             ]);

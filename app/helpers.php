@@ -1,11 +1,5 @@
 <?php
 
-use App\Models\Age;
-use App\Models\Frequency;
-use App\Models\Level;
-use App\Models\Sport;
-use App\Models\Weekday;
-
 //アクティブなURLを判定
 
 function isActiveUrl($url, $string = 'active')

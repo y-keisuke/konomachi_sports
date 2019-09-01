@@ -14,11 +14,10 @@ class LikesTableSeeder extends Seeder
     {
         $faker = Factory::create('ja_JP');
 
-        for ($i = 0; $i < 20; $i++)
-        {
+        for ($i = 0; $i < 20; $i++) {
             DB::table('likes')->insert([
-                'like_user_id' =>$faker->numberBetween(1, 20),
-                'liked_team_id' =>$faker->numberBetween(1, 10),
+                'like_user_id' => $faker->numberBetween(1, 20),
+                'liked_team_id' => $faker->numberBetween(1, 10),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
             ]);

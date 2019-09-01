@@ -40,57 +40,59 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         {{-- 「記事」と「ユーザ」へのリンク--}}
-                        @if(Auth::id() === 1)
-                            <li class="nav-item {{ isActiveUrl('users') }}">
-                                <a href="{{ url('admin') }}" class="nav-link">
-                                    管理画面
-                                </a>
-                            </li>
-                            <li class="nav-item {{ isActiveUrl('users') }}">
-                                <a href="{{ url('users') }}" class="nav-link">
-                                    ユーザー
-                                </a>
-                            </li>
-                            <li class="nav-item {{ isActiveUrl('teams') }}">
-                                <a href="{{ url('teams') }}" class="nav-link">
-                                    チーム
-                                </a>
-                            </li>
-                            <li class="nav-item {{ isActiveUrl('posts') }}">
-                                <a href="{{ url('posts') }}" class="nav-link">
-                                    活動状況
-                                </a>
-                            </li>
-                        @endif
-                        <li class="nav-item {{ isActiveUrl('search') }}">
+                        @auth
+                            @if(Auth::user()->is_admin)
+                                <li class="nav-item">
+                                    <a href="{{ url('admin') }}" class="nav-link">
+                                        管理画面
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('users') }}" class="nav-link">
+                                        ユーザー一覧
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ url('teams') }}" class="nav-link">
+                                        チーム一覧
+                                    </a>
+                                </li>
+                            @endif
+                        @endauth
+                        <li class="nav-item">
                             <a href="{{ url('search') }}" class="nav-link">
                                 チームを探す
                             </a>
                         </li>
                         @auth
-                            <li class="nav-item {{ isActiveUrl('search') }}">
+                            <li class="nav-item">
+                                <a href="{{ url('teams/create') }}" class="nav-link">
+                                    チームを作る
+                                </a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ url('users/' . Auth::id()) }}" class="nav-link">
                                     マイページ
                                 </a>
                             </li>
-                            <li class="nav-item {{ isActiveUrl('search') }}">
+                            <li class="nav-item nav-link font-weight-bold border-0">
+                                {{ Auth::user()->name }}
+                            </li>
+                            <li class="nav-item no-underline ml-2">
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
-                                    <button type="submit" class="btn">
+                                    <button type="submit" class="btn btn-danger ">
                                         ログアウト
                                     </button>
                                 </form>
                             </li>
-                            <li class="nav-item nav-link font-weight-bold border-0 {{ isActiveUrl('search') }}">
-                                {{ Auth::user()->name }}
-                            </li>
                         @endauth
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">ログイン</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{ url('users/create') }}">個人登録</a>
+                            </li>
+                            <li class="nav-item no-underline ml-2">
+                                <a class="nav-link btn btn-success text-white" href="{{ route('login') }}">ログイン</a>
                             </li>
                         @endguest
                     </ul>

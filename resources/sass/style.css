@@ -31,6 +31,10 @@ option {
   background-color: #f8f9fa !important;
   padding-left: 0 !important; }
 
+.back-link {
+  display: flex;
+  flex-direction: column; }
+
 /*========================================
 レイアウト
 ======================================= */
@@ -40,6 +44,8 @@ option {
     color: #333; }
   #app nav li:hover {
     border-bottom: 1px solid #333; }
+  #app nav .no-underline:hover {
+    border-bottom: none; }
 
 /* フラッシュメッセージ */
 .flash-msg {

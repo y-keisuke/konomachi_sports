@@ -14,12 +14,11 @@ class MessagesTableSeeder extends Seeder
     {
         $faker = Factory::create('ja_JP');
 
-        for ($i = 0; $i < 5; $i++)
-        {
+        for ($i = 0; $i < 5; $i++) {
             DB::table('messages')->insert([
                 'board_id' => $i,
                 'user_id' => 1,
-                'message' =>$faker->sentence(),
+                'message' => $faker->sentence(),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
             ]);

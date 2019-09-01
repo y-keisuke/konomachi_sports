@@ -27,7 +27,7 @@ class PostRequest extends FormRequest
             'user_id' => 'required',
             'team_id' => 'required',
             'title' => 'required|string|max:150',
-            'image' => 'file|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048',
             'body' => 'required|string|max:2000',
         ];
     }
@@ -40,9 +40,11 @@ class PostRequest extends FormRequest
     public function messages()
     {
         return [
+            'user_id' => 'user',
+            'team_id' => 'team',
             'title.required' => 'タイトルは必ず入力してください',
             'title.max' => 'タイトルは150字以内で入力してください',
-            'image.file' => 'file',
+            'image.file' => 'ファイル形式はjpeg,png,jpg,gifのみアップロード可能です',
             'image.max' => 'max',
             'image.image' => '画像ファイルを選択してください',
             'image.mimes' => '画像形式はjpeg,png,jpg,gifのみアップロード可能です',

@@ -1,72 +1,66 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# この町スポーツ
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+この町スポーツ、略して「まちスポ」。  
+まちスポは地域で活動しているスポーツクラブとスポーツをしたい個人をつなげるマッチングサイトです。  
+テストユーザーをご準備しておりますので、そちらよりログインください。  
+※機能重視のため、レスポンシブ対応はしておりませんm(_ _)m
 
-## About Laravel
+## サイトURL
+http://konomachi-sports.com
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 主な機能
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1.ユーザー(user)、チーム(team)、活動状況(post)のCRUD  
+2.ログイン、ログアウト、パスワードリマインダー、Eメール確認  
+3.画像アップロード機能（活動状況内にて）  
+4.ユーザーフォロー機能  
+5.チームお気に入り登録機能  
+6.ダイレクトメッセージ機能  
+7.チーム検索機能（ページネーションあり）  
+8.管理者機能（スポーツ、年齢層、募集対象、活動頻度、活動曜日の追加・編集・削除）  
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 管理者機能について
+![alt](storage/machi-spo_admin.PNG)  
+こちらは管理者画面のメインの画面です。  
+各タブからそれぞれの項目の追加、更新、削除が可能です。  
+「○○を追加」というボタンを押すことで、項目の追加ページに遷移します。  
 
-## Learning Laravel
+![alt](storage/machi-spo_admin2.PNG)  
+こちらが各項目の追加画面です。  
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![alt](storage/machi-spo_admin3.PNG)  
+こちらは管理者のマイページです。  
+管理者は誤って削除できないようにしています。
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1400 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![alt](storage/machi-spo_admin4.PNG)  
+こちらは管理者から他のユーザーのマイページへアクセスした際の画面です。  
+管理者はすべてのユーザーの「編集・削除」が行えます。
 
-## Laravel Sponsors
+![alt](storage/machi-spo_admin5.PNG)  
+こちらは管理者から他のユーザーが管理人をしているチームにアクセスした際の画面です。
+こちらも同様にすべてのチームの「編集・削除」を行うことが可能です。
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## 使用技術
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+- 開発環境
+    - Docker for Windows
+        - Laradock
+- 本番環境
+    - AWS  
+        - Elastic Beanstalk  
+        - RDS  
+        - EC2
+        - Route53
+- 使用言語/フレームワーク
+    - PHP/Laravel
+- テスト（一部のみ実施）
+    - phpunit
+- コード整形
+    - PHP-CS-Fixer
+    
+## 今後の課題
 
-## Contributing
+- 開発環境でDockerを使用したものの、理解が浅くAWSのECSを使ったデプロイには至らなかったため、Dockerの理解
+- AWSもざっくりとした理解にとどまっているため、AWSを使いこなすにはもっと深い理解が必要
+- わからない箇所を検索にて調べるにあたって、まだまだうまく検索をできず一つの機能の実装で時間がかかるケースが多くあったため、検索力の向上
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).

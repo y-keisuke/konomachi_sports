@@ -25,7 +25,7 @@ class UserRequesut extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|integer',
+            'email' => 'required|email',
             'password' => 'required|string|confirmed',
             'sports1' => 'nullable|string',
             'sports_years1' => 'nullable|integer',
@@ -47,13 +47,15 @@ class UserRequesut extends FormRequest
     public function messages()
     {
         return [
-            'sports.required' => 'スポーツを選択してください。',
-            'age.required' => '年齢層を選択してください。',
-            'level.required' => '募集対象を選択してください。',
-            'area.required' => '地域は入力必須です。',
-            'frequency.required' => '活動頻度を選択してください。',
-            'weekday.required' => '活動頻度を選択してください。',
-            'hp.url' => 'ホームページは有効なURL形式で入力してください。',
+            'name.required' => '名前は入力必須です',
+            'email.required' => 'メールアドレスは入力必須です',
+            'sports.required' => 'スポーツを選択してください',
+            'age.required' => '年齢層を選択してください',
+            'level.required' => '募集対象を選択してください',
+            'area.required' => '地域は入力必須です',
+            'frequency.required' => '活動頻度を選択してください',
+            'weekday.required' => '活動頻度を選択してください',
+            'hp.url' => 'ホームページは有効なURL形式で入力してください',
         ];
     }
 }

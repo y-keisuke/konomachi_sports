@@ -31,6 +31,7 @@ class TeamRequest extends FormRequest
             'frequency' => 'required|string',
             'weekday' => 'required|string',
             'hp' => 'nullable|url',
+            'user_id' => 'required',
         ];
     }
 
@@ -42,13 +43,20 @@ class TeamRequest extends FormRequest
     public function messages()
     {
         return [
-            'sports.required' => 'スポーツを選択してください。',
-            'age.required' => '年齢層を選択してください。',
-            'level.required' => '募集対象を選択してください。',
-            'area.required' => '地域は入力必須です。',
-            'frequency.required' => '活動頻度を選択してください。',
-            'weekday.required' => '活動頻度を選択してください。',
-            'hp.url' => 'ホームページは有効なURL形式で入力してください。',
+            'sports.required' => 'スポーツを選択してください',
+            'sports.string' => '文字列を入力してください',
+            'age.required' => '年齢層を選択してください',
+            'age.string' => '文字列を入力してください',
+            'level.required' => '募集対象を選択してください',
+            'level.string' => '文字列を入力してください',
+            'area.required' => '地域は入力必須です',
+            'area.string' => '文字列を入力してください',
+            'frequency.required' => '活動頻度を選択してください',
+            'frequency.string' => '文字列を入力してください',
+            'weekday.required' => '活動頻度を選択してください',
+            'weekday.string' => '文字列を入力してください',
+            'hp.url' => 'ホームページは有効なURL形式で入力してください',
+            'user_id.required' => 'user_idは必須',
         ];
     }
 }

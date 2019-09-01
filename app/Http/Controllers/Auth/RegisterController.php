@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -51,11 +50,11 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'sports1' => ['string', 'nullable'],
-            'sports_years1' => ['string', 'nullable'],
+            'sports_years1' => ['integer', 'nullable'],
             'sports2' => ['string', 'nullable'],
-            'sports_years2' => ['string', 'nullable'],
+            'sports_years2' => ['integer', 'nullable'],
             'sports3' => ['string', 'nullable'],
-            'sports_years3' => ['string', 'nullable'],
+            'sports_years3' => ['integer', 'nullable'],
             'age' => ['integer', 'nullable'],
             'sex' => ['string', 'nullable'],
             'area' => ['string', 'nullable'],

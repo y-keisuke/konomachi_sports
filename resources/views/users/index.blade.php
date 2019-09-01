@@ -1,6 +1,6 @@
 @php($title = 'ユーザー一覧')
 
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('title', $title)
 

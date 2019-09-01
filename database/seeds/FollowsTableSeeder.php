@@ -14,11 +14,10 @@ class FollowsTableSeeder extends Seeder
     {
         $faker = Factory::create('ja_JP');
 
-        for ($i = 0; $i < 20; $i++)
-        {
+        for ($i = 0; $i < 20; $i++) {
             DB::table('follows')->insert([
-                'follow_user_id' =>$faker->numberBetween(1, 20),
-                'followed_user_id' =>$faker->numberBetween(1, 20),
+                'follow_user_id' => $faker->numberBetween(1, 20),
+                'followed_user_id' => $faker->numberBetween(1, 20),
                 'created_at' => $faker->dateTime(),
                 'updated_at' => $faker->dateTime(),
             ]);

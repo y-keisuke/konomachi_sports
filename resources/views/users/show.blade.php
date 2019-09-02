@@ -152,7 +152,7 @@
             @if(count($follow) > 0)
                 <ol>
                     @foreach($follow as $follow_user)
-                        <li><a href="{{ 'users/' . $follow_user->id }}">{{ $follow_user->name }}</a></li>
+                        <li><a href="{{ url('users/' . $follow_user->id) }}">{{ $follow_user->name }}</a></li>
                     @endforeach
                 </ol>
             @else
@@ -164,7 +164,7 @@
             @if(count($followed) > 0)
                 <ol>
                 @foreach($followed as $followed_user)
-                    <li><a href="{{ 'users/' . $followed_user->id }}">{{ $followed_user->name }}</a></li>
+                    <li><a href="{{ url('users/' . $followed_user->id) }}">{{ $followed_user->name }}</a></li>
                 @endforeach
                 </ol>
             @else

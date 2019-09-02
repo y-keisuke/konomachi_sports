@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -23,9 +24,15 @@ class LoginController extends Controller
     /**
      * Where to redirect users after login.
      *
+     * @return string
      * @var string
      */
-    protected $redirectTo = '/';
+    //protected $redirectTo = '/';
+    protected function redirectTo()
+    {
+        session()->flash('success_msg', 'ログインしました');
+        return '/users/' . Auth::id();
+    }
 
     /**
      * Create a new controller instance.
@@ -34,4 +41,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
 }
+//->with('success_msg', 'ログインしました')

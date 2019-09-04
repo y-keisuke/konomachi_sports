@@ -41,7 +41,8 @@ http://konomachi-sports.com
 こちらも同様にすべてのチームの「編集・削除」を行うことが可能です。
 
 ## 使用技術
-
+- 言語/フレームワーク
+    - PHP 7.2 / Laravel 5.8
 - 開発環境
     - Docker for Windows
         - Laradock

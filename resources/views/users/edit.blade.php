@@ -5,7 +5,6 @@
 @section('title', $title)
 
 @section('content')
-    {{ $errors }}
     <div class="container">
         <h1>{{ $title }}</h1>
         <form action="{{ url('users/' .$user->id) }}" method="post">
@@ -20,6 +19,7 @@
                 @endif
             </div>
             {{--メールアドレス--}}
+            @if($user->id !== 2)
             <div class="form-group">
                 <label for="email">メールアドレス</label>
                 <input id="email" type="text" class="form-control" name="email" value="{{ $user->email }}">
@@ -27,6 +27,7 @@
                     <p class="text-danger">{{ $errors->first('email') }}</p>
                 @endif
             </div>
+            @endif
             {{--年齢--}}
             <div class="form-group">
                 <label for="age">年齢</label>

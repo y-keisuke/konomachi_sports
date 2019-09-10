@@ -16,13 +16,19 @@ class FollowController extends Controller
     {
         $followed_user_id = $request->user_id;
         $user = User::where('id', $followed_user_id)->first();
-        Follow::create(
-            [
-                'follow_user_id' => \Auth::user()->id,
-                'followed_user_id' => $followed_user_id,
-            ]
-        );
-        return redirect('users/' . $followed_user_id . '#follow')->with('success_msg', $user->name . 'さんをフォローしました');
+        $following = Follow::where(['follow_user_id' => \Auth::user()->id, 'followed_user_id' => $followed_user_id,])->first();
+        if ($following) {
+            return redirect('users/' . $followed_user_id)->with('alert_msg', 'すでにフォローしています');
+        } else {
+            Follow::create(
+                [
+                    'follow_user_id' => \Auth::user()->id,
+                    'followed_user_id' => $followed_user_id,
+                ]
+            );
+            return redirect('users/' . $followed_user_id . '#follow')->with('success_msg', $user->name . 'さんをフォローしました');
+        }
+
     }
 
     /**

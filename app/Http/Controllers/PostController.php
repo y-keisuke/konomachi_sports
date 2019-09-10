@@ -49,7 +49,8 @@ class PostController extends Controller
         $post->team_id = $request->team_id;
 
         if ($request->image) {
-            $post->image = $request->image->storeAs('public/post_images', now() . '_' . $request->user_id . '.jpg');
+            $post->image = now() . '_' . $request->user_id . '.jpg';
+            $image = Storage::disk('s3')->putFileAs('/post_images', $request->image, now().'_'.$request->user_id.'.jpg', 'public');
         }
         $post->save();
 
@@ -65,7 +66,10 @@ class PostController extends Controller
     {
         $p = Post::find($post->id);
         $team_id = $p->team->id;
-        $image = \str_replace('public/', '/storage/', $post->image);
+        $image = '';
+        if ($post->image) {
+            $image = Storage::disk('s3')->url('post_images/' . $post->image);
+        }
         return view('posts.show', ['post' => $post, 'team_id' => $team_id, 'image' => $image]);
     }
 
@@ -76,7 +80,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $image = \str_replace('public/', '/storage/', $post->image);
+        $image = Storage::disk('s3')->url('post_images/' . $post->image);
 
         if ($post->user_id === Auth::id()) {
             return view('posts.edit', ['post' => $post, 'image' => $image]);
@@ -98,7 +102,8 @@ class PostController extends Controller
         $post->body = $request->body;
 
         if ($request->image) {
-            $post->image = $request->image->storeAs('public/post_images', now() . '_' . $user_id . '.jpg');
+            $post->image = now() . '_' . $request->user_id . '.jpg';
+            $image = Storage::disk('s3')->putFileAs('/post_images', $request->image, now().'_'.$request->user_id.'.jpg', 'public');
         }
         $post->save();
         return redirect('posts/' . $post->id)->with('success_msg', '活動状況を編集しました');

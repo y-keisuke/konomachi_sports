@@ -33,7 +33,7 @@
     <h2>活動内容</h2>
     @if(!empty($image))
         <figure class="post-image-box">
-            <img src="{{ $image }}" class="post-image">
+            <img src="{{ $image }}" class="post-image" alt="">
         </figure>
     @endif
     <div class="post-body">

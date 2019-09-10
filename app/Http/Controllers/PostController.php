@@ -66,8 +66,10 @@ class PostController extends Controller
     {
         $p = Post::find($post->id);
         $team_id = $p->team->id;
-        //$image = \str_replace('public/', '/storage/', $post->image);
-        $image = Storage::disk('s3')->url('post_images/' . $post->image);
+        $image = '';
+        if ($post->image) {
+            $image = Storage::disk('s3')->url('post_images/' . $post->image);
+        }
         return view('posts.show', ['post' => $post, 'team_id' => $team_id, 'image' => $image]);
     }
 

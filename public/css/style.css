@@ -331,3 +331,8 @@ footer p {
   width: 50%;
 }
 
+.post-body {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+

@@ -63,6 +63,7 @@ class PostControllerTest extends TestCase
         $data = [
             'user_id' => $user->id,
             'team_id' => $team->id,
+            'image' => 'imageimage.jpg',
             'title' => 'タタタタタイトル',
             'body' => 'ボボボボディ',
         ];

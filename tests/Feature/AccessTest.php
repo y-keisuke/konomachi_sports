@@ -12,11 +12,13 @@ class AccessTest extends TestCase
 {
     use RefreshDatabase;
 
+    /**
+     * 管理者のアクセステスト
+     */
     public function test_admin_access(): void
     {
-        //管理者のみアクセス可能
-        $responce = $this->get('/users');
-        $responce->assertStatus(302);
+        $response = $this->get('/users');
+        $response->assertStatus(302);
 
         $response = $this->get('/admin');
         $response->assertStatus(302);
@@ -43,10 +45,11 @@ class AccessTest extends TestCase
         Schema::enableForeignKeyConstraints();
     }
 
+    /**
+     * ログインユーザーのアクセステスト
+     */
     public function test_login_user_access(): void
     {
-        // ログインユーザー
-
         //外部キー制限解除
         Schema::disableForeignKeyConstraints();
         // テスト用ユーザー作成
@@ -73,10 +76,11 @@ class AccessTest extends TestCase
         $response->assertSee('<input type="submit" class="btn btn-primary" value="お気に入り登録する">');
     }
 
+    /**
+     * 未ログインユーザーのアクセステスト
+     */
     public function test_all_user_access(): void
     {
-        // 未ログインユーザーもアクセス可能
-
         //外部キー制限解除
         Schema::disableForeignKeyConstraints();
         // テスト用チーム作成

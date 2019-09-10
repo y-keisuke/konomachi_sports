@@ -88,9 +88,7 @@
                 @if($user->id === Auth::id())
                     <div class="flex">
                         {{--編集--}}
-                        <button class="btn btn-primary mr-4">
-                            <a href="{{ url('users/' . $user->id . '/edit') }}">編集</a>
-                        </button>
+                        <a href="{{ url('users/' . $user->id . '/edit') }}" class="btn btn-primary mr-4">編集</a>
                         {{--削除--}}
                         @if(Auth::id() === 2)
                             <button class="btn btn-danger">本来のユーザーはここが削除ボタン</button>

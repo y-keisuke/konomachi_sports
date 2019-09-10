@@ -67,9 +67,7 @@
                 @if(Auth::id() === $team->user_id)
                     <div class="flex mb-3">
                         {{--編集--}}
-                        <button class="btn btn-primary mr-4">
-                            <a href="{{ url('teams/' . $team->id . '/edit') }}">編集</a>
-                        </button>
+                        <a href="{{ url('teams/' . $team->id . '/edit') }}" class="btn btn-primary mr-4">編集</a>
 
                         {{--削除--}}
                         @component('components.btn-del')

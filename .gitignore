@@ -10,13 +10,11 @@
 .env.*.php
 .phpunit.result.cache
 package-lock.json
-Homestead.json
-Homestead.yaml
+Homestead.*
 npm-debug.log
 yarn-error.log
 
 composer.phar
 .php_cs.cache
-/node_modules
 /.vagrant
 .php_cs

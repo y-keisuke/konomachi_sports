@@ -12,7 +12,7 @@ http://konomachi-sports.com
 
 1.ユーザー(user)、チーム(team)、活動状況(post)のCRUD  
 2.ログイン、ログアウト、パスワードリマインダー、Eメール確認  
-3.画像アップロード機能（活動状況内にて）  
+3.画像アップロード機能（S3に保存読み込み、活動状況内にて）  
 4.ユーザーフォロー機能  
 5.チームお気に入り登録機能  
 6.ダイレクトメッセージ機能  
@@ -51,6 +51,7 @@ http://konomachi-sports.com
         - Elastic Beanstalk  
         - RDS  
         - EC2
+        - S3
         - Route53
 - 使用言語/フレームワーク
     - PHP/Laravel

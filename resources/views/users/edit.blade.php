@@ -27,6 +27,8 @@
                     <p class="text-danger">{{ $errors->first('email') }}</p>
                 @endif
             </div>
+            @else
+                <input type="hidden" name="email" value="{{ $user->email }}">
             @endif
             {{--年齢--}}
             <div class="form-group">

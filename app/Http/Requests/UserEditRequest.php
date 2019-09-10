@@ -32,7 +32,7 @@ class UserEditRequest extends FormRequest
             'sports_years2' => 'nullable|integer',
             'sports3' => 'nullable|string',
             'sports_years3' => 'nullable|integer',
-            'age' => 'nullable|string',
+            'age' => 'nullable|integer',
             'sex' => 'nullable|string',
             'area' => 'nullable|string',
         ];
@@ -54,7 +54,7 @@ class UserEditRequest extends FormRequest
             'sports_years1.integer' => '経験年数は半角数字で入力してください',
             'sports_years2.integer' => '経験年数は半角数字で入力してください',
             'sports_years3.integer' => '経験年数は半角数字で入力してください',
-            'age.string' => '年齢を正しく選択してください',
+            'age.integer' => '年齢を正しく選択してください',
             'sex.string' => '性別を正しく選択してください',
             'area.string' => '活動希望地域を正しく入力してください',
         ];
